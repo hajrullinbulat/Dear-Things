@@ -15,6 +15,6 @@ public class CatalogController extends BaseController {
     @RequestMapping(value = "/catalog", method = RequestMethod.GET)
     public String renderMyCatalogPage() {
         request.getSession().setAttribute("goods", goodsService.getAllGoods());
-        return "main/catalog";
+        return "pages/catalog";
     }
 }

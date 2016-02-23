@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class CartController extends BaseController {
+public class CollectionsController extends BaseController {
 
-    @RequestMapping(value = "/cart", method = RequestMethod.GET)
+    @RequestMapping(value = "/collections", method = RequestMethod.GET)
     public String renderMyCartPage() {
-        return "pages/cart";
+        return "pages/collections";
     }
 
 

@@ -1,76 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>DearThings</title>
-
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-    <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../../resources/css/jasny-bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../../resources/css/my.css" rel="stylesheet" media="screen">
-    <link href="../../resources/css/font-awesome.css" rel="stylesheet">
-    <link href="../../resources/css/hover.css" rel="stylesheet">
-
-</head>
-
-
-<body>
-<div class="navbar navbar-inverse navbar-static-top">
-    <div class="container margin-top">
-        <a href="#" class="button"/><i class="fa fa-bars"> Вещи</i></a></li>
-        <!--<input class="search_field" placeholder="Поиск" type="text">-->
-        <div class="search">
-            <input type="search" name="" placeholder="поиск" class="input"/>
-            <input type="submit" name="" value="" class="submit"/>
-        </div>
-        <a href="#">
-            <img class="header-icon" src="../../resources/images/header.png">
-        </a>
-
-        <div class="tributton">
-            <a href="#" class="button button-first"/><i class="fa fa-user"></i></a></li>
-            <a href="#" class="button button-second"/><i class="fa fa-th"></i></a></li>
-            <a href="#" class="button button-third"/><i class="fa fa-trash-o"></i></a></li>
-        </div>
-    </div>
-</div>
-
-
-<div class="container">
-    <div class="carousel slide" id="carousel">
-        <!-- Индикаторы слайдов -->
-        <ol class="carousel-indicators">
-            <li class="active" data-target="#carousel" data-slide-to="0"></li>
-            <li data-target="#carousel" data-slide-to="1"></li>
-            <li data-target="#carousel" data-slide-to="2"></li>
-        </ol>
-
-        <!--Слайды -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <img src="../../resources/images/slide1.jpg" alt=""/>
-            </div>
-            <div class="item">
-                <img src="../../resources/images/slide2.jpg" alt=""/>
-            </div>
-            <div class="item">
-                <img src="../../resources/images/slide3.jpg" alt=""/>
-            </div>
-        </div>
-    </div>
-</div>
+<#include "../templates/mainTemplate.ftl">
+<@mainTemplate />
+<#macro m_body>
 
 <div class="container things">
     <div class="row">
-
         <div class="col-lg-3 hvr-grow ">
             <div class="thumbnail">
-                <img src="../../resources/images/1.jpeg">
+                <img src="/resources/images/1.jpeg">
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в. </p>
                     <div align="right">
@@ -81,7 +17,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="../../resources/images/2.jpeg">
+                <img src="/resources/images/2.jpeg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -93,7 +29,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="../../resources/images/3.jpeg">
+                <img src="/resources/images/3.jpeg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -105,7 +41,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="../../resources/images/4.jpeg">
+                <img src="/resources/images/4.jpeg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -117,7 +53,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="../../resources/images/5.jpeg">
+                <img src="/resources/images/5.jpeg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -129,7 +65,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="../../resources/images/6.jpeg">
+                <img src="/resources/images/6.jpeg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -141,7 +77,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="../../resources/images/7.jpeg">
+                <img src="/resources/images/7.jpeg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -153,7 +89,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="../../resources/images/8.jpeg">
+                <img src="/resources/images/8.jpeg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -165,7 +101,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="../../resources/images/9.jpg">
+                <img src="/resources/images/9.jpg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -177,7 +113,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="../../resources/images/10.jpg">
+                <img src="/resources/images/10.jpg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -192,46 +128,4 @@
 
 <div class="loader"><a href="#" class="btn-loader">Показать все</a></div>
 
-<div class="pageend">
-
-
-    <div class="container pageendwidth">
-        <div class="col-lg-8"></div>
-        <div class="col-lg-4 titleend hvr-bounce-in">
-            Вещи, которые меняют всё!
-        </div>
-    </div>
-
-    <div class="marginfromtop">
-        <div class="container pageendwidth">
-            <div class="col-lg-8"></div>
-            <div class="col-lg-1 titleend">
-                <div class="info">
-                    <a href="#">О проекте</a>
-                </div>
-            </div>
-            <div class="col-lg-2 titleend">
-                <div class="info">
-                    <a href="#">Контакты</a>
-                </div>
-            </div>
-            <br>
-            <div class="prava">
-                © 2016 DearThings by Baton
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="../../resources/js/my.js"></script>
-
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="../../resources/js/bootstrap.min.js"></script>
-<script src="../../resources/js/jasny-bootstrap.min.js"></script>
-
-</body>
-</html>
+</#macro>
