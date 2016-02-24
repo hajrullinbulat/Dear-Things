@@ -84,6 +84,27 @@
                         <skip>true</skip>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <configuration>
+                        <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                        <webResources>
+                            <resource>
+                                <directory>C:\Users\Булат\Desktop\ПРОГА\ПРОЕКТЫ\КУРСАЧ\Shop\public\src\main\webapp\resources\fonts</directory>
+                                <targetPath />
+                                <filtering>true</filtering>
+                                <excludes>
+                                    <exclude>**/*.woff</exclude>
+                                    <exclude>**/*.woff2</exclude>
+                                    <exclude>**/*.ttf</exclude>
+                                </excludes>
+                            </resource>
+                        </webResources>
+                    </configuration>
+                </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
