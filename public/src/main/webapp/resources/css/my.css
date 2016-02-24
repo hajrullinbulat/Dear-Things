@@ -90,6 +90,11 @@ body {
     font-family: "Calibri Light";
     font-size: 14px;
 }
+.thumbnail img {
+    height: 265px;
+    width: 265px;
+}
+
 
 .carousel {
     margin-top: 4%;
@@ -949,6 +954,19 @@ body.nav-expanded {
 .caption a:hover {
     text-decoration: none;
     color: #000000;
+}
+
+.caption {
+    height:101px;
+}
+
+.caption p{
+    height: 40px;
+}
+
+.float_right{
+    float: right;
+    margin-right: -2px;
 }
 
 .order {

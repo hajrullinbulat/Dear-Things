@@ -1,5 +1,5 @@
 <#include "../templates/itemTemplate.ftl">
-<@mainTemplate />
+<@itemTemplate />
 <#macro m_body>
 <div class="container">
     <ul class="breadcrumbs">
@@ -10,7 +10,7 @@
         <div class="container product">
             <div class="col-lg-6">
                 <div class="product_image">
-                    <img src="/resources/images/6 big.jpeg">
+                    <img src="/resources/images/6 big.jpeg/resources/images/6 big.jpeg">
                 </div>
             </div>
             <div class="col-lg-6">

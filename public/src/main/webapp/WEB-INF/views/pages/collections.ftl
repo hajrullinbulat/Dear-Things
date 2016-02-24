@@ -1,5 +1,5 @@
 <#include "../templates/collectionsTemplate.ftl">
-<@mainTemplate />
+<@collectionsTemplate />
 <#macro m_body>
 
 

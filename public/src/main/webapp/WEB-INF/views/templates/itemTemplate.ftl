@@ -1,5 +1,5 @@
 <#assign c=JspTaglibs["http://java.sun.com/jsp/jstl/core"]>
-<#macro mainTemplate title="ИМЯ ТОВАРА">
+<#macro itemTemplate title="ИМЯ ТОВАРА">
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>

@@ -101,7 +101,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="/resources/images/9.jpg">
+                <img src="/resources/images/goodsBig/9.jpg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>
@@ -113,7 +113,7 @@
         </div>
         <div class="col-lg-3 hvr-grow">
             <div class="thumbnail">
-                <img src="/resources/images/10.jpg">
+                <img src="/resources/images/goodsBig/10.jpg">
 
                 <div class="caption">
                     <p>Spirit , производитель NOVA (AUSTRIA) 2009г/в.</p>

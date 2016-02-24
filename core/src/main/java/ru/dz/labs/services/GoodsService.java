@@ -6,6 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.dz.labs.model.Goods;
 import ru.dz.labs.repository.GoodsRepository;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -20,7 +24,33 @@ public class GoodsService {
 
     @Transactional
     public List<Goods> getAllGoods() {
-        return goodsRepository.getAllGoods();
+        List<Goods> allGoods = goodsRepository.getAllGoods();
+
+        for (Goods good : allGoods) {
+            try {
+                BufferedImage image = ImageIO.read(new File("D:" + good.getImage()));
+
+                int height = image.getHeight();
+                int width = image.getWidth();
+
+                if (height != width) {
+                    int temp;
+                    if (width > height) {
+                        temp = (width - height) / 2;
+                        image = image.getSubimage(temp, 0, height, height);
+                    } else {
+                        temp = (height - width) / 2;
+                        image = image.getSubimage(0, temp, width, width);
+                    }
+                    ImageIO.write(image, "JPEG", new File("D:\\resources\\images\\new\\" + good.getId() + ".jpg"));
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return allGoods;
     }
+
 
 }
