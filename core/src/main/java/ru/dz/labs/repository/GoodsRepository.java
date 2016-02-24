@@ -17,8 +17,12 @@ public class GoodsRepository {
         sessionFactory.getCurrentSession().save(goods);
     }
 
-    public List<Goods> getAllGoods() {
+    public List getAllGoods() {
         return sessionFactory.getCurrentSession().createCriteria(Goods.class).list();
+    }
+
+    public Goods getGoodById(Long id) {
+        return (Goods) sessionFactory.getCurrentSession().load(Goods.class, id);
     }
 
 }

@@ -20,19 +20,20 @@
 <div class="container things">
     <div class="row">
         <#list goods as good>
-
-            <div class="col-lg-3 hvr-grow ">
-                <div class="thumbnail">
-                    <img src="${good.image}">
-                    <div class="caption">
-                        <p>${good.name}</p>
-                        <div class="float_right">
-                            <input type="submit" class="btn btn-default" value=" ${good.price} P " name="addToTrash">
+            <a href="item/${good.id}">
+                <div class="col-lg-3 hvr-grow">
+                    <div class="thumbnail">
+                        <img src="${good.image}_320x320.jpg">
+                        <div class="caption">
+                            <p>${good.name}</p>
+                            <div class="float_right">
+                                <input type="submit" class="btn btn-default" value=" ${good.price} P "
+                                       name="addToTrash">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </a>
         </#list>
     </div>
 </div>

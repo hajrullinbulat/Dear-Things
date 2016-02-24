@@ -23,6 +23,11 @@ public class GoodsService {
         return goodsRepository.getAllGoods();
     }
 
+    @Transactional
+    public Goods getGoodById(Long id){
+        return goodsRepository.getGoodById(id);
+    }
+
 
 //
 //        for (Goods good : allGoods) {
