@@ -6,10 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-/**
- * @author Gataullin Kamil
- *         12.10.2014 0:29
- */
+
 public class CreateTable {
     public static void main(String[] args) {
         try {

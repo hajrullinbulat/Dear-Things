@@ -8,7 +8,6 @@
         <mapping package="ru.dz.labs.model"/>
         <mapping class="ru.dz.labs.model.Users"/>
         <mapping class="ru.dz.labs.model.Orders"/>
-        <mapping class="ru.dz.labs.model.Orders_Goods"/>
         <mapping class="ru.dz.labs.model.Addresses"/>
         <mapping class="ru.dz.labs.model.Carts"/>
         <mapping class="ru.dz.labs.model.Categories"/>

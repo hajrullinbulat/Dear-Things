@@ -6,28 +6,20 @@ import java.util.List;
 @Entity
 public class Addresses {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String street;
-    private String house;
-    private String flat;
-    private Integer index;
-    private String area;
-
-
+    private String address;
     @ManyToOne
             (cascade = {CascadeType.REFRESH},
                     fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Users users;
 
-
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
             mappedBy = "addresses")
     private List<Orders> orders;
+
 
     public Long getId() {
         return id;
@@ -37,52 +29,12 @@ public class Addresses {
         this.id = id;
     }
 
-    public String getCity() {
-        return city;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getHouse() {
-        return house;
-    }
-
-    public void setHouse(String house) {
-        this.house = house;
-    }
-
-    public String getFlat() {
-        return flat;
-    }
-
-    public void setFlat(String flat) {
-        this.flat = flat;
-    }
-
-    public Integer getIndex() {
-        return index;
-    }
-
-    public void setIndex(Integer index) {
-        this.index = index;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Users getUsers() {
@@ -101,18 +53,14 @@ public class Addresses {
         this.orders = orders;
     }
 
-    public Addresses() {
+    public Addresses(String address, Users users, List<Orders> orders) {
 
-    }
-
-    public Addresses(String city, String street, String house, String flat, Integer index, String area, Users users, List<Orders> orders) {
-        this.city = city;
-        this.street = street;
-        this.house = house;
-        this.flat = flat;
-        this.index = index;
-        this.area = area;
+        this.address = address;
         this.users = users;
         this.orders = orders;
+    }
+
+    public Addresses() {
+
     }
 }

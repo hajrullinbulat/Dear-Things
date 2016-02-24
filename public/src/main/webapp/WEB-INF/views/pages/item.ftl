@@ -10,7 +10,7 @@
         <div class="container product">
             <div class="col-lg-6">
                 <div class="product_image">
-                    <img src="/resources/images/6.1.jpeg">
+                    <img src="/resources/images/6 big.jpeg">
                 </div>
             </div>
             <div class="col-lg-6">

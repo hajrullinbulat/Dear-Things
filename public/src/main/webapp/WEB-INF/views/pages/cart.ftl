@@ -12,7 +12,7 @@
                 <div class="container cart_product">
                     <div class="col-lg-3">
                         <div class="cart_product_image">
-                            <img src="../../resources/images/1.jpeg">
+                            <img src="/resources/images/1.jpeg">
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -41,7 +41,7 @@
                 <div class="container cart_product">
                     <div class="col-lg-3">
                         <div class="cart_product_image">
-                            <img src="../../resources/images/1.jpeg">
+                            <img src="/resources/images/1.jpeg">
                         </div>
                     </div>
                     <div class="col-lg-9">

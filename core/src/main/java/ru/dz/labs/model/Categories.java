@@ -6,11 +6,9 @@ import java.util.List;
 @Entity
 public class Categories {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String alias;
     private Long parent_id;
 
     @OneToMany(cascade = CascadeType.REFRESH,
@@ -34,14 +32,6 @@ public class Categories {
         this.name = name;
     }
 
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
     public Long getParent_id() {
         return parent_id;
     }
@@ -62,9 +52,8 @@ public class Categories {
 
     }
 
-    public Categories(String name, String alias, Long parent_id, List<Goods> goods) {
+    public Categories(String name, Long parent_id, List<Goods> goods) {
         this.name = name;
-        this.alias = alias;
         this.parent_id = parent_id;
         this.goods = goods;
     }

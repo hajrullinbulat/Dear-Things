@@ -14,7 +14,6 @@ public class TestHibernate {
     public static CartsService cartsService;
     public static CategoriesService categoriesService;
     public static GoodsService goodsService;
-//    public static Orders_GoodsService orders_goodsService;
     public static OrdersService ordersService;
     public static UsersService usersService;
 
@@ -28,7 +27,6 @@ public class TestHibernate {
         goodsService = (GoodsService) context.getBean("goodsService");
         ordersService = (OrdersService) context.getBean("ordersService");
         usersService = (UsersService) context.getBean("usersService");
-//        orders_goodsService = (Orders_GoodsService) context.getBean("orders_goodsService");
     }
 
     public static void main(String[] args) throws SQLException {

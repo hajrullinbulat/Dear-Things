@@ -14,7 +14,7 @@ public class TestConnection {
             testConnection();
 //            testCreate();
 //            testInsert("tatar");
-            testSelect();
+//            testSelect();
         } catch (Exception e) {
             e.printStackTrace();
         }

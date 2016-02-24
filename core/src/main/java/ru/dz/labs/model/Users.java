@@ -9,7 +9,7 @@ public class Users {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String login;
+    private String email;
     private String hash_pass;
     private String avatar;
     private String name;
@@ -32,6 +32,9 @@ public class Users {
             mappedBy = "users")
     private List<Orders> orders;
 
+    public Users() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -40,12 +43,12 @@ public class Users {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getHash_pass() {
@@ -112,13 +115,9 @@ public class Users {
         this.orders = orders;
     }
 
-    public Users() {
+    public Users(String email, String hash_pass, String avatar, String name, String check_email, String key, List<Carts> carts, List<Addresses> addresses, List<Orders> orders) {
 
-    }
-
-    public Users(String login, String hash_pass, String avatar, String name, String check_email, String key, List<Carts> carts, List<Addresses> addresses, List<Orders> orders) {
-
-        this.login = login;
+        this.email = email;
         this.hash_pass = hash_pass;
         this.avatar = avatar;
         this.name = name;

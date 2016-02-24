@@ -8,13 +8,11 @@ import java.util.List;
 
 public class Orders {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date create_time;
     private float total_sum;
     private float total_count;
-    private String status;
     private String pay_type;
 
     @ManyToOne
@@ -29,11 +27,6 @@ public class Orders {
                     fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Addresses addresses;
-
-    @OneToMany(cascade = CascadeType.REFRESH,
-            fetch = FetchType.LAZY,
-            mappedBy = "orders")
-    private List<Orders_Goods> orders_goods;
 
 
     public Long getId() {
@@ -68,14 +61,6 @@ public class Orders {
         this.total_count = total_count;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getPay_type() {
         return pay_type;
     }
@@ -100,27 +85,17 @@ public class Orders {
         this.addresses = addresses;
     }
 
-    public List<Orders_Goods> getOrders_goods() {
-        return orders_goods;
-    }
-
-    public void setOrders_goods(List<Orders_Goods> orders_goods) {
-        this.orders_goods = orders_goods;
-    }
-
-    public Orders() {
-
-    }
-
-    public Orders(Date create_time, float total_sum, float total_count, String status, String pay_type, Users users, Addresses addresses, List<Orders_Goods> orders_goods) {
+    public Orders(Date create_time, float total_sum, float total_count, String pay_type, Users users, Addresses addresses) {
 
         this.create_time = create_time;
         this.total_sum = total_sum;
         this.total_count = total_count;
-        this.status = status;
         this.pay_type = pay_type;
         this.users = users;
         this.addresses = addresses;
-        this.orders_goods = orders_goods;
+    }
+
+    public Orders() {
+
     }
 }
