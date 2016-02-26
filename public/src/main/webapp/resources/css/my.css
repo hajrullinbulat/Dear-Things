@@ -90,11 +90,11 @@ body {
     font-family: "Calibri Light";
     font-size: 14px;
 }
+
 .thumbnail img {
     height: 265px;
     width: 265px;
 }
-
 
 .carousel {
     margin-top: 4%;
@@ -136,19 +136,14 @@ body {
 }
 
 .search {
-    /* ������������� ����������� ������ ����� � ����������� �� �������
-    ** ����� ��� ������� ������������� */
     width: 379px;
     margin-left: 123px;
-
-    /* ������ �������� ����� ��������������� ���������,
-    ** ������� ���������� ��� �������� */
     position: absolute;
 }
 
 .search input {
-    /* ��������� ������� � ������� */
     border: none;
+    outline: none;
 }
 
 .things {
@@ -957,14 +952,14 @@ body.nav-expanded {
 }
 
 .caption {
-    height:101px;
+    height: 101px;
 }
 
-.caption p{
+.caption p {
     height: 40px;
 }
 
-.float_right{
+.float_right {
     float: right;
     margin-right: -2px;
 }

@@ -10,11 +10,18 @@ public class Categories {
     private Long id;
     private String name;
     private Long parent_id;
+//    @ManyToOne
+//            (cascade = {CascadeType.REFRESH},
+//                    fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id")
+//    private Categories parent_id;
+
 
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
             mappedBy = "categories")
     private List<Goods> goods;
+
 
     public Long getId() {
         return id;

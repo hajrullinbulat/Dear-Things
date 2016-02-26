@@ -15,4 +15,10 @@ public class CategoriesService {
     public void addCategories(Categories categories){
         categoriesRepository.add(categories);
     }
+
+    @Transactional
+    public Categories getCategoriesById(Long id){
+        return categoriesRepository.getCategoryById(id);
+    }
+
 }

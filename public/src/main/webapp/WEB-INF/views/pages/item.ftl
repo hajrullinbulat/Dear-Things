@@ -3,8 +3,9 @@
 <#macro m_body>
 <div class="container">
     <ul class="breadcrumbs">
-        <li><a href="#">Все категории</a></li>
-        <li><a href="#">Для дома</a></li>
+        <#list category as c>
+            <li><a href="#">${c.name}</a></li>
+        </#list>
     </ul>
     <form action="post">
         <div class="container product">
@@ -24,7 +25,7 @@
                     Добавить в корзину</a>
                 </p>
                 <div class="product_description">
-                    ${item.description}
+                ${item.description}
                 </div>
             </div>
         </div>
@@ -35,21 +36,21 @@
 
     <h1 align="center">Похожие товары</h1>
 
-    <#--<div class="container things">-->
-        <#--<div class="row">-->
-            <#--<div class="col-lg-3 hvr-grow ">-->
-                <#--<div class="thumbnail">-->
-                    <#--<img src="${good.image}_320x320.jpg">-->
-                    <#--<div class="caption">-->
-                        <#--<p>${good.name}</p>-->
-                        <#--<div class="float_right">-->
-                            <#--<input type="submit" class="btn btn-default" value=" ${good.price} P " name="addToTrash">-->
-                        <#--</div>-->
-                    <#--</div>-->
-                <#--</div>-->
-            <#--</div>-->
-            <#---->
-        <#--</div>-->
-    <#--</div>-->
+<#--<div class="container things">-->
+<#--<div class="row">-->
+<#--<div class="col-lg-3 hvr-grow ">-->
+<#--<div class="thumbnail">-->
+<#--<img src="${good.image}_320x320.jpg">-->
+<#--<div class="caption">-->
+<#--<p>${good.name}</p>-->
+<#--<div class="float_right">-->
+<#--<input type="submit" class="btn btn-default" value=" ${good.price} P " name="addToTrash">-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+<#---->
+<#--</div>-->
+<#--</div>-->
 </div>
 </#macro>

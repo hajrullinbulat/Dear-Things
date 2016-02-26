@@ -24,5 +24,4 @@ public class GoodsRepository {
     public Goods getGoodById(Long id) {
         return (Goods) sessionFactory.getCurrentSession().load(Goods.class, id);
     }
-
 }

@@ -14,4 +14,8 @@ public class CategoriesRepository {
     public void add(Categories categories) {
         sessionFactory.getCurrentSession().save(categories);
     }
+
+    public Categories getCategoryById(Long id) {
+        return (Categories) sessionFactory.getCurrentSession().load(Categories.class, id);
+    }
 }
