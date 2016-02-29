@@ -9,19 +9,17 @@ public class Categories {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Long parent_id;
-//    @ManyToOne
-//            (cascade = {CascadeType.REFRESH},
-//                    fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id")
-//    private Categories parent_id;
+    @ManyToOne
+            (cascade = {CascadeType.REFRESH},
+                    fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private Categories parent;
 
 
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
             mappedBy = "categories")
     private List<Goods> goods;
-
 
     public Long getId() {
         return id;
@@ -39,12 +37,12 @@ public class Categories {
         this.name = name;
     }
 
-    public Long getParent_id() {
-        return parent_id;
+    public Categories getParent() {
+        return parent;
     }
 
-    public void setParent_id(Long parent_id) {
-        this.parent_id = parent_id;
+    public void setParent(Categories parent) {
+        this.parent = parent;
     }
 
     public List<Goods> getGoods() {
@@ -55,13 +53,14 @@ public class Categories {
         this.goods = goods;
     }
 
-    public Categories() {
+    public Categories(String name, Categories parent, List<Goods> goods) {
 
+        this.name = name;
+        this.parent = parent;
+        this.goods = goods;
     }
 
-    public Categories(String name, Long parent_id, List<Goods> goods) {
-        this.name = name;
-        this.parent_id = parent_id;
-        this.goods = goods;
+    public Categories() {
+
     }
 }

@@ -33,7 +33,7 @@ public class ItemController extends BaseController {
         Categories categories = goodById.getCategories();
         while (categories.getId() != 1) {
             categoriesStack.push(categories);
-            categories = categoriesService.getCategoriesById(categories.getParent_id());
+            categories = categories.getParent();
         }
         categoriesStack.push(categories);
 

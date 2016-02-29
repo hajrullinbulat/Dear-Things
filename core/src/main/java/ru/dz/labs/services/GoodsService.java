@@ -24,7 +24,7 @@ public class GoodsService {
     }
 
     @Transactional
-    public Goods getGoodById(Long id){
+    public Goods getGoodById(Long id) {
         return goodsRepository.getGoodById(id);
     }
 
@@ -54,7 +54,6 @@ public class GoodsService {
 //                e.printStackTrace();
 //            }
 //        }
-
 
 
 }

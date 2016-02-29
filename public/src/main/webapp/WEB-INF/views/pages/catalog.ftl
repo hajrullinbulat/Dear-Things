@@ -42,9 +42,6 @@
     <div class="pagination">
         <div class="l-center pagination__nav">
             <ul class="nav navbar-nav">
-                <li></li>
-                <li></li>
-                <li></li>
                 <li>1</li>
                 <li>2</li>
                 <li>3</li>
