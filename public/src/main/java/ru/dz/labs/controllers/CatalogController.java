@@ -9,6 +9,7 @@ import ru.dz.labs.Pagination;
 import ru.dz.labs.model.Goods;
 import ru.dz.labs.services.GoodsService;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,32 +18,33 @@ import java.util.List;
 public class CatalogController extends BaseController {
     @Autowired
     GoodsService goodsService;
+
     Pagination pagination;
-//
-//    @PostConstruct
-//    public void init() {
-//        pagination = new Pagination(goodsService.getAllGoods().size(), 1, 3);
-//    }
+    List<Goods> goods;
+    boolean firstTime;
+
+    @PostConstruct
+    public void init() {
+        goods = goodsService.getAllGoods();
+        firstTime = true;
+    }
 
 
     @RequestMapping(value = "/catalog/{page}", method = RequestMethod.GET)
     public String renderMyCatalogPage(@PathVariable("page") Integer page) {
-        // TODO: 27.02.2016 В ФИЛЬТР ВСЕ ЭТА НАДА ЗАПИХАТЬ
         List<Goods> goodsOnPage = new ArrayList<>();
-        List<Goods> goods = (List<Goods>) request.getSession().getAttribute("goods");
+        if (firstTime) {
+//            request.getSession().setAttribute("goods", goods);
+            pagination = new Pagination(goods.size(), page, 3);
+            firstTime = false;
+        }
 
-
-
-//        List<Goods> goods = goodsService.getAllGoods();
-//        request.getSession().setAttribute("goods", goods);
-
-        pagination = (Pagination) request.getSession().getAttribute("pagination");
-
-        for (Integer i = pagination.getBeginIndex(); i < pagination.getEndIndex(); i++) {
+        pagination.setNowPage(page);
+        for (Integer i = pagination.getBeginIndex(); i < pagination.getEndIndex() && i < goods.size(); i++) {
             goodsOnPage.add(goods.get(i));
         }
 
-        request.getSession().setAttribute("goods_page", goodsOnPage);
+        request.getSession().setAttribute("goods", goodsOnPage);
 
         return "pages/catalog";
     }

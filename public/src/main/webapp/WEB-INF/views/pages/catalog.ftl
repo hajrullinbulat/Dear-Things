@@ -20,7 +20,7 @@
 <div class="container things">
     <div class="row">
         <#list goods as good>
-            <a href="item/${good.id}">
+            <a href="/item/${good.id}">
                 <div class="col-lg-3 hvr-grow">
                     <div class="thumbnail">
                         <img src="${good.image}_320x320.jpg">

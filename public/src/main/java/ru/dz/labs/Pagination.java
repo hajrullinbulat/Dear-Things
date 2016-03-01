@@ -1,11 +1,6 @@
 package ru.dz.labs;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import ru.dz.labs.services.GoodsService;
-
 public class Pagination {
-    @Autowired
-    GoodsService goodsService;
 
     private Integer countOfGoods;
 
@@ -13,18 +8,25 @@ public class Pagination {
 
     private Integer goodsPerPage;
 
-    private Integer beginIndex = nowPage * goodsPerPage - goodsPerPage;
+    private Integer beginIndex;
 
-    public Pagination(Integer countOfGoods, Integer nowPage,Integer goodsPerPage) {
+    private Integer endIndex;
+
+    private Integer totalPages;
+
+    public Pagination(Integer countOfGoods, Integer nowPage, Integer goodsPerPage) {
         this.countOfGoods = countOfGoods;
         this.nowPage = nowPage;
         this.goodsPerPage = goodsPerPage;
+
+        makeRight(nowPage, goodsPerPage, countOfGoods);
     }
 
-    private Integer endIndex = nowPage * goodsPerPage;
-
-    private Integer totalPages = countOfGoods / goodsPerPage;
-
+    private void makeRight(Integer nowPage, Integer goodsPerPage, Integer countOfGoods) {
+        setBeginIndex(nowPage * goodsPerPage - goodsPerPage);
+        setEndIndex(nowPage * goodsPerPage);
+        setTotalPages(countOfGoods / goodsPerPage);
+    }
 
     public Integer getTotalPages() {
         return totalPages;
@@ -64,6 +66,7 @@ public class Pagination {
 
     public void setNowPage(Integer nowPage) {
         this.nowPage = nowPage;
+        makeRight(nowPage, getGoodsPerPage(), getCountOfGoods());
     }
 
     public Integer getCountOfGoods() {

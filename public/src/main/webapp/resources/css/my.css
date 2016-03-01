@@ -954,10 +954,6 @@ body.nav-expanded {
     margin-left: -4px;
 }
 
-a:focus {
-    outline: none;
-}
-
 .modal {
     text-align: center;
 }
@@ -1052,9 +1048,12 @@ a:focus {
     color: #000;
 }
 
-input[type=submit] {
+input[type=submit]:hover {
     border: none;
 }
+/*input[type=submit] {*/
+    /*border: none;*/
+/*}*/
 
 .modal-body {
     margin-bottom: -10px;
