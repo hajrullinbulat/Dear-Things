@@ -36,21 +36,27 @@
 
     <h1 align="center">Похожие товары</h1>
 
-<#--<div class="container things">-->
-<#--<div class="row">-->
-<#--<div class="col-lg-3 hvr-grow ">-->
-<#--<div class="thumbnail">-->
-<#--<img src="${good.image}_320x320.jpg">-->
-<#--<div class="caption">-->
-<#--<p>${good.name}</p>-->
-<#--<div class="float_right">-->
-<#--<input type="submit" class="btn btn-default" value=" ${good.price} P " name="addToTrash">-->
-<#--</div>-->
-<#--</div>-->
-<#--</div>-->
-<#--</div>-->
-<#---->
-<#--</div>-->
-<#--</div>-->
+    <div class="container things">
+        <div class="row">
+
+            <#list like as like>
+                <a href="/item/${like.id}">
+                    <div class="col-lg-3 hvr-grow ">
+                        <div class="thumbnail">
+                            <img src="${like.image}_320x320.jpg">
+                            <div class="caption">
+                                <p>${like.name}</p>
+                                <div class="float_right">
+                                    <input type="submit" class="btn btn-default" value=" ${like.price} P "
+                                           name="addToTrash">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </#list>
+
+        </div>
+    </div>
 </div>
 </#macro>

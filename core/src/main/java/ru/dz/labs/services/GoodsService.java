@@ -3,6 +3,7 @@ package ru.dz.labs.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.dz.labs.model.Categories;
 import ru.dz.labs.model.Goods;
 import ru.dz.labs.repository.GoodsRepository;
 
@@ -19,7 +20,7 @@ public class GoodsService {
     }
 
     @Transactional
-    public List<Goods> getAllGoods() {
+    public List getAllGoods() {
         return goodsRepository.getAllGoods();
     }
 
@@ -28,6 +29,23 @@ public class GoodsService {
         return goodsRepository.getGoodById(id);
     }
 
+    @Transactional
+    public List getLikeGoods(Goods good) {
+        Categories category = good.getCategories();
+        Long id = good.getId();
+        List likeGoods = goodsRepository.getLikeGoods(category, 4, id);
+        int size = likeGoods.size();
+        if (size == 4) {
+            return likeGoods;
+        } else {
+            while (category.getId() != 1 && size < 4) {
+                category = category.getParent();
+                likeGoods.addAll(goodsRepository.getLikeGoods(category, 4 - size, id));
+                size = likeGoods.size();
+            }
+        }
+        return likeGoods;
+    }
 
 
 //

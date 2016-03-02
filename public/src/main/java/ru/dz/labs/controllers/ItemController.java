@@ -25,22 +25,30 @@ public class ItemController extends BaseController {
     @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
     public String renderMyItemPage(@PathVariable("id") Long id) {
         Goods goodById = goodsService.getGoodById(id);
+        //дерево категорий
+        request.getSession().setAttribute("category", getCategories(goodById));
+        //сам предмет
         request.getSession().setAttribute("item", goodById);
+        //предеметы в той же категории либо выше
+        request.getSession().setAttribute("like", goodsService.getLikeGoods(goodById));
 
+        return "pages/item";
+    }
+
+    public List getCategories(Goods good) {
         Stack<Categories> categoriesStack = new Stack<>();
         List<Categories> categoriesList = new ArrayList<>();
 
-        Categories categories = goodById.getCategories();
+        Categories categories = good.getCategories();
         while (categories.getId() != 1) {
             categoriesStack.push(categories);
             categories = categories.getParent();
         }
         categoriesStack.push(categories);
 
-        while(!categoriesStack.empty())
+        while (!categoriesStack.empty())
             categoriesList.add(categoriesStack.pop());
 
-        request.getSession().setAttribute("category", categoriesList);
-        return "pages/item";
+        return categoriesList;
     }
 }

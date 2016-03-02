@@ -10,7 +10,6 @@ import ru.dz.labs.model.Goods;
 import ru.dz.labs.services.GoodsService;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,19 +31,20 @@ public class CatalogController extends BaseController {
 
     @RequestMapping(value = "/catalog/{page}", method = RequestMethod.GET)
     public String renderMyCatalogPage(@PathVariable("page") Integer page) {
-        List<Goods> goodsOnPage = new ArrayList<>();
+//        List<Goods> goodsOnPage = new ArrayList<>();
         if (firstTime) {
-//            request.getSession().setAttribute("goods", goods);
-            pagination = new Pagination(goods.size(), page, 3);
+            request.getSession().setAttribute("goods", goods);
+//            pagination = new Pagination(goods.size(), page, 3);
             firstTime = false;
         }
 
-        pagination.setNowPage(page);
-        for (Integer i = pagination.getBeginIndex(); i < pagination.getEndIndex() && i < goods.size(); i++) {
-            goodsOnPage.add(goods.get(i));
-        }
+//        pagination.setNowPage(page);
+//        for (Integer i = pagination.getBeginIndex(); i < pagination.getEndIndex() && i < goods.size(); i++) {
+//            goodsOnPage.add(goods.get(i));
+//        }
+//        request.getSession().setAttribute("goods", goodsOnPage);
+        request.getSession().setAttribute("goods", goods);
 
-        request.getSession().setAttribute("goods", goodsOnPage);
 
         return "pages/catalog";
     }

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.dz.labs.model.Categories;
 
+import java.util.List;
+
 @Repository
 public class CategoriesRepository {
 
@@ -18,4 +20,5 @@ public class CategoriesRepository {
     public Categories getCategoryById(Long id) {
         return (Categories) sessionFactory.getCurrentSession().load(Categories.class, id);
     }
+
 }
