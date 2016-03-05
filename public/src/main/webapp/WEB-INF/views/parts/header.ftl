@@ -57,7 +57,6 @@
                         <input class="string email optional form__field" id="pass"
                                name="user[login_or_email]" size="50" type="text">
                     </fieldset>
-
                 </div>
                 <div class="modal-footer">
                     <fieldset>

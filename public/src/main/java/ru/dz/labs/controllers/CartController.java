@@ -5,7 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.dz.labs.model.Carts;
 import ru.dz.labs.services.CartsService;
+import ru.dz.labs.services.UsersService;
+
+import java.util.List;
 
 
 @Controller
@@ -13,9 +17,13 @@ import ru.dz.labs.services.CartsService;
 public class CartController extends BaseController {
     @Autowired
     CartsService cartsService;
+    @Autowired
+    UsersService usersService;
 
     @RequestMapping()
     public String renderMyCartPage() {
+        List usersCart = cartsService.getUsersCart(usersService.getUsersById(1L));
+        request.getSession().setAttribute("cart", usersCart);
         return "pages/cart";
     }
 
@@ -27,4 +35,11 @@ public class CartController extends BaseController {
         return "ok";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deleteFromCart(Long cartId) {
+//        request.getSession().getAttribute("user");
+        cartsService.deleteFromCart(cartId);
+        return "ok";
+    }
 }

@@ -883,8 +883,6 @@ body.nav-expanded {
     margin-bottom: 18px;
 }
 
-
-
 .cart_btn_del {
     margin: 18px 0px -14px 2px;
     cursor: pointer;
@@ -948,7 +946,7 @@ body.nav-expanded {
 }
 
 .order {
-    width: 101%;
+    width: 100%;
     margin-bottom: 30px;
     margin-top: 0px;
     margin-left: -4px;
@@ -995,6 +993,11 @@ body.nav-expanded {
     margin: 0 0 30px;
     padding: 0;
     border: 0;
+}
+
+.form__group-submit input {
+    border: none;
+    outline: none;
 }
 
 .form__label {
@@ -1051,15 +1054,15 @@ body.nav-expanded {
 input[type=submit]:hover {
     border: none;
 }
+
 /*input[type=submit] {*/
-    /*border: none;*/
+/*border: none;*/
 /*}*/
 
 .modal-body {
     margin-bottom: -10px;
     margin-top: 21px;
 }
-
 
 fieldset {
     margin: 0px 16px -7px 0px;
@@ -1083,7 +1086,10 @@ fieldset {
     transition: background 0.35s ease, color 0.35s ease;
     font-family: "Calibri Light";
     cursor: pointer;
+    border: none;
+    outline: none;
 }
+
 .btn_reg {
     margin: 2px 0 0 204px;
     width: 35%;
@@ -1123,13 +1129,13 @@ fieldset {
     cursor: pointer;
 }
 
-.authWrapper  {
+.authWrapper {
     margin: 53px auto;
     width: 700px;
     padding-left: 56px;
 }
 
-.authWrapper .title-h1{
+.authWrapper .title-h1 {
     margin: 0 0 60px;
     font-family: "Calibri Light";
 }
@@ -1147,12 +1153,8 @@ form {
     margin-top: 0em;
 }
 
-
-.form__label__add{
+.form__label__add {
     width: 170px;
     margin: 0 30px 0 0;
     font-size: 24px;
 }
-
-
-
