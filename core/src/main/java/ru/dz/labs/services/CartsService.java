@@ -6,15 +6,21 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.dz.labs.model.Carts;
 import ru.dz.labs.repository.CartsRepository;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class CartsService {
 
     @Autowired
     private CartsRepository cartsRepository;
+    @Autowired
+    private GoodsService goodsService;
+    @Autowired
+    private UsersService usersService;
 
     @Transactional
-    public void addCarts(Carts carts) {
-        cartsRepository.add(carts);
+    public void addToCart(Long goodId, Long userId) {
+        cartsRepository.add(new Carts(goodsService.getGoodById(goodId), usersService.getUsersById(userId)));
     }
 
     @Transactional

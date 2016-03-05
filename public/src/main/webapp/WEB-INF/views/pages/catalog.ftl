@@ -27,7 +27,7 @@
                         <div class="caption">
                             <p>${good.name}</p>
                             <div class="float_right">
-                                <input type="submit" class="btn btn-default" value=" ${good.price} P "
+                                <input type="submit" class="btn btn-default js_addToCart" data-id="${good.id}"  value=" ${good.price} P "
                                        name="addToTrash">
                             </div>
                         </div>
