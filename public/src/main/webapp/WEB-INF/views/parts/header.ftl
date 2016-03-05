@@ -1,6 +1,6 @@
 <!--offcanvas здесь крч-->
 <nav id="myNavmenu" class="navmenu navmenu-inverse navmenu-fixed-left offcanvas" role="navigation">
-    <a class="navmenu-brand" href="#">Категории</a>
+    <a class="navmenu-brand" href="/catalog/1">Категории</a>
     <ul class="nav navmenu-nav">
         <li class="hvr-underline-from-right"><a href="#">Новый год!</a></li>
         <li class="hvr-underline-from-right"><a href="#">Подарки</a></li>
@@ -31,7 +31,7 @@
         <div class="tributton">
             <a href="#" class="button button-first hvr-grow-shadow" data-toggle="modal" data-target="#modal-1"/><i class="fa fa-user"></i></a></li>
             <a href="#" class="button button-second hvr-grow-shadow"/><i class="fa fa-th"></i></a></li>
-            <a href="#" class="button button-third hvr-grow-shadow"/><i class="fa fa-trash-o"></i></a></li>
+            <a href="/cart" class="button button-third hvr-grow-shadow"/><i class="fa fa-trash-o"></i></a></li>
         </div>
     </div>
 </div>

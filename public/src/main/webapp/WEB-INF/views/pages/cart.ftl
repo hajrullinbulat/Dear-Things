@@ -18,13 +18,13 @@
                         <h1>${cart.goods.name}</h1>
                         <div class="cart_product_info">
                             <div class="cart_product_cost">${cart.goods.price} $</div>
-                            <div class="cart_product_company"><a href="#">${cart.goods.company}</a></div>
+                            <div class="cart_product_company">${cart.goods.company}</div>
                         </div>
-                        <p><a href="#" class="cart_btn_del hvr-buzz-out js_deleteFromCart" data-cart="${cart.id}">
+                        <p><a class="cart_btn_del hvr-buzz-out js_deleteFromCart" data-cart="${cart.id}">
                             Удалить из корзины</a>
                         </p>
                         <div class="cart_product_description">
-                            ${cart.goods.description}
+                        ${cart.goods.description}
                         </div>
                     </div>
                 </div>
