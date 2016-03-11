@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.dz.labs.model.Categories;
 import ru.dz.labs.model.Goods;
+import ru.dz.labs.repository.CategoriesRepository;
 import ru.dz.labs.repository.GoodsRepository;
 
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.List;
 public class GoodsService {
     @Autowired
     private GoodsRepository goodsRepository;
+
+    @Autowired
+    private CategoriesRepository categoriesRepository;
 
     @Transactional
     public void addGoods(Goods goods) {
@@ -54,7 +58,7 @@ public class GoodsService {
             priceB = Float.valueOf(priceBegin);
         if (priceEnd != null)
             priceE = Float.valueOf(priceEnd);
-        return goodsRepository.getGoodsAfterFilter(priceB, priceE, cat);
+        return goodsRepository.getGoodsAfterFilter(priceB, priceE, cat, categoriesRepository.getCategoryTree(cat));
     }
 
 //

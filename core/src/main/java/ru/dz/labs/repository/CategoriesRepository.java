@@ -34,41 +34,14 @@ public class CategoriesRepository {
         return sessionFactory.getCurrentSession().createCriteria(Categories.class).list();
     }
 
-    public List getCategoryTree(Categories category) {
-//        List<Categories> categoryTree = new ArrayList<>();
-//        List<Categories> listToRemove = new ArrayList<>();
-//        Categories removeCat;
-//
-//        categoryTree.add(category);
-//        listToRemove.add(category);
-//
-//        while (!listToRemove.isEmpty()) {
-//
-//        }
-
-        List<Categories> allCategories = getAllCategories();
+    public List getCategoryTree(Long id) {
+        Categories category = getCategoryById(id);
         List<Categories> tree = new ArrayList<>();
-        List<Categories> remove = new ArrayList<>();
-        Categories catToRem;
-        remove.add(category);
         tree.add(category);
 
-
-        while (!remove.isEmpty()) {
-            catToRem = remove.remove(0);
-            remove.addAll(getCategorySonsWithoutDB(allCategories, catToRem));
-
+        for (int i = 0; i < tree.size(); i++) {
+            tree.addAll(getCategorySons(tree.get(i)));
         }
-
-    }
-
-    public List getCategorySonsWithoutDB(List<Categories> allCategories, Categories category) {
-        List<Categories> list = new ArrayList<>();
-        for (Categories cat : allCategories) {
-            if (cat.getParent().equals(category)) {
-                list.add(cat);
-            }
-        }
-        return list;
+        return tree;
     }
 }

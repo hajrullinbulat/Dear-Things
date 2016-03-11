@@ -23,10 +23,4 @@ public class CategoriesService {
         return categoriesRepository.getCategoryById(id);
     }
 
-    @Transactional
-    public List getCategoryTree(Long id) {
-        return categoriesRepository.getCategoryTree(getCategoryById(id));
-    }
-
-
 }
