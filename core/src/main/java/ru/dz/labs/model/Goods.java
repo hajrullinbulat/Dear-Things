@@ -9,7 +9,7 @@ public class Goods {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private float price;
+    private Float price;
     private String image;
     private String description;
     private String company;
@@ -45,11 +45,11 @@ public class Goods {
         this.name = name;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

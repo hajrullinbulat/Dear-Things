@@ -602,13 +602,13 @@ body.nav-expanded {
 }
 
 .mid {
+    display: -webkit-box;
     margin-top: -16px;
     font-weight: 300;
     zoom: 1;
     font-size: 1.25rem;
     line-height: 25px;
-    font-family: Arial, fantasy;
-
+    font-family: "Calibri Light";
     color: #898989;
 }
 
@@ -727,6 +727,10 @@ body.nav-expanded {
     color: #a7a7a7;
     font-size: 14px;
     text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: #000;
 }
 
 .product {
@@ -1157,4 +1161,17 @@ form {
     width: 170px;
     margin: 0 30px 0 0;
     font-size: 24px;
+}
+
+.dropdown {
+    margin: 0 5px 0px 5px;
+    cursor: pointer;
+    border-bottom: 1px dotted #898989;
+}
+
+.dropdown-menu {
+    padding: 25px 0 25px 10px;
+    min-width: 175px;
+    margin: -1px -10px;
+    font-size: 16px;
 }

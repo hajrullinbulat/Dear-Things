@@ -6,19 +6,27 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.dz.labs.model.Categories;
 import ru.dz.labs.repository.CategoriesRepository;
 
+import java.util.List;
+
 @Service
 public class CategoriesService {
     @Autowired
     private CategoriesRepository categoriesRepository;
 
     @Transactional
-    public void addCategories(Categories categories){
+    public void addCategories(Categories categories) {
         categoriesRepository.add(categories);
     }
 
     @Transactional
-    public Categories getCategoriesById(Long id){
+    public Categories getCategoryById(Long id) {
         return categoriesRepository.getCategoryById(id);
     }
+
+    @Transactional
+    public List getCategoryTree(Long id) {
+        return categoriesRepository.getCategoryTree(getCategoryById(id));
+    }
+
 
 }

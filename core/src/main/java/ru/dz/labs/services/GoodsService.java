@@ -20,11 +20,6 @@ public class GoodsService {
     }
 
     @Transactional
-    public List getAllGoods() {
-        return goodsRepository.getAllGoods();
-    }
-
-    @Transactional
     public Goods getGoodById(Long id) {
         return goodsRepository.getGoodById(id);
     }
@@ -47,6 +42,20 @@ public class GoodsService {
         return likeGoods;
     }
 
+
+    @Transactional
+    public List getGoodsAfterFilter(String category, String priceBegin, String priceEnd) {
+        Long cat = null;
+        Float priceB = null;
+        Float priceE = null;
+        if (category != null)
+            cat = Long.valueOf(category);
+        if (priceBegin != null)
+            priceB = Float.valueOf(priceBegin);
+        if (priceEnd != null)
+            priceE = Float.valueOf(priceEnd);
+        return goodsRepository.getGoodsAfterFilter(priceB, priceE, cat);
+    }
 
 //
 //        for (Goods good : allGoods) {

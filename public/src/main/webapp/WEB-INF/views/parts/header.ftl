@@ -3,7 +3,7 @@
     <a class="navmenu-brand" href="/catalog/1">Категории</a>
     <ul class="nav navmenu-nav">
         <li class="hvr-underline-from-right"><a href="#">Новый год!</a></li>
-        <li class="hvr-underline-from-right"><a href="#">Подарки</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=3">Подарки</a></li>
         <li class="hvr-underline-from-right"><a href="#">Для детей</a></li>
         <li class="hvr-underline-from-right"><a href="#">Для дома</a></li>
         <li class="hvr-underline-from-right"><a href="#">Офис</a></li>

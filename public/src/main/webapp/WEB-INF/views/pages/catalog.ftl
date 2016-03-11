@@ -5,14 +5,57 @@
 <div class="navbar navbar-inverse navbar-static-top searchfield">
     <div class="container margin-top">
         <div class="mid">
-            Покажите мне "Для дома" стоимостью 500-1000 .
+            Покажите мне
+            <div class="dropdown">
+                <div class="" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="true">
+                ${(cat.name)!"Все категории"}
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Новый год!</a></li>
+                    <li><a href="#">Подарки</a></li>
+                    <li><a href="#">Для детей</a></li>
+                    <li><a href="#">Для дома</a></li>
+                    <li><a href="#">Офис</a></li>
+                    <li><a href="#">Гаджеты</a></li>
+                    <li><a href="#">Лайфстайл</a></li>
+                    <li><a href="#">Обед с собой</a></li>
+                </ul>
+            </div>
+            стоимостью
+            <div class="dropdown">
+                <div class="" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="true">
+                Любая
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li><a href="#">Любая</a></li>
+                    <li><a href="#">0 - 500 ₽</a></li>
+                    <li><a href="#">500 - 1000 ₽</a></li>
+                    <li><a href="#">1000 - 2000 ₽</a></li>
+                    <li><a href="#">2000 - 5000 ₽</a></li>
+                    <li><a href="#">5000+ ₽</a></li>
+                </ul>
+            </div>
+            . Cортировать от
+            <div class="dropdown">
+                <div class="" type="button" id="dropdownMenu3" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="true">
+                     Минимальной цены
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                    <li><a href="#">Минимальной цены</a></li>
+                    <li><a href="#">Максиальной цены</a></li>
+                </ul>
+            </div>
+            .
         </div>
     </div>
 </div>
 
 <div>
     <div class="container">
-        <div class="col-lg-3 headerthings">Для дома</div>
+        <div class="col-lg-6 headerthings">${(cat.name)!"Все категории"}</div>
     </div>
 </div>
 
@@ -21,8 +64,8 @@
     <div class="row">
         <#include "../parts/item.ftl">
         <#list goods as good>
-            <@item good=good />
-        </#list>
+        <@item good=good />
+    </#list>
     </div>
 </div>
 

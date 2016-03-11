@@ -7,7 +7,7 @@
                 <p>${good.name}</p>
                 <div class="float_right">
                     <button type="submit" class="btn btn-default js_addToCart" data-id="${good.id}"
-                            name="addToTrash"> ${good.price} P
+                            name="addToTrash"> ${good.price} ₽
                     </button>
                 </div>
             </div>
