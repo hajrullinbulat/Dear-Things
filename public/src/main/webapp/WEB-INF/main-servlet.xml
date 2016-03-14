@@ -13,6 +13,7 @@
 
     <!-- Определяем папку, в которой будем искать веб компоненты (контроллеры)-->
     <context:component-scan base-package="ru.dz.labs.controllers"/>
+    <context:component-scan base-package="ru.dz.labs.filters"/>
 
     <!-- Разрешаем использование аннотаций Spring MVC (то есть @Controller и.т.д) -->
     <mvc:annotation-driven/>

@@ -1175,3 +1175,15 @@ form {
     margin: -1px -10px;
     font-size: 16px;
 }
+
+.company {
+    display: -webkit-inline-box;
+    margin-top: 2px;
+    color: #898989;
+    font-family: "Calibri Light";
+    font-weight: 100;
+}
+
+.company:hover{
+    color: #000;
+}

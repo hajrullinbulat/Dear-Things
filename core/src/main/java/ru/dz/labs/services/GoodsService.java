@@ -48,7 +48,7 @@ public class GoodsService {
 
 
     @Transactional
-    public List getGoodsAfterFilter(String category, String priceBegin, String priceEnd) {
+    public List getGoodsAfterFilter(String category, String priceBegin, String priceEnd, String sort) {
         Long cat = null;
         Float priceB = null;
         Float priceE = null;
@@ -58,7 +58,7 @@ public class GoodsService {
             priceB = Float.valueOf(priceBegin);
         if (priceEnd != null)
             priceE = Float.valueOf(priceEnd);
-        return goodsRepository.getGoodsAfterFilter(priceB, priceE, cat, categoriesRepository.getCategoryTree(cat));
+        return goodsRepository.getGoodsAfterFilter(priceB, priceE, cat, categoriesRepository.getCategoryTree(cat), sort);
     }
 
 //

@@ -5,8 +5,11 @@
             <img src="${good.image}_320x320.jpg">
             <div class="caption">
                 <p>${good.name}</p>
-                <div class="float_right">
-                    <button type="submit" class="btn btn-default js_addToCart" data-id="${good.id}"
+                <div>
+                    <div class="company">
+                    ${good.company}
+                    </div>
+                    <button type="submit" class="btn btn-default js_addToCart float_right" data-id="${good.id}"
                             name="addToTrash"> ${good.price} ₽
                     </button>
                 </div>

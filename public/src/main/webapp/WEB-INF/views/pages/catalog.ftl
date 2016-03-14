@@ -12,6 +12,7 @@
                 ${(cat.name)!"Все категории"}
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Все категории</a></li>
                     <li><a href="#">Новый год!</a></li>
                     <li><a href="#">Подарки</a></li>
                     <li><a href="#">Для детей</a></li>
@@ -26,7 +27,7 @@
             <div class="dropdown">
                 <div class="" type="button" id="dropdownMenu2" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="true">
-                Любая
+                ${(price)!"Любая"}
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <li><a href="#">Любая</a></li>
@@ -41,9 +42,10 @@
             <div class="dropdown">
                 <div class="" type="button" id="dropdownMenu3" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="true">
-                     Минимальной цены
+                ${(order)!"?"}
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                    <li><a href="#">?</a></li>
                     <li><a href="#">Минимальной цены</a></li>
                     <li><a href="#">Максиальной цены</a></li>
                 </ul>

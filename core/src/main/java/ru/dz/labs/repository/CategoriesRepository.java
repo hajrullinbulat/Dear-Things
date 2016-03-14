@@ -35,13 +35,17 @@ public class CategoriesRepository {
     }
 
     public List getCategoryTree(Long id) {
-        Categories category = getCategoryById(id);
-        List<Categories> tree = new ArrayList<>();
-        tree.add(category);
+        if (id != null) {
+            Categories category = getCategoryById(id);
+            List<Categories> tree = new ArrayList<>();
+            tree.add(category);
 
-        for (int i = 0; i < tree.size(); i++) {
-            tree.addAll(getCategorySons(tree.get(i)));
+            for (int i = 0; i < tree.size(); i++) {
+                tree.addAll(getCategorySons(tree.get(i)));
+            }
+            return tree;
+        } else {
+            return null;
         }
-        return tree;
     }
 }
