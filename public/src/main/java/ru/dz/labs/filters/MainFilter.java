@@ -15,8 +15,8 @@ public class MainFilter implements Filter{
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        boolean firstTime;
-        List categories =
+//        boolean firstTime;
+//        List categories =
     }
 
     @Override

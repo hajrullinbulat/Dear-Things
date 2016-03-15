@@ -1025,7 +1025,8 @@ body.nav-expanded {
     color: #111;
     border: 1px solid #e1e1e1;
     background: #ffffff;
-    font-family: Geometria, sans-serif;
+    font-family: monospace;
+    font-weight: 100;
     font-size: 17px;
 }
 
@@ -1184,6 +1185,15 @@ form {
     font-weight: 100;
 }
 
-.company:hover{
+.company:hover {
     color: #000;
+}
+
+.reg_error_info {
+    width: 390px;
+    margin-left: 222px;
+    color: red;
+    font-family: Calibri Light;
+    font-weight: 100;
+    font-size: 17px;
 }
