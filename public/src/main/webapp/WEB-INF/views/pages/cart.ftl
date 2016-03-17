@@ -1,5 +1,5 @@
-<#include "../templates/cartTemplate.ftl">
-<@cartTemplate />
+<#include "../templates/baseTemplate.ftl">
+<@baseTemplate title="Корзина - DearThings"/>
 <#macro m_body>
 
 <div class="container things">

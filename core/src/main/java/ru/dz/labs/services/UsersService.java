@@ -3,6 +3,7 @@ package ru.dz.labs.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.DigestUtils;
 import ru.dz.labs.model.Users;
 import ru.dz.labs.repository.UsersRepository;
 
@@ -15,17 +16,34 @@ public class UsersService {
     private UsersRepository usersRepository;
 
     @Transactional
-    public void addUsers(Users users){
+    public void addUsers(String name, String email, String pass) {
+        Users users = new Users(email, DigestUtils.md5DigestAsHex(pass.getBytes()), name, false, keyGen());
+        //// TODO: 18.03.2016 ОТПРАВЛЕНИЕ АКТИВИРОВАНИЯ НА ПОЧТУ
         usersRepository.add(users);
     }
 
     @Transactional
-    public Users getUsersById(Long id){
+    public Users getUsersById(Long id) {
         return usersRepository.getUsersById(id);
     }
 
-     @Transactional
-    public List<Users> getAllUsers(){
-         return usersRepository.getAllUsers();
-     }
+    @Transactional
+    public List<Users> getAllUsers() {
+        return usersRepository.getAllUsers();
+    }
+
+    @Transactional
+    public boolean checkEmail(String email) {
+        return usersRepository.checkEmail(email);
+    }
+
+    private String keyGen() {
+        String letters = "abcdefghijklmnopqrstuvwxyz0123456789";
+        char[] keyGen = new char[letters.length()];
+        for (int i = 0; i < letters.length(); i++) {
+            keyGen[i] = letters.charAt((int) (Math.random() * letters.length()));
+        }
+
+        return String.valueOf(keyGen);
+    }
 }

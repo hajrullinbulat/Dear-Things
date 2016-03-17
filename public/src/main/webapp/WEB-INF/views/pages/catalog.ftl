@@ -1,5 +1,5 @@
-<#include "../templates/catalogTemplate.ftl">
-<@catalogTemplate />
+<#include "../templates/baseTemplate.ftl">
+<@baseTemplate title="Каталог - DearThings"/>
 <#macro m_body>
 
 <div class="navbar navbar-inverse navbar-static-top searchfield">

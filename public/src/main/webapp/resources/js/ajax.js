@@ -33,27 +33,72 @@ $(document).on('click', '.js_addToCart', function () {
 $(document).on('click', '.js_check', function () {
     event.preventDefault();
     var $this = $(this);
+    var hasError = false;
+
     var user_name = $("#user_name").val();
     var user_email = $("#user_email").val();
     var user_pass = $("#user_pass").val();
     var user_pass_again = $("#user_pass_again").val();
-    $.ajax({
-        type: 'POST',
-        url: '/signup',
-        data: {userName: user_name, userEmail: user_email, userPass: user_pass, userPassAgain: user_pass_again},
-        success: function (data) {
-            if (data == 'ok') {
-                alert("ВСЕ ЗАЕБИСЬ");
-            } else {
-                if (data.indexOf('user_name null') + 1) {
-                    ${"#pre_name"}.text("Ячейка пуста");
-                }
 
+    var email_reg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+    var name_reg = /^([A-Z][a-z]{1,15}\s[A-Z][a-z]{1,15})|([А-Я][а-я]{1,15}\s[А-Я][а-я]{1,15})$/;
+
+    if (user_name == "") {
+        hasError = true;
+        $("#pre_name").text("Ячейка пуста");
+    } else if (!name_reg.test(user_name)) {
+        hasError = true;
+        $("#pre_name").text("Формат: Костя Косточкин");
+        $("#user_name").val("");
+    } else {
+        $("#pre_name").text("");
+    }
+    if (user_email == "") {
+        hasError = true;
+        $("#pre_email").text("Ячейка пуста");
+    } else if (!email_reg.test(user_email)) {
+        hasError = true;
+        $("#pre_email").text("Введите корректный Email");
+    } else {
+        $("#pre_email").text("");
+    }
+    if (user_pass == "" || user_pass_again == "") {
+        hasError = true;
+        $("#pre_pass").text("Ячейка пуста");
+    } else if (user_pass != user_pass_again) {
+        hasError = true;
+        $("#pre_pass").text("Пароли не совпадают");
+
+        $("#user_pass").val("");
+        $("#user_pass_again").val("");
+    } else if (!/.{8,15}/.test(user_pass)) {
+        $("#user_pass").val("");
+        $("#user_pass_again").val("");
+        hasError = true;
+        $("#pre_pass").text("От 8 до 15 символов");
+    } else {
+        $("#pre_pass").text("");
+    }
+
+    if (!hasError) {
+        $.ajax({
+            type: 'POST',
+            url: '/signup',
+            data: {userName: user_name, userEmail: user_email, userPass: user_pass},
+            success: function (data) {
+                if (data == 'ok') {
+                    alert("Вы успешно зарегестрированы");
+                    document.location.href = 'http://localhost:8080/catalog/1';
+                } else {
+                    $("#pre_email").text("Этот Email уже используется");
+                    $("#user_email").val("");
+                }
+            },
+            error: function () {
+                alert('Приносим извинения.<br/>На сервере произошла ошибка');
             }
-        },
-        error: function () {
-            alert('Приносим извинения.<br/>На сервере произошла ошибка');
-        }
-    });
+        });
+    }
 });
+
 

@@ -1,5 +1,5 @@
-<#include "../templates/itemTemplate.ftl">
-<@itemTemplate />
+<#include "../templates/baseTemplate.ftl">
+<@baseTemplate title="${item.name}"/>
 <#macro m_body>
 <div class="container">
     <ul class="breadcrumbs">

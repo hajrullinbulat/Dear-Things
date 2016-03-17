@@ -40,6 +40,7 @@ public class ItemController extends BaseController {
         List<Categories> categoriesList = new ArrayList<>();
 
         Categories categories = good.getCategories();
+
         while (categories.getId() != 1) {
             categoriesStack.push(categories);
             categories = categories.getParent();

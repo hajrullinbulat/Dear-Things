@@ -2,14 +2,10 @@
 <#macro mainTemplate title="DearThings">
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>${title}</title>
+    <#include "../parts/head.ftl"/>
 
-        <#include "../parts/styles.ftl" />
-    </head>
 
-    <body>
+<body>
         <div>
             <#include "../parts/header.ftl"/>
             <#include "../parts/carousel.ftl"/>

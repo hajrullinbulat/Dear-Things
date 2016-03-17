@@ -1,5 +1,5 @@
-<#include "../templates/collectionsTemplate.ftl">
-<@collectionsTemplate />
+<#include "../templates/baseTemplate.ftl">
+<@baseTemplate title="Коллекции - DearThings"/>
 <#macro m_body>
 
 

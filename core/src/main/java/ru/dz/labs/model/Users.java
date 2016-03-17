@@ -13,7 +13,7 @@ public class Users {
     private String hash_pass;
     private String avatar;
     private String name;
-    private String check_email;
+    private boolean check_email;
     private String key;
 
 
@@ -33,6 +33,14 @@ public class Users {
     private List<Orders> orders;
 
     public Users() {
+    }
+
+    public Users(String email, String hash_pass, String name, boolean check_email, String key) {
+        this.email = email;
+        this.hash_pass = hash_pass;
+        this.name = name;
+        this.check_email = check_email;
+        this.key = key;
     }
 
     public Long getId() {
@@ -75,11 +83,11 @@ public class Users {
         this.name = name;
     }
 
-    public String getCheck_email() {
+    public boolean getCheck_email() {
         return check_email;
     }
 
-    public void setCheck_email(String check_email) {
+    public void setCheck_email(boolean check_email) {
         this.check_email = check_email;
     }
 
@@ -115,7 +123,7 @@ public class Users {
         this.orders = orders;
     }
 
-    public Users(String email, String hash_pass, String avatar, String name, String check_email, String key, List<Carts> carts, List<Addresses> addresses, List<Orders> orders) {
+    public Users(String email, String hash_pass, String avatar, String name, boolean check_email, String key, List<Carts> carts, List<Addresses> addresses, List<Orders> orders) {
 
         this.email = email;
         this.hash_pass = hash_pass;
