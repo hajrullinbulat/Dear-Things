@@ -23,4 +23,9 @@ public class CategoriesService {
         return categoriesRepository.getCategoryById(id);
     }
 
+    @Transactional
+    public List getMainCategories(){
+        return categoriesRepository.getMainCategories();
+    }
+
 }

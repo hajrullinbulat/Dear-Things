@@ -30,16 +30,10 @@ public class CategoriesRepository {
                 .list();
     }
 
-    public List getAllCategories() {
-        return sessionFactory.getCurrentSession().createCriteria(Categories.class).list();
-    }
-
-    public List getCategoryTree(Long id) {
-        if (id != null) {
-            Categories category = getCategoryById(id);
+    public List getCategoryTree(Categories categories) {
+        if (categories != null) {
             List<Categories> tree = new ArrayList<>();
-            tree.add(category);
-
+            tree.add(categories);
             for (int i = 0; i < tree.size(); i++) {
                 tree.addAll(getCategorySons(tree.get(i)));
             }
@@ -47,5 +41,10 @@ public class CategoriesRepository {
         } else {
             return null;
         }
+    }
+
+    public List getMainCategories() {
+        Categories categoryById = getCategoryById(1L);
+        return sessionFactory.getCurrentSession().createCriteria(Categories.class).add(Restrictions.eq("parent", categoryById)).list();
     }
 }

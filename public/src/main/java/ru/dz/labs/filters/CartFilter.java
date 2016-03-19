@@ -11,9 +11,9 @@ public class CartFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        request.getSession().setAttribute("user", true);
-        filterChain.doFilter(servletRequest, servletResponse);
+//        HttpServletRequest request = (HttpServletRequest) servletRequest;
+//        request.getSession().setAttribute("user", true);
+//        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

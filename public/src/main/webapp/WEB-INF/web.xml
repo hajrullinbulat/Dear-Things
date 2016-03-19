@@ -39,7 +39,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-
     <!-- Фильтр для перекодировки в utf8 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
@@ -108,17 +107,13 @@
     <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
 
-    <!--<filter>-->
-        <!--<filter-name>CatalogFilter</filter-name>-->
-        <!--<filter-class>ru.dz.labs.filters.CatalogFilter</filter-class>-->
-        <!--&lt;!&ndash;<init-param>&ndash;&gt;-->
-        <!--&lt;!&ndash;<param-name>Active</param-name>&ndash;&gt;-->
-        <!--&lt;!&ndash;<param-value>true</param-value>&ndash;&gt;-->
-        <!--&lt;!&ndash;</init-param>&ndash;&gt;-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>CatalogFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
+    <filter>
+        <filter-name>MainFilter</filter-name>
+        <filter-class>ru.dz.labs.filters.MainFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MainFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

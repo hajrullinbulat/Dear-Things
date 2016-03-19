@@ -53,6 +53,7 @@ $(document).on('click', '.js_check', function () {
     } else {
         $("#pre_name").text("");
     }
+
     if (user_email == "") {
         hasError = true;
         $("#pre_email").text("Ячейка пуста");
@@ -89,9 +90,62 @@ $(document).on('click', '.js_check', function () {
                 if (data == 'ok') {
                     alert("Вы успешно зарегестрированы");
                     document.location.href = 'http://localhost:8080/catalog/1';
-                } else {
+                } else if (data == 'failed') {
                     $("#pre_email").text("Этот Email уже используется");
                     $("#user_email").val("");
+                }
+            },
+            error: function () {
+                alert('Приносим извинения.<br/>На сервере произошла ошибка');
+            }
+        });
+    }
+});
+
+$(document).on('click', '.js_login', function () {
+    event.preventDefault();
+    var $this = $(this);
+    var user_email = $("#log_email").val();
+    var user_pass = $("#log_pass").val();
+    var hasError = false;
+    var email_reg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+
+    if (user_email == "") {
+        hasError = true;
+        $("#pre_log_email").text("Ячейка пуста");
+    } else if (!email_reg.test(user_email)) {
+        hasError = true;
+        $("#pre_log_email").text("Введите корректный Email");
+    } else {
+        $("#pre_log_email").text("");
+    }
+
+    if (user_pass == "") {
+        hasError = true;
+        $("#pre_log_pass").text("Ячейка пуста");
+    } else if (!/.{8,15}/.test(user_pass)) {
+        $("#log_pass").val("");
+        hasError = true;
+        $("#pre_log_pass").text("От 8 до 15 символов");
+    } else {
+        $("#pre_log_pass").text("");
+    }
+
+
+    if (!hasError) {
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            data: {userEmail: user_email, userPass: user_pass},
+            success: function (data) {
+                if (data == 'ok') {
+                    alert("Вы успешно вошли в ЛК");
+                    document.location.href = 'http://localhost:8080/catalog/1';
+                } else if (data == 'failed') {
+                    $("#pre_log_email").text("Неправильный логин или пароль");
+                    $("#log_email").val("");
+                    $("#log_pass").val("");
+
                 }
             },
             error: function () {

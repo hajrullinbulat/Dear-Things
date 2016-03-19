@@ -30,4 +30,11 @@ public class UsersRepository {
     public boolean checkEmail(String email) {
         return sessionFactory.getCurrentSession().createCriteria(Users.class).add(Restrictions.eq("email", email)).list().size() == 0;
     }
+
+    public Users checkLogging(String email, String pass) {
+        return (Users) sessionFactory.getCurrentSession().createCriteria(Users.class)
+                .add(Restrictions.eq("email", email))
+                .add(Restrictions.eq("hash_pass", pass))
+                .uniqueResult();
+    }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.dz.labs.Methods;
 import ru.dz.labs.services.UsersService;
 
 @Controller
@@ -20,16 +21,11 @@ public class RegistrationController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String checkValidation(String userName, String userEmail, String userPass) {
-        if (checkEmail(userEmail)) {
+        if (Methods.checkEmail(usersService, userEmail)) {
             usersService.addUsers(userName, userEmail, userPass);
+            request.getSession().setAttribute("user", usersService.checkLogging(userEmail, userPass));
             return "ok";
         } else
             return "failed";
     }
-
-    private boolean checkEmail(String userEmail) {
-        return usersService.checkEmail(userEmail);
-    }
-
-
 }

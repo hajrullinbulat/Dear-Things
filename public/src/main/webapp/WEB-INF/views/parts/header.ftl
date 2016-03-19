@@ -1,15 +1,10 @@
 <!--offcanvas здесь крч-->
 <nav id="myNavmenu" class="navmenu navmenu-inverse navmenu-fixed-left offcanvas" role="navigation">
-    <a class="navmenu-brand" href="/catalog/1">Категории</a>
+    <a class="navmenu-brand" href="/catalog/1?category=1">Категории</a>
     <ul class="nav navmenu-nav">
-        <li class="hvr-underline-from-right"><a href="#">Новый год!</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=3">Подарки</a></li>
-        <li class="hvr-underline-from-right"><a href="#">Для детей</a></li>
-        <li class="hvr-underline-from-right"><a href="#">Для дома</a></li>
-        <li class="hvr-underline-from-right"><a href="#">Офис</a></li>
-        <li class="hvr-underline-from-right"><a href="#">Гаджеты</a></li>
-        <li class="hvr-underline-from-right"><a href="#">Лайфстайл</a></li>
-        <li class="hvr-underline-from-right"><a href="#">Обед с тобой</a></li>
+    <#list categories as category>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=${category.id}">${category.name}</a></li>
+    </#list>
     </ul>
 </nav>
 
@@ -18,7 +13,6 @@
     <div class="container margin-top">
         <a href="#" class="button hvr-grow-shadow" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"/><i
             class="fa fa-bars"> Вещи</i></a></li>
-
         <div class="search">
             <input type="search" name="" placeholder="поиск" class="input"/>
             <input type="submit" name="" value="" class="submit"/>
@@ -29,13 +23,13 @@
         </a>
 
         <div class="tributton">
-            <a href="#" class="button button-first hvr-grow-shadow" data-toggle="modal" data-target="#modal-1"/><i class="fa fa-user"></i></a></li>
+            <a href="#" class="button button-first hvr-grow-shadow" data-toggle="modal" data-target="#modal-1"/><i
+                class="fa fa-user"></i></a></li>
             <a href="#" class="button button-second hvr-grow-shadow"/><i class="fa fa-th"></i></a></li>
             <a href="/cart" class="button button-third hvr-grow-shadow"/><i class="fa fa-trash-o"></i></a></li>
         </div>
     </div>
 </div>
-
 
 
 <div class="modal fade" id="modal-1">
@@ -47,23 +41,23 @@
             </div>
             <form action="post" action="">
                 <div class="modal-body">
+                    <div id="pre_log_email" class="reg_error_info log_error_info"></div>
                     <fieldset class="form__group">
-                        <label class="string required form__label">Email</label>
-                        <input class="string email optional form__field" id="email"
-                               name="user[login_or_email]" size="50" type="text">
+                        <label class="form__label">Email</label>
+                        <input class="form__field" id="log_email" size="50" type="text">
                     </fieldset>
+                    <div id="pre_log_pass" class="reg_error_info log_error_info"></div>
                     <fieldset class="form__group">
-                        <label class="string required form__label">Пароль</label>
-                        <input class="string email optional form__field" id="pass"
-                               name="user[login_or_email]" size="50" type="text">
+                        <label class="form__label">Пароль</label>
+                        <input class="form__field" id="log_pass" size="50" type="password">
                     </fieldset>
                 </div>
                 <div class="modal-footer">
                     <fieldset>
-                        <input class="btn_log hvr-fade" name="commit" type="submit" value="Войти">
+                        <input class="btn_log hvr-fade js_login" name="commit" type="submit" value="Войти">
                         <ul class="form-auth__additionalLinks">
                             <li><a href="#">Забыли пароль?</a></li>
-                            <li><a href="#">Еще не зарегистрированы?</a></li>
+                            <li><a href="/signup">Еще не зарегистрированы?</a></li>
                             <li><a href="#">Не пришло подтверждение?</a></li>
                         </ul>
                     </fieldset>

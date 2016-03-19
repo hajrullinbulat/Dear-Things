@@ -4,60 +4,76 @@
 
 <div class="navbar navbar-inverse navbar-static-top searchfield">
     <div class="container margin-top">
-        <div class="mid">
+        <form class="mid">
             Покажите мне
             <div class="dropdown">
-                <div class="" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                <div type="button" id="dropdownMenu1" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="true">
-                ${(cat.name)!"Все категории"}
+                ${(filter.category.name)!"Все категории"}
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Все категории</a></li>
-                    <li><a href="#">Новый год!</a></li>
-                    <li><a href="#">Подарки</a></li>
-                    <li><a href="#">Для детей</a></li>
-                    <li><a href="#">Для дома</a></li>
-                    <li><a href="#">Офис</a></li>
-                    <li><a href="#">Гаджеты</a></li>
-                    <li><a href="#">Лайфстайл</a></li>
-                    <li><a href="#">Обед с собой</a></li>
+                    <li><a href="/catalog/1?category=1">Все категории</a></li>
+                    <#list categories as category>
+                        <li><a href="/catalog/1?category=${category.id}">${category.name}</a></li>
+                    </#list>
                 </ul>
             </div>
             стоимостью
             <div class="dropdown">
-                <div class="" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                <div type="button" id="dropdownMenu2" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="true">
-                ${(price)!"Любая"}
+                    <#if !(filter.priceBegin)??>
+                        <#if !(filter.priceEnd)??>
+                            Любая
+                        </#if>
+                    <#elseif filter.priceBegin = 0 && filter.priceEnd = 0>
+                        Любая
+                    <#elseif filter.priceBegin != 5000>
+                    ${filter.priceBegin} - ${filter.priceEnd} ₽
+                    <#elseif filter.priceBegin == 5000>
+                    ${filter.priceBegin}+ ₽
+                    <#else >
+                        Любая
+                    </#if>
+
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li><a href="#">Любая</a></li>
-                    <li><a href="#">0 - 500 ₽</a></li>
-                    <li><a href="#">500 - 1000 ₽</a></li>
-                    <li><a href="#">1000 - 2000 ₽</a></li>
-                    <li><a href="#">2000 - 5000 ₽</a></li>
-                    <li><a href="#">5000+ ₽</a></li>
+                    <li><a href="/catalog/1?price_begin=0&price_end=0">Любая</a></li>
+                    <li><a href="/catalog/1?price_begin=0&price_end=500">0 - 500 ₽</a></li>
+                    <li><a href="/catalog/1?price_begin=500&price_end=1000">500 - 1000 ₽</a></li>
+                    <li><a href="/catalog/1?price_begin=1000&price_end=2000">1000 - 2000 ₽</a></li>
+                    <li><a href="/catalog/1?price_begin=2000&price_end=5000">2000 - 5000 ₽</a></li>
+                    <li><a href="/catalog/1?price_begin=5000&price_end=5001">5000+ ₽</a></li>
                 </ul>
             </div>
             . Cортировать от
             <div class="dropdown">
-                <div class="" type="button" id="dropdownMenu3" data-toggle="dropdown"
+                <div type="button" id="dropdownMenu3" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="true">
-                ${(order)!"?"}
+                    <#if !(filter.sort)??>
+                        ?
+                    <#elseif (filter.sort) == 'min'>
+                        Минимальной цены
+                    <#elseif (filter.sort) == 'max'>
+                        Максимальной цены
+                    <#else>
+                        ?
+                    </#if>
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                    <li><a href="#">?</a></li>
-                    <li><a href="#">Минимальной цены</a></li>
-                    <li><a href="#">Максиальной цены</a></li>
+                    <li><a href="/catalog/1?sort=?">?</a></li>
+                    <li><a href="/catalog/1?sort=min">Минимальной цены</a></li>
+                    <li><a href="/catalog/1?sort=max">Максиальной цены</a></li>
                 </ul>
             </div>
             .
-        </div>
+        </form>
     </div>
 </div>
 
 <div>
     <div class="container">
-        <div class="col-lg-6 headerthings">${(cat.name)!"Все категории"}</div>
+        <div class="col-lg-6 headerthings">${(filter.category.name)!"Все категории"}</div>
     </div>
 </div>
 

@@ -34,20 +34,19 @@ public class GoodsRepository {
         return criteria.list();
     }
 
-    public List getGoodsAfterFilter(Float priceBegin, Float priceEnd, Long category, List<Categories> tree, String sort) {
+    public List getGoodsAfterFilter(Float priceBegin, Float priceEnd, Categories category, List<Categories> tree, String sort) {
         Criteria criteriaGoods = sessionFactory.getCurrentSession().createCriteria(Goods.class);
         if (priceBegin == null && priceEnd == null && category == null && sort == null)
             return criteriaGoods.list();
         else {
-            if (priceBegin == null && priceEnd == null) {
-            } else {
-                if (priceBegin != null && priceEnd != null)
+            if (priceBegin != null && priceEnd != null && priceEnd > priceBegin) {
+                if (priceBegin < 5000) {
                     criteriaGoods.add(Restrictions.between("price", priceBegin, priceEnd));
-                else if (priceBegin != null)
+                } else {
                     criteriaGoods.add(Restrictions.ge("price", priceBegin));
-                else
-                    criteriaGoods.add(Restrictions.le("price", priceEnd));
+                }
             }
+
             if (category != null) {
                 Disjunction disjunction = Restrictions.disjunction();
                 for (Categories cat : tree) {

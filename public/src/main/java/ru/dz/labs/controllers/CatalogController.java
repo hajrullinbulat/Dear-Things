@@ -5,11 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.dz.labs.Filter;
 import ru.dz.labs.Pagination;
 import ru.dz.labs.services.CategoriesService;
 import ru.dz.labs.services.GoodsService;
 
-import java.util.List;
+import javax.annotation.PostConstruct;
 
 
 @Controller
@@ -20,7 +21,14 @@ public class CatalogController extends BaseController {
     @Autowired
     CategoriesService categoriesService;
 
+    Filter filter;
     Pagination pagination;
+
+    @PostConstruct
+    public void init() {
+        filter = new Filter();
+    }
+
 
     @RequestMapping(value = "/{page}", method = RequestMethod.GET)
     public String renderMyCatalogPage(@PathVariable("page") Integer page) {
@@ -31,43 +39,38 @@ public class CatalogController extends BaseController {
 //            goodsOnPage.add(goods.get(i));
 //        }
 //        request.getSession().setAttribute("goods", goodsOnPage);
+        setFilter(
+                request.getParameter("category"),
+                request.getParameter("price_begin"),
+                request.getParameter("price_end"),
+                request.getParameter("sort")
+        );
 
-        String category = request.getParameter("category");
-        String priceBegin = request.getParameter("price_begin");
-        String priceEnd = request.getParameter("price_end");
-        String sort = request.getParameter("sort");
+        request.getSession().setAttribute("filter", filter);
 
-        List goodsAfterFilter = goodsService.getGoodsAfterFilter(category, priceBegin, priceEnd, sort);
-
-        setAttributes(category, priceBegin, priceEnd, sort);
-
-        this.request.getSession().setAttribute("goods", goodsAfterFilter);
+        request.getSession().setAttribute("goods",
+                goodsService.getGoodsAfterFilter(
+                        filter.getCategory(),
+                        filter.getPriceBegin(),
+                        filter.getPriceEnd(),
+                        filter.getSort())
+        );
 
         return "pages/catalog";
     }
 
-    private void setAttributes(String category, String priceB, String priceE, String sort) {
+    private void setFilter(String category, String priceB, String priceE, String sort) {
         if (category != null) {
-            request.getSession().setAttribute("cat", categoriesService.getCategoryById(Long.valueOf(category)));
-        } else {
-            request.getSession().setAttribute("cat", null);
+            try {
+                filter.setCategory(categoriesService.getCategoryById(Long.valueOf(category)));
+            } catch (NumberFormatException ignored) {
+            }
         }
         if (sort != null) {
-            if (sort.equals("min")) {
-                request.getSession().setAttribute("order", "Минимальной цены");
-            } else if (sort.equals("max")) {
-                request.getSession().setAttribute("order", "Максимальной цены");
-            }
+            filter.setSort(sort);
         }
-        if (priceB != null && priceE != null) {
-            request.getSession().setAttribute("price", priceB + " - " + priceE + " \u20BD");
-        } else {
-            if (priceB != null) {
-                request.getSession().setAttribute("price", priceB + " - ? \u20BD");
-            }
-            if (priceE != null) {
-                request.getSession().setAttribute("price", "? - " + priceE + " \u20BD");
-            }
+        if (null != priceB && !priceB.equals("") && null != priceE && !priceE.equals("")) {
+            filter.setPrices(priceB, priceE);
         }
     }
 }

@@ -53,6 +53,11 @@ public class Categories {
         this.goods = goods;
     }
 
+    public Categories(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Categories(String name, Categories parent, List<Goods> goods) {
 
         this.name = name;

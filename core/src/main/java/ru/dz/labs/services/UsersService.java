@@ -37,6 +37,15 @@ public class UsersService {
         return usersRepository.checkEmail(email);
     }
 
+    @Transactional
+    public Users checkLogging(String email, String pass) {
+        Users user = usersRepository.checkLogging(email, DigestUtils.md5DigestAsHex(pass.getBytes()));
+        if (null != user)
+            return user;
+        else
+            return null;
+    }
+
     private String keyGen() {
         String letters = "abcdefghijklmnopqrstuvwxyz0123456789";
         char[] keyGen = new char[letters.length()];
