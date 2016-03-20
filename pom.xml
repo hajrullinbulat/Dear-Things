@@ -23,7 +23,7 @@
         <com.java.version>1.7</com.java.version>
         <org.freemarker.version>2.3.20</org.freemarker.version>
         <commons.codec.version>1.9</commons.codec.version>
-
+        <aspectj.version>1.8.2</aspectj.version>
     </properties>
 
     <profiles>

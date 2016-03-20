@@ -27,6 +27,12 @@ public class Users {
             mappedBy = "users")
     private List<Addresses> addresses;
 
+
+    @OneToMany(cascade = CascadeType.REFRESH,
+            fetch = FetchType.LAZY,
+            mappedBy = "users")
+    private List<Telephones> telephones;
+
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
             mappedBy = "users")
@@ -123,7 +129,19 @@ public class Users {
         this.orders = orders;
     }
 
-    public Users(String email, String hash_pass, String avatar, String name, boolean check_email, String key, List<Carts> carts, List<Addresses> addresses, List<Orders> orders) {
+    public boolean isCheck_email() {
+        return check_email;
+    }
+
+    public List<Telephones> getTelephones() {
+        return telephones;
+    }
+
+    public void setTelephones(List<Telephones> telephones) {
+        this.telephones = telephones;
+    }
+
+    public Users(String email, String hash_pass, String avatar, String name, boolean check_email, String key, List<Carts> carts, List<Addresses> addresses, List<Telephones> telephones, List<Orders> orders) {
 
         this.email = email;
         this.hash_pass = hash_pass;
@@ -133,6 +151,7 @@ public class Users {
         this.key = key;
         this.carts = carts;
         this.addresses = addresses;
+        this.telephones = telephones;
         this.orders = orders;
     }
 }

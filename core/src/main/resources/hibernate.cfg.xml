@@ -9,6 +9,7 @@
         <mapping class="ru.dz.labs.model.Users"/>
         <mapping class="ru.dz.labs.model.Orders"/>
         <mapping class="ru.dz.labs.model.Addresses"/>
+        <mapping class="ru.dz.labs.model.Telephones"/>
         <mapping class="ru.dz.labs.model.Carts"/>
         <mapping class="ru.dz.labs.model.Categories"/>
         <mapping class="ru.dz.labs.model.Goods"/>

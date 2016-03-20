@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Addresses {
+public class Telephones {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String address;
+    private String telephones;
     @ManyToOne
             (cascade = {CascadeType.REFRESH},
                     fetch = FetchType.LAZY)
@@ -17,9 +17,13 @@ public class Addresses {
 
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
-            mappedBy = "addresses")
+            mappedBy = "telephones")
     private List<Orders> orders;
 
+    public Telephones(String telephones, Users users) {
+        this.telephones = telephones;
+        this.users = users;
+    }
 
     public Long getId() {
         return id;
@@ -29,17 +33,12 @@ public class Addresses {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
+    public String getTelephones() {
+        return telephones;
     }
 
-    public Addresses(String address, Users users) {
-        this.address = address;
-        this.users = users;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setTelephones(String telephone) {
+        this.telephones = telephone;
     }
 
     public Users getUsers() {
@@ -58,14 +57,13 @@ public class Addresses {
         this.orders = orders;
     }
 
-    public Addresses(String address, Users users, List<Orders> orders) {
-
-        this.address = address;
+    public Telephones(String telephones, Users users, List<Orders> orders) {
+        this.telephones = telephones;
         this.users = users;
         this.orders = orders;
     }
 
-    public Addresses() {
+    public Telephones() {
 
     }
 }

@@ -28,6 +28,12 @@ public class Orders {
     @JoinColumn(name = "address_id")
     private Addresses addresses;
 
+    @ManyToOne
+            (cascade = {CascadeType.REFRESH},
+                    fetch = FetchType.LAZY)
+    @JoinColumn(name = "telephone_id")
+    private Telephones telephones;
+
 
     public Long getId() {
         return id;
@@ -85,7 +91,15 @@ public class Orders {
         this.addresses = addresses;
     }
 
-    public Orders(Date create_time, float total_sum, float total_count, String pay_type, Users users, Addresses addresses) {
+    public Telephones getTelephones() {
+        return telephones;
+    }
+
+    public void setTelephones(Telephones telephones) {
+        this.telephones = telephones;
+    }
+
+    public Orders(Date create_time, float total_sum, float total_count, String pay_type, Users users, Addresses addresses, Telephones telephones) {
 
         this.create_time = create_time;
         this.total_sum = total_sum;
@@ -93,6 +107,7 @@ public class Orders {
         this.pay_type = pay_type;
         this.users = users;
         this.addresses = addresses;
+        this.telephones = telephones;
     }
 
     public Orders() {

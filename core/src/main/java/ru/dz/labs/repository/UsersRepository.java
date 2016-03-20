@@ -37,4 +37,25 @@ public class UsersRepository {
                 .add(Restrictions.eq("hash_pass", pass))
                 .uniqueResult();
     }
+
+    public void updateNameOfUserById(Long id, String name) {
+        sessionFactory.getCurrentSession().createQuery("update Users u set u.name = :newName where u.id = :id")
+                .setString("newName", name)
+                .setLong("id", id)
+                .executeUpdate();
+    }
+
+    public void updateAvatarOfUserById(Long id, String avatar) {
+        sessionFactory.getCurrentSession().createQuery("update Users u set u.avatar = :newAvatar where u.id = :id")
+                .setString("newAvatar", avatar)
+                .setLong("id", id)
+                .executeUpdate();
+    }
+
+    public void updatePasswordOfUserById(Long id, String newPass) {
+        sessionFactory.getCurrentSession().createQuery("update Users u set u.hash_pass = :newPass where u.id = :id")
+                .setString("newPass", newPass)
+                .setLong("id", id)
+                .executeUpdate();
+    }
 }

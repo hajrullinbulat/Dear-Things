@@ -55,4 +55,19 @@ public class UsersService {
 
         return String.valueOf(keyGen);
     }
+
+    @Transactional
+    public void updateNameOfUserById(Long id, String name) {
+        usersRepository.updateNameOfUserById(id, name);
+    }
+
+    @Transactional
+    public void updateAvatarOfUserById(Long id, String avatar) {
+        usersRepository.updateAvatarOfUserById(id, avatar);
+    }
+
+    @Transactional
+    public void updatePasswordOfUserById(Long id, String newPassword) {
+        usersRepository.updatePasswordOfUserById(id, DigestUtils.md5DigestAsHex(newPassword.getBytes()));
+    }
 }

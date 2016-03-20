@@ -1006,6 +1006,7 @@ body.nav-expanded {
 .form__group-submit input {
     border: none;
     outline: none;
+    margin-bottom: 8px;
 }
 
 .form__label {
@@ -1197,6 +1198,15 @@ form {
     width: 390px;
     margin-left: 222px;
     color: red;
+    font-family: Calibri Light;
+    font-weight: 100;
+    font-size: 17px;
+}
+
+.reg_success_info {
+    width: 390px;
+    margin-left: 222px;
+    color: green;
     font-family: Calibri Light;
     font-weight: 100;
     font-size: 17px;

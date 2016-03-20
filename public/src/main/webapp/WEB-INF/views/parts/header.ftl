@@ -2,9 +2,17 @@
 <nav id="myNavmenu" class="navmenu navmenu-inverse navmenu-fixed-left offcanvas" role="navigation">
     <a class="navmenu-brand" href="/catalog/1?category=1">Категории</a>
     <ul class="nav navmenu-nav">
-    <#list categories as category>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=${category.id}">${category.name}</a></li>
-    </#list>
+    <#--<#list categories as category>-->
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=1">Все категории</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=2">Новый год </a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=3">Подарки</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=4">Для детей</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=5">Для дома</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=6">Офис</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=7">Гаджеты</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=8">Лайфстайл</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog/1?category=11">Украшения</a></li>
+    <#--</#list>-->
     </ul>
 </nav>
 
@@ -23,10 +31,17 @@
         </a>
 
         <div class="tributton">
-            <a href="#" class="button button-first hvr-grow-shadow" data-toggle="modal" data-target="#modal-1"/><i
-                class="fa fa-user"></i></a></li>
-            <a href="#" class="button button-second hvr-grow-shadow"/><i class="fa fa-th"></i></a></li>
-            <a href="/cart" class="button button-third hvr-grow-shadow"/><i class="fa fa-trash-o"></i></a></li>
+
+        <#if !user??>
+            <a class="button button-first hvr-grow-shadow" data-toggle="modal" data-target="#modal-1"><i
+                    class="fa fa-user"></i></a>
+        <#else>
+            <a href="/edit" class="button button-first hvr-grow-shadow"><i
+                    class="fa fa-user"></i></a>
+        </#if>
+
+            <a href="#" class="button button-second hvr-grow-shadow"><i class="fa fa-th"></i></a>
+            <a href="/cart" class="button button-third hvr-grow-shadow"><i class="fa fa-trash-o"></i></a>
         </div>
     </div>
 </div>
