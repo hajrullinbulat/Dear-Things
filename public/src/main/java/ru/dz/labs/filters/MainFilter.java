@@ -31,9 +31,7 @@ public class MainFilter implements Filter {
                 while (resultSet.next()) {
                     categories.add(new Categories(resultSet.getLong("id"), resultSet.getString("name")));
                 }
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             } finally {
                 firstTime = false;
