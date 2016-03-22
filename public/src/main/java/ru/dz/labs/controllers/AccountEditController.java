@@ -2,10 +2,10 @@ package ru.dz.labs.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.dz.labs.Methods;
 import ru.dz.labs.model.Addresses;
 import ru.dz.labs.model.Telephones;
 import ru.dz.labs.model.Users;
@@ -28,42 +28,59 @@ public class AccountEditController extends BaseController {
         return "pages/accountEdit";
     }
 
+
+    /**
+     * Приходят параметры, проверям, пусты или не пусты
+     * Не пустые соответствующе обрабатываем
+     */
     @ResponseBody
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editForm(String userEditName, String userEditAvatar, String userEditTelephone, String userEditAddress, String userEditOldPass, String userEditNewPass) {
-        String ans = "";
+    public String updateUsersInfo(String userEditName, String userEditAvatar,
+                                  String userEditTelephone, String userEditAddress,
+                                  String userEditOldPass, String userEditNewPass) {
+
+        StringBuilder ans = new StringBuilder();
         Users user = (Users) request.getSession().getAttribute("user");
-        if (null != userEditName && !userEditName.equals("")) {
+
+        if (Methods.checkOfNull(userEditName)) {
             usersService.updateNameOfUserById(user.getId(), userEditName);
-            ans = ans + "name ";
+            addToString(ans, "name ");
         }
-        if (null != userEditAvatar && !userEditAvatar.equals("")) {
+        if (Methods.checkOfNull(userEditAvatar)) {
             usersService.updateAvatarOfUserById(user.getId(), userEditAvatar);
-            ans = ans + "avatar ";
+            addToString(ans, "avatar ");
         }
-        if (null != userEditTelephone && !userEditTelephone.equals("")) {
+        if (Methods.checkOfNull(userEditTelephone)) {
             telephoneService.addTelephone(new Telephones(userEditTelephone, user));
-            ans = ans + "tel ";
+            addToString(ans, "tel ");
         }
-        if (null != userEditAddress && !userEditAddress.equals("")) {
+        if (Methods.checkOfNull(userEditAddress)) {
             addressesService.addAddresses(new Addresses(userEditAddress, user));
-            ans = ans + "address ";
+            addToString(ans, "address ");
         }
-        if (null != userEditOldPass && !userEditOldPass.equals("")
-                && null != userEditNewPass && !userEditNewPass.equals("")) {
-            if (DigestUtils.md5DigestAsHex(userEditOldPass.getBytes()).equals(user.getHash_pass())) {
+        if (checkNotNullPasswords(userEditOldPass, userEditNewPass)) {
+            if (Methods.passToHash(userEditOldPass).equals(user.getHash_pass())) {
                 usersService.updatePasswordOfUserById(user.getId(), userEditNewPass);
-                ans = ans + "pass ";
+                addToString(ans, "pass ");
             } else {
-                ans = ans + "fail";
+                addToString(ans, "fail ");
             }
         }
 
-        Users usersById = usersService.getUsersById(user.getId());
-        request.getSession().setAttribute("user", usersById);
+        request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
 
-        Users user1 = (Users) request.getSession().getAttribute("user");
-        System.out.println(user1.getName());
-        return ans;
+        user = (Users) request.getSession().getAttribute("user");
+        System.out.println(user.getName());
+
+        return ans.toString();
     }
+
+    private boolean checkNotNullPasswords(String userEditOldPass, String userEditNewPass) {
+        return Methods.checkOfNull(userEditOldPass) && Methods.checkOfNull(userEditNewPass);
+    }
+
+    private void addToString(StringBuilder stringBuilder, String s) {
+        stringBuilder.append(s);
+    }
+
 }

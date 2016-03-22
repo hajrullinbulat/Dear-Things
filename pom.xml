@@ -28,7 +28,7 @@
 
     <profiles>
         <profile>
-            <id>kamil-dev</id>
+            <id>bulat-dev</id>
             <properties>
                 <tomcatHome>C:\Program Files\Java\apache-tomcat-8.0.26</tomcatHome>
             </properties>

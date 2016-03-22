@@ -1,5 +1,6 @@
 package ru.dz.labs;
 
+import org.springframework.util.DigestUtils;
 import ru.dz.labs.model.Categories;
 import ru.dz.labs.model.Goods;
 import ru.dz.labs.services.UsersService;
@@ -30,4 +31,13 @@ public class Methods {
 
         return categoriesList;
     }
+
+    public static String passToHash(String password) {
+        return DigestUtils.md5DigestAsHex(password.getBytes());
+    }
+
+    public static boolean checkOfNull(String s) {
+        return null != s && !s.isEmpty();
+    }
+
 }

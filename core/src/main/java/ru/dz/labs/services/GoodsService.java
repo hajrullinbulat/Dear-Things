@@ -29,8 +29,14 @@ public class GoodsService {
         return goodsRepository.getGoodById(id);
     }
 
+    /**
+     * берем предметы из той же категории, что и предмет, если меньше 4,
+     * то поднимаемся выше по дереву(пока не наберем 4 предмета или не достигнем верха)
+     */
+
     @Transactional
-    public List getLikeGoods(Goods good) {
+    public List getLikeGoods(Goods good) {    //берем предметы из той же категории, что и предмет, если меньше 4,
+        // то поднимается выше по дереву и так пока не будет 4
         Categories category = good.getCategories();
         Long id = good.getId();
         List likeGoods = goodsRepository.getLikeGoods(category, 4, id);

@@ -8,11 +8,11 @@ $(document).on('click', '.js_deleteFromCart', function () {
         data: {cartId: id},
         success: function (data) {
             if (data == 'ok') {
-                $(".cart" + id).hide();
+                $(".cart" + id).remove();
             }
         },
         error: function () {
-            alert('Приносим извинения.<br/>На сервере произошла ошибка');
+            alert('Приносим извинения. На сервере произошла ошибка');
         }
     });
 });

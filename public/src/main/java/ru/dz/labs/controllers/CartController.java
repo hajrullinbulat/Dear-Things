@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.dz.labs.Methods;
 import ru.dz.labs.model.Users;
 import ru.dz.labs.services.CartsService;
 import ru.dz.labs.services.GoodsService;
@@ -31,48 +32,36 @@ public class CartController extends BaseController {
     @RequestMapping(method = RequestMethod.GET)
     public String renderMyCartPage() {
         Users user = (Users) request.getSession().getAttribute("user");
+        List cart = null;
         if (null != user) {
-            List usersCart = cartsService.getUsersCart(usersService.getUsersById(user.getId()));
-            request.getSession().setAttribute("cart", usersCart);
+            cart = cartsService.getUsersCart(usersService.getUsersById(user.getId()));
+            request.getSession().setAttribute("cart", cart);
         } else {
-            String cart = getCookie(request, "cart");
-            List cookieCart;
-            if (null != cart && !cart.equals("")) {
-                cookieCart = goodsService.getGoodsFromCookie(cart);
-            } else {
-                cookieCart = null;
+            String cartGoods = getCookiesValue(request, "cart");
+            if (Methods.checkOfNull(cartGoods)) {
+                cart = goodsService.getGoodsFromCookie(cartGoods);
             }
-            request.getSession().setAttribute("cookiecart", cookieCart);
+            request.getSession().setAttribute("cookiecart", cart);
         }
         return "pages/cart";
     }
 
-    private String getCookie(HttpServletRequest request, String value) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie c : cookies) {
-            if (c.getName().equals(value)) {
-                return c.getValue();
-            }
-        }
-        return null;
-    }
-
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addInCart(Long goodId, HttpServletResponse httpServletResponse) {
+    public String addInCart(Long goodId, HttpServletResponse response) {
         Users user = (Users) request.getSession().getAttribute("user");
         if (null != user) {
             cartsService.addToCart(goodId, user.getId());
         } else {
-            String cookieVal = getCookie(request, "cart");
-            if (cookieVal != null && !cookieVal.equals("")) {
+            String cookieVal = getCookiesValue(request, "cart");
+            if (Methods.checkOfNull(cookieVal)) {
                 cookieVal = cookieVal + String.valueOf(goodId) + ",";
             } else {
                 cookieVal = String.valueOf(goodId) + ",";
             }
             Cookie cookie = new Cookie("cart", cookieVal);
             cookie.setPath("/");
-            httpServletResponse.addCookie(cookie);
+            response.addCookie(cookie);
         }
         return "ok";
     }
@@ -91,8 +80,18 @@ public class CartController extends BaseController {
     }
 
 
+    private String getCookiesValue(HttpServletRequest request, String value) {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie c : cookies) {
+            if (c.getName().equals(value)) {
+                return c.getValue();
+            }
+        }
+        return null;
+    }
+
     private void deleteFromCartCookie(HttpServletRequest request, HttpServletResponse response, String goodId) {
-        String goods = getCookie(request, "cart");
+        String goods = getCookiesValue(request, "cart");
         String[] goodsStringArray = goods.split(",");
         List<String> goodsList = new ArrayList<>();
         Collections.addAll(goodsList, goodsStringArray);
