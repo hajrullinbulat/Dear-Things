@@ -1,19 +1,35 @@
 package ru.dz.labs.controllers;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Булат on 17.03.2016.
  */
 public class Test {
     public static void main(String[] args) {
-        String letters = "abcdefghijklmnopqrstuvwxyz0123456789";
-        char[] symbols = new char[letters.length()];
-        for (int i = 0; i < letters.length(); i++) {
-            symbols[i] = letters.charAt((int) (Math.random() * letters.length()));
+        String s = "1,2,3,4,55,4,";
+        System.out.println(s);
+        String[] s1 = s.split(",");
+        List<String> list = new ArrayList<>();
+        Collections.addAll(list, s1);
+
+        Long integer = 4L;
+
+        for (int i = 0; i < s1.length; i++) {
+            if (i == integer - 1) {
+                list.remove(i);
+            }
         }
 
-        System.out.println(String.valueOf(symbols));
+        String ans = "";
+        for (String s2 : list) {
+            ans = ans + s2 + ",";
+        }
+
+        System.out.println(ans);
+
 
     }
 }

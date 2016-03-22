@@ -8,6 +8,7 @@ import ru.dz.labs.model.Goods;
 import ru.dz.labs.repository.CategoriesRepository;
 import ru.dz.labs.repository.GoodsRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,6 +45,16 @@ public class GoodsService {
             }
         }
         return likeGoods;
+    }
+
+    @Transactional
+    public List getGoodsFromCookie(String goods) {
+        String[] goodsIds = goods.split(",");
+        List<Goods> cart = new ArrayList<>();
+        for (String s : goodsIds) {
+            cart.add(goodsRepository.getGoodById(Long.valueOf(s)));
+        }
+        return cart;
     }
 
 

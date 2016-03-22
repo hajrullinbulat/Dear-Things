@@ -55,7 +55,6 @@ public class CatalogController extends BaseController {
                         filter.getPriceEnd(),
                         filter.getSort())
         );
-
         return "pages/catalog";
     }
 
