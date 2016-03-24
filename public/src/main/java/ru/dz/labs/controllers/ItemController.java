@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ru.dz.labs.Methods;
+import ru.dz.labs.util.Methods;
 import ru.dz.labs.model.Goods;
 import ru.dz.labs.services.CategoriesService;
 import ru.dz.labs.services.GoodsService;

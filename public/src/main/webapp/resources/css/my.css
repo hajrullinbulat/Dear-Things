@@ -892,14 +892,14 @@ body.nav-expanded {
 }
 
 .cart_btn_del {
-    margin: 18px 0px -14px 2px;
+    margin: 0 0 -14px 2px;
     cursor: pointer;
     background: #F88B8B;
     color: #111;
     display: inline-block;
     vertical-align: top;
     zoom: 1;
-    border:none;
+    border: none;
     font-size: 1.0625rem;
     padding: 0 30px;
     height: 50px;
@@ -1281,5 +1281,23 @@ body {
 .logout:hover, .edit:hover {
     border: 0 solid #e1e1e1;
     background-color: #f4f4f4;
+}
+
+.count_change {
+    font-family: Calibri Light;
+    font-size: 19px;
+    font-weight: 100;
+    padding-top: 9px;
+}
+
+.count_change input {
+    text-align: center;
+}
+
+.count_change_arrows {
+    margin-bottom: 37px;
+    font-size: 26px;
+    margin-left: -5px;
+    cursor: pointer ;
 }
 

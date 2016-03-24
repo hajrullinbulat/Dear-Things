@@ -20,8 +20,8 @@ public class CartsService {
     private UsersService usersService;
 
     @Transactional
-    public void addToCart(Long goodId, Long userId) {
-        cartsRepository.add(new Carts(goodsService.getGoodById(goodId), usersService.getUsersById(userId)));
+    public void addToCart(Users user, Long goodId) {
+        cartsRepository.add(new Carts(goodsService.getGoodById(goodId), user, 1));
     }
 
     @Transactional
@@ -36,6 +36,18 @@ public class CartsService {
 
     @Transactional
     public void deleteFromCart(Long id) {
-        cartsRepository.delete(id);
+        cartsRepository.deleteFromCart(id);
     }
+
+    @Transactional
+    public boolean checkOfExistingItemInCart(Users user, Long goodId) {
+        Carts cart = cartsRepository.getCart(user, goodsService.getGoodById(goodId));
+        return null != cart;
+    }
+
+    @Transactional
+    public void updateCountOfCart(Long cartId, Integer count) {
+        cartsRepository.updateCountOfCart(cartId, count);
+    }
+
 }

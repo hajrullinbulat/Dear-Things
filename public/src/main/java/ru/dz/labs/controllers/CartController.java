@@ -5,11 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.dz.labs.Methods;
 import ru.dz.labs.model.Users;
 import ru.dz.labs.services.CartsService;
 import ru.dz.labs.services.GoodsService;
 import ru.dz.labs.services.UsersService;
+import ru.dz.labs.util.Methods;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +34,7 @@ public class CartController extends BaseController {
         Users user = (Users) request.getSession().getAttribute("user");
         List cart = null;
         if (null != user) {
-            cart = cartsService.getUsersCart(usersService.getUsersById(user.getId()));
+            cart = cartsService.getUsersCart(user);
             request.getSession().setAttribute("cart", cart);
         } else {
             String cartGoods = getCookiesValue(request, "cart");
@@ -50,9 +50,13 @@ public class CartController extends BaseController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addInCart(Long goodId, HttpServletResponse response) {
         Users user = (Users) request.getSession().getAttribute("user");
-        if (null != user) {
-            cartsService.addToCart(goodId, user.getId());
-        } else {
+        if (null != user) {     //пользователь авторизован
+            if (!cartsService.checkOfExistingItemInCart(user, goodId)) {
+                cartsService.addToCart(user, goodId);
+            } else {
+                return "exist";
+            }
+        } else {  //пользователь не авторизован
             String cookieVal = getCookiesValue(request, "cart");
             if (Methods.checkOfNull(cookieVal)) {
                 cookieVal = cookieVal + String.valueOf(goodId) + ",";
@@ -70,6 +74,25 @@ public class CartController extends BaseController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String deleteFromCart(Long cartId) {
         cartsService.deleteFromCart(cartId);
+        return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/change", method = RequestMethod.POST)
+    public String changeCountOfItem(Long cartId, Integer count) {
+        if (count > 0) {
+            cartsService.updateCountOfCart(cartId, count);
+            return "ok";
+        } else {
+            cartsService.deleteFromCart(cartId);
+            return "deleted";
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/change_forward", method = RequestMethod.POST)
+    public String changeCountOfItemForward(Long cartId, Integer count) {
+        cartsService.updateCountOfCart(cartId, count);
         return "ok";
     }
 

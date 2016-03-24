@@ -21,6 +21,23 @@ public class Carts {
     @JoinColumn(name = "user_id")
     private Users users;
 
+    private Integer count;
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Carts(Goods goods, Users users, Integer count) {
+
+        this.goods = goods;
+        this.users = users;
+        this.count = count;
+    }
+
     public Long getId() {
         return id;
     }
@@ -42,11 +59,6 @@ public class Carts {
     }
 
     public void setUsers(Users users) {
-        this.users = users;
-    }
-
-    public Carts(Goods goods, Users users) {
-        this.goods = goods;
         this.users = users;
     }
 

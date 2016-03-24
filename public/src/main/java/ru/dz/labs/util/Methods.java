@@ -1,4 +1,4 @@
-package ru.dz.labs;
+package ru.dz.labs.util;
 
 import org.springframework.util.DigestUtils;
 import ru.dz.labs.model.Categories;
