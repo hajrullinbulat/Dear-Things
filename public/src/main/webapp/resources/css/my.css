@@ -819,6 +819,7 @@ body.nav-expanded {
     font-size: 20px;
     padding: 0 20px;
     line-height: 38px;
+    font-family: cursive;
 }
 
 .cart_product_cost {
@@ -831,6 +832,7 @@ body.nav-expanded {
     font-size: 14px;
     padding: 0 20px;
     line-height: 28px;
+    font-family: cursive;
 }
 
 .cart_product_company {
@@ -1185,10 +1187,11 @@ form {
 
 .company {
     display: -webkit-inline-box;
-    margin-top: 2px;
+    margin-top: 4px;
     color: #898989;
     font-family: "Calibri Light";
     font-weight: 100;
+    font-size: 16px;
 }
 
 .company:hover {
@@ -1300,4 +1303,6 @@ body {
     margin-left: -5px;
     cursor: pointer ;
 }
+
+
 

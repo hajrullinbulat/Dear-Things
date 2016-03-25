@@ -17,7 +17,7 @@
             <h1>${item.name}</h1>
 
             <div class="product_info">
-                <div class="product_cost">${item.price} Р</div>
+                <div class="product_cost">${item.price} ₽</div>
                 <div class="product_company"><a href="#">${item.company}</a></div>
             </div>
             <p><a href="#" class="btn_buy hvr-fade js_addToCart" data-id="${item.id}">

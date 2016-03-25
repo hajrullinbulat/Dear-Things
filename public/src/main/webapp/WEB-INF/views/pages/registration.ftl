@@ -28,6 +28,8 @@
         <fieldset class="form__group-submit">
             <input class="btn_reg hvr-fade js_check" type="submit" value="Зарегистрироваться">
         </fieldset>
+        <br>
+        <br>
     </form>
 </div>
 </#macro>

@@ -10,6 +10,7 @@ public class LogoutController extends BaseController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String login() {
         request.getSession().setAttribute("user", null);
+        request.getSession().setAttribute("cart", null);
         return "redirect:/catalog/1";
     }
 

@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.dz.labs.util.Methods;
 import ru.dz.labs.model.Addresses;
 import ru.dz.labs.model.Telephones;
 import ru.dz.labs.model.Users;
 import ru.dz.labs.services.AddressesService;
 import ru.dz.labs.services.TelephoneService;
 import ru.dz.labs.services.UsersService;
+import ru.dz.labs.util.Methods;
 
 @Controller
 public class AccountEditController extends BaseController {
@@ -34,46 +34,76 @@ public class AccountEditController extends BaseController {
      * Не пустые соответствующе обрабатываем
      */
     @ResponseBody
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String updateUsersInfo(String userEditName, String userEditAvatar,
-                                  String userEditTelephone, String userEditAddress,
-                                  String userEditOldPass, String userEditNewPass) {
-
-        StringBuilder ans = new StringBuilder();
+    @RequestMapping(value = "/edit_name", method = RequestMethod.POST)
+    public String updateUsersName(String userEditName) {
         Users user = (Users) request.getSession().getAttribute("user");
-
-        if (Methods.checkOfNull(userEditName)) {
-            usersService.updateNameOfUserById(user.getId(), userEditName);
-            addToString(ans, "name ");
-        }
-        if (Methods.checkOfNull(userEditAvatar)) {
-            usersService.updateAvatarOfUserById(user.getId(), userEditAvatar);
-            addToString(ans, "avatar ");
-        }
-        if (Methods.checkOfNull(userEditTelephone)) {
-            telephoneService.addTelephone(new Telephones(userEditTelephone, user));
-            addToString(ans, "tel ");
-        }
-        if (Methods.checkOfNull(userEditAddress)) {
-            addressesService.addAddresses(new Addresses(userEditAddress, user));
-            addToString(ans, "address ");
-        }
-        if (checkNotNullPasswords(userEditOldPass, userEditNewPass)) {
-            if (Methods.passToHash(userEditOldPass).equals(user.getHash_pass())) {
-                usersService.updatePasswordOfUserById(user.getId(), userEditNewPass);
-                addToString(ans, "pass ");
-            } else {
-                addToString(ans, "fail ");
-            }
-        }
+        usersService.updateNameOfUserById(user.getId(), userEditName);
 
         request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
 
         user = (Users) request.getSession().getAttribute("user");
         System.out.println(user.getName());
 
-        return ans.toString();
+        return "ok";
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/edit_avatar", method = RequestMethod.POST)
+    public String updateUsersAvatar(String userEditAvatar) {
+        Users user = (Users) request.getSession().getAttribute("user");
+        usersService.updateAvatarOfUserById(user.getId(), userEditAvatar);
+
+        request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
+
+        user = (Users) request.getSession().getAttribute("user");
+        System.out.println(user.getName());
+
+        return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/edit_telephone", method = RequestMethod.POST)
+    public String addUsersTelephone(String userEditTelephone) {
+        Users user = (Users) request.getSession().getAttribute("user");
+        telephoneService.addTelephone(new Telephones(userEditTelephone, user));
+        request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
+
+        user = (Users) request.getSession().getAttribute("user");
+        System.out.println(user.getName());
+
+        return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/edit_address", method = RequestMethod.POST)
+    public String addUsersAddress(String userEditAddress) {
+        Users user = (Users) request.getSession().getAttribute("user");
+        addressesService.addAddresses(new Addresses(userEditAddress, user));
+
+        request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
+
+        user = (Users) request.getSession().getAttribute("user");
+        System.out.println(user.getName());
+
+        return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/edit_pass", method = RequestMethod.POST)
+    public String updateUsersInfo(String userEditOldPass, String userEditNewPass) {
+        Users user = (Users) request.getSession().getAttribute("user");
+        if (checkNotNullPasswords(userEditOldPass, userEditNewPass)) {
+            if (Methods.passToHash(userEditOldPass).equals(user.getHash_pass())) {
+                usersService.updatePasswordOfUserById(user.getId(), userEditNewPass);
+                request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
+                user = (Users) request.getSession().getAttribute("user");
+                System.out.println(user.getName());
+                return "ok";
+            }
+        }
+        return "false";
+    }
+
 
     private boolean checkNotNullPasswords(String userEditOldPass, String userEditNewPass) {
         return Methods.checkOfNull(userEditOldPass) && Methods.checkOfNull(userEditNewPass);

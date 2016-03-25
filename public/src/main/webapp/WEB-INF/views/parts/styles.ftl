@@ -5,3 +5,4 @@
 <link href="<@c.url value="/resources/css/my.css"/>" rel="stylesheet" type="text/css" media="screen"/>
 <link href="<@c.url value="/resources/css/font-awesome.css"/>" type="text/css" rel="stylesheet"/>
 <link href="<@c.url value="/resources/css/hover.css"/>" type="text/css" rel="stylesheet"/>
+<link href="<@c.url value="/resources/css/sweetalert2.css"/>" type="text/css" rel="stylesheet"/>

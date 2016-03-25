@@ -59,7 +59,8 @@ public class CartController extends BaseController {
         } else {  //пользователь не авторизован
             String cookieVal = getCookiesValue(request, "cart");
             if (Methods.checkOfNull(cookieVal)) {
-                cookieVal = cookieVal + String.valueOf(goodId) + ",";
+                if (!checkContains(cookieVal, String.valueOf(goodId)))
+                    cookieVal = cookieVal + String.valueOf(goodId) + ",";
             } else {
                 cookieVal = String.valueOf(goodId) + ",";
             }
@@ -89,12 +90,6 @@ public class CartController extends BaseController {
         }
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/change_forward", method = RequestMethod.POST)
-    public String changeCountOfItemForward(Long cartId, Integer count) {
-        cartsService.updateCountOfCart(cartId, count);
-        return "ok";
-    }
 
     @RequestMapping(value = "/deletefromcook", method = RequestMethod.POST)
     public String deleteFromCart(HttpServletResponse response) {
@@ -128,5 +123,9 @@ public class CartController extends BaseController {
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 365);
         response.addCookie(cookie);
+    }
+
+    private boolean checkContains(String goods, String good) {
+        return goods.contains(good);
     }
 }

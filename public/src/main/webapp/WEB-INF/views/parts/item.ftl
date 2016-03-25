@@ -6,11 +6,11 @@
             <div class="caption">
                 <p>${good.name}</p>
                 <div>
-                    <div class="company">
-                    ${good.company}
+                    <div class="company js_addToCart" data-id="${good.id}" name="addToTrash">
+                        В корзину
                     </div>
-                    <button type="submit" class="btn btn-default js_addToCart float_right" data-id="${good.id}"
-                            name="addToTrash"> ${good.price} ₽
+                    <button type="submit" class="btn btn-default float_right">
+                    ${good.price} ₽
                     </button>
                 </div>
             </div>

@@ -18,7 +18,7 @@
                         <div class="col-lg-9">
                             <h1>${cart.goods.name}</h1>
                             <div class="cart_product_info">
-                                <div class="cart_product_cost">${cart.goods.price} $</div>
+                                <div class="cart_product_cost">${cart.goods.price} ₽</div>
                                 <div class="cart_product_company">${cart.goods.company}</div>
                             </div>
 
@@ -63,6 +63,7 @@
                                     <div class="cart_product_cost">${goods.price} $</div>
                                     <div class="cart_product_company">${goods.company}</div>
                                 </div>
+                                <br>
                                 <p>
                                     <input type="submit" class="cart_btn_del hvr-buzz-out" value="Удалить из корзины">
                                 </p>
