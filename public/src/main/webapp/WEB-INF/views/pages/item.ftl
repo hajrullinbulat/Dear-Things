@@ -4,7 +4,7 @@
 <div class="container">
     <ul class="breadcrumbs">
         <#list category as c>
-            <li><a href="#">${c.name}</a></li>
+            <li><a href="/catalog/1?category=${c.id}">${c.name}</a></li>
         </#list>
     </ul>
     <div class="container product">

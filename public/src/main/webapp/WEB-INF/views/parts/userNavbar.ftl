@@ -1,10 +1,32 @@
 <div class="navbar navbar-inverse navbar-static-top aboutfield">
     <div class="container margin-top">
         <div class="user_avatar">
-            <img src="/resources/images/user.png">
+        <#if (user.avatar)??>
+            <img src="/resources/images/avatars/${user.avatar}">
+        <#else>
+            <img src="/resources/images/avatars/user.png">
+        </#if>
         </div>
-        <h1>${user.name}</h1>
+        <h1 id="name">${user.name}</h1>
         <a href="/logout"><i class="fa fa-user-times logout hvr-grow-shadow"> Выйти</i></a>
         <a href="/edit"><i class="fa fa-pencil edit hvr-grow-shadow"> Редактировать</i></a>
+    <#if !(user.avatar)??>
+        <a href="/edit" class="company" id="photo">
+            Пожалуйста, поместите свою фотографию в профиль :)
+        </a> <br>
+    </#if>
+    <#--<#if !(user.telephone)?has_content>-->
+        <a href="/edit" class="company">
+            Укажите Ваш контактный телефон и адрес доставки,
+            <br>
+            для оформления заказов
+        </a>
+    <#--</#if>-->
+    <#--<#if !(user.address)?has_content>-->
+    <#--<a href="/edit" class="company" id="address">-->
+    <#--Укажите Ваш адрес, для оформления заказов-->
+    <#--</a> <br>-->
+    <#--</#if>-->
     </div>
 </div>
+

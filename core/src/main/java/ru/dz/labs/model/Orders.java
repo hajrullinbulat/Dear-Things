@@ -14,6 +14,7 @@ public class Orders {
     private float total_sum;
     private float total_count;
     private String pay_type;
+    private String delivery_type;
 
     @ManyToOne
             (cascade = {CascadeType.REFRESH},
@@ -99,12 +100,21 @@ public class Orders {
         this.telephones = telephones;
     }
 
-    public Orders(Date create_time, float total_sum, float total_count, String pay_type, Users users, Addresses addresses, Telephones telephones) {
+    public String getDelivery_type() {
+        return delivery_type;
+    }
+
+    public void setDelivery_type(String delivery_type) {
+        this.delivery_type = delivery_type;
+    }
+
+    public Orders(Date create_time, float total_sum, float total_count, String pay_type, String delivery_type, Users users, Addresses addresses, Telephones telephones) {
 
         this.create_time = create_time;
         this.total_sum = total_sum;
         this.total_count = total_count;
         this.pay_type = pay_type;
+        this.delivery_type = delivery_type;
         this.users = users;
         this.addresses = addresses;
         this.telephones = telephones;

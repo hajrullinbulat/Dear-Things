@@ -38,12 +38,7 @@ public class AccountEditController extends BaseController {
     public String updateUsersName(String userEditName) {
         Users user = (Users) request.getSession().getAttribute("user");
         usersService.updateNameOfUserById(user.getId(), userEditName);
-
         request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
-
-        user = (Users) request.getSession().getAttribute("user");
-        System.out.println(user.getName());
-
         return "ok";
     }
 
@@ -52,12 +47,7 @@ public class AccountEditController extends BaseController {
     public String updateUsersAvatar(String userEditAvatar) {
         Users user = (Users) request.getSession().getAttribute("user");
         usersService.updateAvatarOfUserById(user.getId(), userEditAvatar);
-
         request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
-
-        user = (Users) request.getSession().getAttribute("user");
-        System.out.println(user.getName());
-
         return "ok";
     }
 
@@ -67,10 +57,6 @@ public class AccountEditController extends BaseController {
         Users user = (Users) request.getSession().getAttribute("user");
         telephoneService.addTelephone(new Telephones(userEditTelephone, user));
         request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
-
-        user = (Users) request.getSession().getAttribute("user");
-        System.out.println(user.getName());
-
         return "ok";
     }
 
@@ -79,25 +65,18 @@ public class AccountEditController extends BaseController {
     public String addUsersAddress(String userEditAddress) {
         Users user = (Users) request.getSession().getAttribute("user");
         addressesService.addAddresses(new Addresses(userEditAddress, user));
-
         request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
-
-        user = (Users) request.getSession().getAttribute("user");
-        System.out.println(user.getName());
-
         return "ok";
     }
 
     @ResponseBody
     @RequestMapping(value = "/edit_pass", method = RequestMethod.POST)
-    public String updateUsersInfo(String userEditOldPass, String userEditNewPass) {
+    public String updateUsersPass(String userEditOldPass, String userEditNewPass) {
         Users user = (Users) request.getSession().getAttribute("user");
         if (checkNotNullPasswords(userEditOldPass, userEditNewPass)) {
             if (Methods.passToHash(userEditOldPass).equals(user.getHash_pass())) {
                 usersService.updatePasswordOfUserById(user.getId(), userEditNewPass);
                 request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
-                user = (Users) request.getSession().getAttribute("user");
-                System.out.println(user.getName());
                 return "ok";
             }
         }

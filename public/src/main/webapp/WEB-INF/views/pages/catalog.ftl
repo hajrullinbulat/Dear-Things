@@ -94,6 +94,7 @@
     </div>
 </div>
 
+
 <div class="navbar">
     <div class="pagination">
         <div class="l-center pagination__nav">

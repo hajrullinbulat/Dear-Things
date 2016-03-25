@@ -21,7 +21,7 @@ public class CartsRepository {
     }
 
     public Carts getCartsById(Long id) {
-        return (Carts) sessionFactory.getCurrentSession().load(Carts.class, id);
+        return (Carts) sessionFactory.getCurrentSession().get(Carts.class, id);
     }
 
     public List getUserCart(Users user) {

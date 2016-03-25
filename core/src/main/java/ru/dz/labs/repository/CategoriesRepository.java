@@ -20,7 +20,7 @@ public class CategoriesRepository {
     }
 
     public Categories getCategoryById(Long id) {
-        return (Categories) sessionFactory.getCurrentSession().load(Categories.class, id);
+        return (Categories) sessionFactory.getCurrentSession().get(Categories.class, id);
     }
 
     public List getCategorySons(Categories categories) {

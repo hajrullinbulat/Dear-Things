@@ -13,7 +13,7 @@
 
             <li class="categoryItem hvr-grow-shadow">
                 <div class="categoryItem__header"><a href="#" class="categoryItem__user"><img alt="User"
-                                                                                              src="/resources/images/user.png"></a>
+                                                                                              src="/resources/images/avatars/user.png"></a>
 
                     <div class="categoryItem__desc">
                         <h2 class="categoryItem__title">
@@ -65,7 +65,7 @@
             </li>
             <li class="categoryItem hvr-grow-shadow">
                 <div class="categoryItem__header"><a href="#" class="categoryItem__user"><img alt="User"
-                                                                                              src="/resources/images/user.png"></a>
+                                                                                              src="/resources/images/avatars/user.png"></a>
 
                     <div class="categoryItem__desc">
                         <h2 class="categoryItem__title">
@@ -91,7 +91,7 @@
             </li>
             <li class="categoryItem hvr-grow-shadow">
                 <div class="categoryItem__header"><a href="#" class="categoryItem__user"><img alt="User"
-                                                                                              src="/resources/images/user.png"></a>
+                                                                                              src="/resources/images/avatars/user.png"></a>
 
                     <div class="categoryItem__desc">
                         <h2 class="categoryItem__title">
@@ -117,7 +117,7 @@
             </li>
             <li class="categoryItem hvr-grow-shadow">
                 <div class="categoryItem__header"><a href="#" class="categoryItem__user"><img alt="User"
-                                                                                              src="/resources/images/user.png"></a>
+                                                                                              src="/resources/images/avatars/user.png"></a>
 
                     <div class="categoryItem__desc">
                         <h2 class="categoryItem__title">
@@ -143,7 +143,7 @@
             </li>
             <li class="categoryItem hvr-grow-shadow">
                 <div class="categoryItem__header"><a href="#" class="categoryItem__user"><img alt="User"
-                                                                                              src="/resources/images/user.png"></a>
+                                                                                              src="/resources/images/avatars/user.png"></a>
 
                     <div class="categoryItem__desc">
                         <h2 class="categoryItem__title">

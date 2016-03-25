@@ -23,7 +23,7 @@ public class GoodsRepository {
     }
 
     public Goods getGoodById(Long id) {
-        return (Goods) sessionFactory.getCurrentSession().load(Goods.class, id);
+        return (Goods) sessionFactory.getCurrentSession().get(Goods.class, id);
     }
 
     public List getLikeGoods(Categories category, Integer num, Long goodId) {

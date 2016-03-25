@@ -20,7 +20,7 @@ public class UsersRepository {
     }
 
     public Users getUsersById(Long id) {
-        return (Users) sessionFactory.getCurrentSession().load(Users.class, id);
+        return (Users) sessionFactory.getCurrentSession().get(Users.class, id);
     }
 
     public List<Users> getAllUsers() {

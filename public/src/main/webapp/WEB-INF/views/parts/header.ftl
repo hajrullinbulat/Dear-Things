@@ -36,11 +36,11 @@
             <a class="button button-first hvr-grow-shadow" data-toggle="modal" data-target="#modal-1"><i
                     class="fa fa-user"></i></a>
         <#else>
-            <a href="/edit" class="button button-first hvr-grow-shadow"><i
+            <a href="/profile" class="button button-first hvr-grow-shadow"><i
                     class="fa fa-user"></i></a>
         </#if>
 
-            <a href="#" class="button button-second hvr-grow-shadow"><i class="fa fa-th"></i></a>
+            <a href="/collections" class="button button-second hvr-grow-shadow"><i class="fa fa-th"></i></a>
             <a href="/cart" class="button button-third hvr-grow-shadow"><i class="fa fa-shopping-cart"></i></a>
         </div>
     </div>

@@ -31,7 +31,8 @@ public class CatalogController extends BaseController {
 
 
     @RequestMapping(value = "/{page}", method = RequestMethod.GET)
-    public String renderMyCatalogPage(@PathVariable("page") Integer page) {
+    public String renderMyCatalogPage(@PathVariable("page") Integer page,
+                                      String category, String priceBegin, String priceEnd, String sort) {
 //        List<Goods> goodsOnPage = new ArrayList<>();
         //            pagination = new Pagination(goods.size(), page, 3);
 //        pagination.setNowPage(page);
@@ -39,12 +40,7 @@ public class CatalogController extends BaseController {
 //            goodsOnPage.add(goods.get(i));
 //        }
 //        request.getSession().setAttribute("goods", goodsOnPage);
-        setFilter(
-                request.getParameter("category"),
-                request.getParameter("price_begin"),
-                request.getParameter("price_end"),
-                request.getParameter("sort")
-        );
+        setFilter(category, priceBegin, priceEnd, sort);
 
         request.getSession().setAttribute("filter", filter);
 
@@ -55,6 +51,7 @@ public class CatalogController extends BaseController {
                         filter.getPriceEnd(),
                         filter.getSort())
         );
+
         return "pages/catalog";
     }
 

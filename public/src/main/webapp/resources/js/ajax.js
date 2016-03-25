@@ -112,7 +112,7 @@ $(document).on('click', '.js_check', function () {
                         showConfirmButton: false,
                         timer: 2000
                     });
-                    setTimeout("document.location.href='http://localhost:8080/catalog/1.ru'", 2000);
+                    setTimeout("document.location.href='http://localhost:8080/catalog/1'", 2000);
                 } else if (data == 'failed') {
                     $("#pre_email").text("Этот Email уже используется");
                     $("#user_email").val("");
@@ -167,7 +167,7 @@ $(document).on('click', '.js_login', function () {
             data: {userEmail: user_email, userPass: user_pass},
             success: function (data) {
                 if (data == 'ok') {
-                    document.location.href = 'http://localhost:8080/edit';
+                    document.location.href = 'http://localhost:8080/profile';
                 } else if (data == 'failed') {
                     $("#pre_log_email").text("Неправильный логин или пароль");
                     $("#log_email").val("");
@@ -180,7 +180,7 @@ $(document).on('click', '.js_login', function () {
                     title: 'Извините, произошла ошибка на сервере!',
                     type: 'error',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 })
             }
         });
@@ -211,6 +211,7 @@ $(document).on('blur', '.js_edit_name', function () {
             url: '/edit_name',
             data: {userEditName: user_edit_name},
             success: function (data) {
+                $("#name").text(user_edit_name);
                 $("#pre_name_success").text("Имя и фамилия успешно изменены");
             },
             error: function () {
@@ -236,6 +237,7 @@ $(document).on('blur', '.js_edit_avatar', function () {
             data: {userEditAvatar: user_edit_avatar},
             success: function (data) {
                 $("#pre_avatar_success").text("Аватар успешно изменен");
+                $("#photo").text("");
             },
             error: function () {
                 swal({

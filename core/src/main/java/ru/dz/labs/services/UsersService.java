@@ -39,11 +39,7 @@ public class UsersService {
 
     @Transactional
     public Users checkLogging(String email, String pass) {
-        Users user = usersRepository.checkLogging(email, DigestUtils.md5DigestAsHex(pass.getBytes()));
-        if (null != user)
-            return user;
-        else
-            return null;
+        return usersRepository.checkLogging(email, DigestUtils.md5DigestAsHex(pass.getBytes()));
     }
 
     private String keyGen() {
