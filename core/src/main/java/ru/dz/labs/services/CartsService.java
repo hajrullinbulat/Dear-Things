@@ -50,4 +50,14 @@ public class CartsService {
         cartsRepository.updateCountOfCart(cartId, count);
     }
 
+    @Transactional
+    public List getSumOfCartByUserId(Users user) {
+        return cartsRepository.getSumOfCartByUser(user);
+    }
+
+    @Transactional
+    public void deleteCartsByUser(Users user){
+        cartsRepository.deleteCartsByUser(user);
+    }
+
 }

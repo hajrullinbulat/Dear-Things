@@ -45,9 +45,9 @@
                 <#else>
                     <h1 class="cart_title" align="center">но сейчас она пуста :(</h1>
                 </#list>
-                <div class="order btn_buy hvr-fade">
+                <a href="/order" class="order btn_buy hvr-fade">
                     Оформить заказ
-                </div>
+                </a>
             <#elseif cookiecart??>
                 <#list cookiecart as goods>
                     <form action="/cart/deletefromcook?index=${goods?counter}" method="post">
@@ -60,7 +60,7 @@
                             <div class="col-lg-9">
                                 <h1>${goods.name}</h1>
                                 <div class="cart_product_info">
-                                    <div class="cart_product_cost">${goods.price} $</div>
+                                    <div class="cart_product_cost">${goods.price} ₽</div>
                                     <div class="cart_product_company">${goods.company}</div>
                                 </div>
                                 <br>
@@ -76,9 +76,9 @@
                 <#else>
                     <h1 class="cart_title" align="center">но сейчас она пуста :(</h1>
                 </#list>
-                <div class="order btn_buy hvr-fade">
+                <a href="/order" class="order btn_buy hvr-fade">
                     Оформить заказ
-                </div>
+                </a>
             </#if>
 
         </div>

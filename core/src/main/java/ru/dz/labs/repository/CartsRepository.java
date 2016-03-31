@@ -47,4 +47,17 @@ public class CartsRepository {
                 .executeUpdate();
     }
 
+    public List getSumOfCartByUser(Users user) {
+        return sessionFactory.getCurrentSession().createQuery(
+                "select sum(c.goods.price * c.count) from Carts c where c.users = :users"
+        )
+                .setEntity("users", user)
+                .list();
+    }
+
+    public void deleteCartsByUser(Users user) {
+        sessionFactory.getCurrentSession().createQuery(
+                "delete Carts where users = :user"
+        ).setEntity("user", user).executeUpdate();
+    }
 }

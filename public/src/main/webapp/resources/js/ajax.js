@@ -466,6 +466,45 @@ $(document).on('click', '.js_changeCountBack', function () {
     });
 });
 
+$(document).on('click', '.js_order', function () {
+    event.preventDefault();
+    var telephone = $("#telephone").text();
+    var address = $("#address").text();
+    var delivery = $("#delivery").text();
+    var payment = $("#payment").text();
+    if (telephone != '?' && address != '?' && delivery != '?' && payment != '?') {
+        $.ajax({
+            type: 'POST',
+            url: '/order',
+            data: {telephone: telephone, address: address, delivery: delivery, payment: payment},
+            success: function (data) {
+                swal({
+                    title: 'Заказ оформлен!',
+                    type: 'success',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout("document.location.href='http://localhost:8080/catalog/1'", 2000);
+            },
+            error: function () {
+                swal({
+                    title: 'Извините, произошла ошибка на сервере!',
+                    type: 'error',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }
+        });
+    } else {
+        swal({
+            title: 'Пожалуйста, заполните все поля :(',
+            type: 'error',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    }
+});
+
 
 
 

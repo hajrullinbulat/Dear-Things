@@ -13,9 +13,9 @@ public class Users {
     private String hash_pass;
     private String avatar;
     private String name;
-    private boolean check_email;
+    private Boolean enabled;
     private String key;
-
+    private String role;
 
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
@@ -26,7 +26,6 @@ public class Users {
             fetch = FetchType.LAZY,
             mappedBy = "users")
     private List<Addresses> addresses;
-
 
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
@@ -41,11 +40,11 @@ public class Users {
     public Users() {
     }
 
-    public Users(String email, String hash_pass, String name, boolean check_email, String key) {
+    public Users(String email, String hash_pass, String name, Boolean enabled, String key) {
         this.email = email;
         this.hash_pass = hash_pass;
         this.name = name;
-        this.check_email = check_email;
+        this.enabled = enabled;
         this.key = key;
     }
 
@@ -89,12 +88,12 @@ public class Users {
         this.name = name;
     }
 
-    public boolean getCheck_email() {
-        return check_email;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setCheck_email(boolean check_email) {
-        this.check_email = check_email;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getKey() {
@@ -121,18 +120,6 @@ public class Users {
         this.addresses = addresses;
     }
 
-    public List<Orders> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Orders> orders) {
-        this.orders = orders;
-    }
-
-    public boolean isCheck_email() {
-        return check_email;
-    }
-
     public List<Telephones> getTelephones() {
         return telephones;
     }
@@ -141,14 +128,31 @@ public class Users {
         this.telephones = telephones;
     }
 
-    public Users(String email, String hash_pass, String avatar, String name, boolean check_email, String key, List<Carts> carts, List<Addresses> addresses, List<Telephones> telephones, List<Orders> orders) {
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Users(String email, String hash_pass, String avatar, String name, Boolean enabled, String key, String role, List<Carts> carts, List<Addresses> addresses, List<Telephones> telephones, List<Orders> orders) {
 
         this.email = email;
         this.hash_pass = hash_pass;
         this.avatar = avatar;
         this.name = name;
-        this.check_email = check_email;
+        this.enabled = enabled;
         this.key = key;
+        this.role = role;
         this.carts = carts;
         this.addresses = addresses;
         this.telephones = telephones;

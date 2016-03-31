@@ -1,4 +1,4 @@
-<!--offcanvas здесь крч-->
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"]>
 <nav id="myNavmenu" class="navmenu navmenu-inverse navmenu-fixed-left offcanvas" role="navigation">
     <a class="navmenu-brand" href="/catalog/1?category=1">Категории</a>
     <ul class="nav navmenu-nav">
@@ -32,13 +32,14 @@
 
         <div class="tributton">
 
-        <#if !user??>
+        <@sec.authorize ifAnyGranted="ROLE_ANONYMOUS">
             <a class="button button-first hvr-grow-shadow" data-toggle="modal" data-target="#modal-1"><i
                     class="fa fa-user"></i></a>
-        <#else>
+        </@sec.authorize>
+        <@sec.authorize access="isAuthenticated()">
             <a href="/profile" class="button button-first hvr-grow-shadow"><i
                     class="fa fa-user"></i></a>
-        </#if>
+        </@sec.authorize>
 
             <a href="/collections" class="button button-second hvr-grow-shadow"><i class="fa fa-th"></i></a>
             <a href="/cart" class="button button-third hvr-grow-shadow"><i class="fa fa-shopping-cart"></i></a>
@@ -54,22 +55,27 @@
                 <button class="close" type="button" data-dismiss="modal"><i class="fa fa-close"></i></button>
                 <h4 class="modal-title">Войти, используя email и пароль</h4>
             </div>
-            <form action="post" action="">
+            <form method="post" action="/j_spring_security_check" name="authForm" id="authForm">
                 <div class="modal-body">
                     <div id="pre_log_email" class="reg_error_info log_error_info"></div>
                     <fieldset class="form__group">
                         <label class="form__label">Email</label>
-                        <input class="form__field" id="log_email" size="50" type="text">
+                        <input class="form__field" id="log_email" size="50" type="text" name="j_username">
                     </fieldset>
                     <div id="pre_log_pass" class="reg_error_info log_error_info"></div>
                     <fieldset class="form__group">
                         <label class="form__label">Пароль</label>
-                        <input class="form__field" id="log_pass" size="50" type="password">
+                        <input class="form__field" id="log_pass" size="50" type="password" name="j_password">
                     </fieldset>
+                    <div>
+                        <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/>
+                        <label for="remember_me" class="inline">Remember me</label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <fieldset>
-                        <input class="btn_log hvr-fade js_login" name="commit" type="submit" value="Войти">
+                    <#--js_login был-->
+                        <input class="btn_log hvr-fade" name="commit" type="submit" value="Войти">
                         <ul class="form-auth__additionalLinks">
                             <li><a href="#">Забыли пароль?</a></li>
                             <li><a href="/signup">Еще не зарегистрированы?</a></li>

@@ -21,6 +21,7 @@
         <servlet.jsp.version>2.1</servlet.jsp.version>
         <servlet.jstl.version>1.2</servlet.jstl.version>
         <com.java.version>1.7</com.java.version>
+        <spring-security.version>3.2.3.RELEASE</spring-security.version>
         <org.freemarker.version>2.3.23</org.freemarker.version>
         <commons.codec.version>1.9</commons.codec.version>
         <aspectj.version>1.8.2</aspectj.version>

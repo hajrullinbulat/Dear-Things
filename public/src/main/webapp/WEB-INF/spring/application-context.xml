@@ -10,4 +10,8 @@
 
     <import resource="classpath*:tutor-core.xml"/>
 
+    <!-- Подключаем файл конфигураций для Spring Security -->
+    <import resource="spring-security.xml" />
+
+
 </beans>

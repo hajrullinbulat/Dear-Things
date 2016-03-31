@@ -17,4 +17,9 @@ public class TelephoneService {
         telephonesRepository.add(telephones);
     }
 
+    @Transactional
+    public Telephones getTelephoneByString(String telephone) {
+        return telephonesRepository.getTelephoneByString(telephone);
+    }
+
 }

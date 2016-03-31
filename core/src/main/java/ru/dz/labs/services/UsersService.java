@@ -15,6 +15,10 @@ public class UsersService {
     @Autowired
     private UsersRepository usersRepository;
 
+    public Users getUserByEmail(String email){
+        return usersRepository.getUserByEmail(email);
+    }
+
     @Transactional
     public void addUsers(String name, String email, String pass) {
         Users users = new Users(email, DigestUtils.md5DigestAsHex(pass.getBytes()), name, false, keyGen());

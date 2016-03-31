@@ -11,17 +11,21 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date create_time;
-    private float total_sum;
-    private float total_count;
+    private Float total_sum;
+    private Integer total_count;
     private String pay_type;
     private String delivery_type;
+
+    @OneToMany(cascade = CascadeType.REFRESH,
+            fetch = FetchType.LAZY,
+            mappedBy = "orders")
+    private List<OrderGoods> orderGoods;
 
     @ManyToOne
             (cascade = {CascadeType.REFRESH},
                     fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Users users;
-
 
     @ManyToOne
             (cascade = {CascadeType.REFRESH},
@@ -35,6 +39,14 @@ public class Orders {
     @JoinColumn(name = "telephone_id")
     private Telephones telephones;
 
+
+    public List<OrderGoods> getOrderGoods() {
+        return orderGoods;
+    }
+
+    public void setOrderGoods(List<OrderGoods> orderGoods) {
+        this.orderGoods = orderGoods;
+    }
 
     public Long getId() {
         return id;
@@ -52,19 +64,19 @@ public class Orders {
         this.create_time = create_time;
     }
 
-    public float getTotal_sum() {
+    public Float getTotal_sum() {
         return total_sum;
     }
 
-    public void setTotal_sum(float total_sum) {
+    public void setTotal_sum(Float total_sum) {
         this.total_sum = total_sum;
     }
 
-    public float getTotal_count() {
+    public Integer getTotal_count() {
         return total_count;
     }
 
-    public void setTotal_count(float total_count) {
+    public void setTotal_count(Integer total_count) {
         this.total_count = total_count;
     }
 
@@ -74,6 +86,14 @@ public class Orders {
 
     public void setPay_type(String pay_type) {
         this.pay_type = pay_type;
+    }
+
+    public String getDelivery_type() {
+        return delivery_type;
+    }
+
+    public void setDelivery_type(String delivery_type) {
+        this.delivery_type = delivery_type;
     }
 
     public Users getUsers() {
@@ -100,15 +120,7 @@ public class Orders {
         this.telephones = telephones;
     }
 
-    public String getDelivery_type() {
-        return delivery_type;
-    }
-
-    public void setDelivery_type(String delivery_type) {
-        this.delivery_type = delivery_type;
-    }
-
-    public Orders(Date create_time, float total_sum, float total_count, String pay_type, String delivery_type, Users users, Addresses addresses, Telephones telephones) {
+    public Orders(Date create_time, Float total_sum, Integer total_count, String pay_type, String delivery_type, Users users, Addresses addresses, Telephones telephones) {
 
         this.create_time = create_time;
         this.total_sum = total_sum;

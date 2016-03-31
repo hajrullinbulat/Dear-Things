@@ -58,4 +58,9 @@ public class UsersRepository {
                 .setLong("id", id)
                 .executeUpdate();
     }
+
+    public Users getUserByEmail(String email) {
+        return (Users) sessionFactory.getCurrentSession().createCriteria(Users.class)
+                .add(Restrictions.eq("email",email)).uniqueResult();
+    }
 }

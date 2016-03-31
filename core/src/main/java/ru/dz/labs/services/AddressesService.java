@@ -17,4 +17,8 @@ public class AddressesService {
         addressRepository.add(addresses);
     }
 
+    @Transactional
+    public Addresses getAddressByString(String address) {
+        return addressRepository.getAddressByString(address);
+    }
 }

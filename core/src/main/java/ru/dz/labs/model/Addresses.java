@@ -8,7 +8,7 @@ public class Addresses {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String address;
+    private String addresses;
     @ManyToOne
             (cascade = {CascadeType.REFRESH},
                     fetch = FetchType.LAZY)
@@ -29,17 +29,17 @@ public class Addresses {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddresses() {
+        return addresses;
     }
 
-    public Addresses(String address, Users users) {
-        this.address = address;
+    public Addresses(String addresses, Users users) {
+        this.addresses = addresses;
         this.users = users;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddresses(String address) {
+        this.addresses = address;
     }
 
     public Users getUsers() {
@@ -58,9 +58,8 @@ public class Addresses {
         this.orders = orders;
     }
 
-    public Addresses(String address, Users users, List<Orders> orders) {
-
-        this.address = address;
+    public Addresses(String addresses, Users users, List<Orders> orders) {
+        this.addresses = addresses;
         this.users = users;
         this.orders = orders;
     }

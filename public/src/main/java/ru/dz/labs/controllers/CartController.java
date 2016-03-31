@@ -11,6 +11,7 @@ import ru.dz.labs.services.GoodsService;
 import ru.dz.labs.services.UsersService;
 import ru.dz.labs.util.Methods;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

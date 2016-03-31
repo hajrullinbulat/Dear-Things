@@ -13,5 +13,6 @@
         <mapping class="ru.dz.labs.model.Carts"/>
         <mapping class="ru.dz.labs.model.Categories"/>
         <mapping class="ru.dz.labs.model.Goods"/>
+        <mapping class="ru.dz.labs.model.OrderGoods"/>
     </session-factory>
 </hibernate-configuration>
