@@ -73,12 +73,13 @@
                             </div>
                         </div>
                     </form>
-                <#else>
-                    <h1 class="cart_title" align="center">но сейчас она пуста :(</h1>
                 </#list>
-                <a href="/order" class="order btn_buy hvr-fade">
+                <a data-toggle="modal" data-target="#modal-1" class="order btn_buy hvr-fade">
                     Оформить заказ
                 </a>
+            <#else>
+                <h1 class="cart_title" align="center">А это Ваша корзина</h1>
+                <h1 class="cart_title" align="center">но сейчас она пуста :(</h1>
             </#if>
 
         </div>

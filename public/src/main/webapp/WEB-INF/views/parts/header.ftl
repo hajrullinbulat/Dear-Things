@@ -26,7 +26,7 @@
             <input type="submit" name="" value="" class="submit"/>
         </div>
 
-        <a href="#">
+        <a href="/">
             <img class="header-icon" src="/resources/images/header.png">
         </a>
 
@@ -60,22 +60,21 @@
                     <div id="pre_log_email" class="reg_error_info log_error_info"></div>
                     <fieldset class="form__group">
                         <label class="form__label">Email</label>
-                        <input class="form__field" id="log_email" size="50" type="text" name="j_username">
+                        <input class="form__field js_login_email" id="log_email" size="50" type="text" name="j_username">
                     </fieldset>
                     <div id="pre_log_pass" class="reg_error_info log_error_info"></div>
                     <fieldset class="form__group">
                         <label class="form__label">Пароль</label>
-                        <input class="form__field" id="log_pass" size="50" type="password" name="j_password">
+                        <input class="form__field js_login_pass" id="log_pass" size="50" type="password" name="j_password">
                     </fieldset>
-                    <div>
+                    <div class="checkbox_margin">
                         <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/>
-                        <label for="remember_me" class="inline">Remember me</label>
+                        <label for="remember_me" class="checkbox_label">Запомнить меня</label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <fieldset>
-                    <#--js_login был-->
-                        <input class="btn_log hvr-fade" name="commit" type="submit" value="Войти">
+                        <input class="btn_log hvr-fade" name="commit" type="submit" value="Войти" id="commit">
                         <ul class="form-auth__additionalLinks">
                             <li><a href="#">Забыли пароль?</a></li>
                             <li><a href="/signup">Еще не зарегистрированы?</a></li>

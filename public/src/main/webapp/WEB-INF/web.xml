@@ -74,6 +74,8 @@
         <servlet-name>main</servlet-name>
     </filter-mapping>
 
+
+
     <!-- Спринговый фильтр для поддержания открытой сессии hibernate -->
     <filter>
         <filter-name>hibernateFilter</filter-name>
@@ -103,20 +105,23 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--<filter>-->
-    <!--<filter-name>CartFilter</filter-name>-->
-    <!--<filter-class>ru.dz.labs.filters.CartFilter</filter-class>-->
 
-    <!--&lt;!&ndash;<init-param>&ndash;&gt;-->
-    <!--&lt;!&ndash;<param-name>Active</param-name>&ndash;&gt;-->
-    <!--&lt;!&ndash;<param-value>true</param-value>&ndash;&gt;-->
-    <!--&lt;!&ndash;</init-param>&ndash;&gt;-->
+    <filter>
+        <filter-name>AuthorizeFilter</filter-name>
+        <filter-class>ru.dz.labs.filters.AuthorizeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthorizeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-    <!--<filter-name>CartFilter</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
+
+    <!--<init-param>-->
+    <!--<param-name>Active</param-name>-->
+    <!--<param-value>true</param-value>-->
+    <!--</init-param>-->
+
+
 
     <!--<filter>-->
         <!--<filter-name>MainFilter</filter-name>-->

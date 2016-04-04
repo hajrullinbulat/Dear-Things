@@ -42,9 +42,9 @@ public class CatalogController extends BaseController {
 //        request.getSession().setAttribute("goods", goodsOnPage);
         setFilter(category, priceBegin, priceEnd, sort);
 
-        request.getSession().setAttribute("filter", filter);
+        request.setAttribute("filter", filter);
 
-        request.getSession().setAttribute("goods",
+        request.setAttribute("goods",
                 goodsService.getGoodsAfterFilter(
                         filter.getCategory(),
                         filter.getPriceBegin(),

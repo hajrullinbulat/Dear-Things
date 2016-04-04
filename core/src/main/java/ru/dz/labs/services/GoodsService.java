@@ -69,6 +69,11 @@ public class GoodsService {
         return goodsRepository.getGoodsAfterFilter(priceB, priceE, cat, categoriesRepository.getCategoryTree(cat), sort);
     }
 
+    @Transactional
+    public List getGoodsToMain(){
+        return goodsRepository.getGoodsToMain();
+    }
+
 //
 //        for (Goods good : allGoods) {
 //            try {

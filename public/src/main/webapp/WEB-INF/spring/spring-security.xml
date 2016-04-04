@@ -14,16 +14,18 @@
         <!-- Настраиваем процесс авторизации -->
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
-                    default-target-url="/profile"
+                    default-target-url="/success_log"
                     always-use-default-target="true"
                     authentication-failure-url="/login?error=true"/>
         <!-- Определяем адрес для разлогина, страницу перехода при успешном разлогине
              и указываем на необходимость очистить сессию пользователя -->
         <logout logout-url="/logout"
-                logout-success-url="/catalog/1"
+                logout-success-url="/"
                 invalidate-session="true" />
         <!-- Задаем шаблоны url адресов доступ к которым ограничен, указываем необходимые права доступа -->
         <intercept-url pattern="/profile**" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/order**" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/edit**" access="hasRole('ROLE_USER')" />
         <!-- "Запомнить меня" позволяет при повторном заходе не проходить авторизацию.
              Маркер, сохраняемый в cookie, конструируется из имени пользователя, пароля,
              даты истечения срока хранения и секретного ключа. Вся эта информация шифруется с применением алгоритма MD5.

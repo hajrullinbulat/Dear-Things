@@ -11,7 +11,6 @@ import ru.dz.labs.services.GoodsService;
 import ru.dz.labs.services.UsersService;
 import ru.dz.labs.util.Methods;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +37,7 @@ public class CartController extends BaseController {
             cart = cartsService.getUsersCart(user);
             request.getSession().setAttribute("cart", cart);
         } else {
-            String cartGoods = getCookiesValue(request, "cart");
+            String cartGoods = Methods.getCookiesValue(request, "cart");
             if (Methods.checkOfNull(cartGoods)) {
                 cart = goodsService.getGoodsFromCookie(cartGoods);
             }
@@ -58,7 +57,7 @@ public class CartController extends BaseController {
                 return "exist";
             }
         } else {  //пользователь не авторизован
-            String cookieVal = getCookiesValue(request, "cart");
+            String cookieVal = Methods.getCookiesValue(request, "cart");
             if (Methods.checkOfNull(cookieVal)) {
                 if (!checkContains(cookieVal, String.valueOf(goodId)))
                     cookieVal = cookieVal + String.valueOf(goodId) + ",";
@@ -93,24 +92,14 @@ public class CartController extends BaseController {
 
 
     @RequestMapping(value = "/deletefromcook", method = RequestMethod.POST)
-    public String deleteFromCart(HttpServletResponse response) {
-        deleteFromCartCookie(request, response, request.getParameter("index"));
+    public String deleteFromCart(HttpServletResponse response, String index) {
+        deleteFromCartCookie(request, response, index);
         return "redirect:/cart";
     }
 
 
-    private String getCookiesValue(HttpServletRequest request, String value) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie c : cookies) {
-            if (c.getName().equals(value)) {
-                return c.getValue();
-            }
-        }
-        return null;
-    }
-
     private void deleteFromCartCookie(HttpServletRequest request, HttpServletResponse response, String goodId) {
-        String goods = getCookiesValue(request, "cart");
+        String goods = Methods.getCookiesValue(request, "cart");
         String[] goodsStringArray = goods.split(",");
         List<String> goodsList = new ArrayList<>();
         Collections.addAll(goodsList, goodsStringArray);

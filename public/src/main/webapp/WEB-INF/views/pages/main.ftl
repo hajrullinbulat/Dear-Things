@@ -11,6 +11,6 @@
     </div>
 </div>
 
-<div class="loader"><a href="#" class="btn-loader">Показать все</a></div>
+<div class="loader"><a href="/catalog/1" class="btn-loader">Показать все</a></div>
 
 </#macro>

@@ -32,7 +32,9 @@
           p:location="classpath:jdbc.properties"/>
 
     <!-- Настройки подключения к БД, бин dataSource -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close"
           p:driverClassName="${jdbc.driverClassName}"
           p:url="${jdbc.databaseurl}"
           p:username="${jdbc.username}"

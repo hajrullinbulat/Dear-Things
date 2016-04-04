@@ -4,7 +4,7 @@
 
     <#include "../parts/userNavbar.ftl">
 
-<div class="authWrapper"><h1 class="title-h1 centered">Итого ${sum} ₽</h1>
+<div class="authWrapper"><h1 class="title-h1 centered">Итого ${sum!"0"} ₽</h1>
     <div class="form">
         <div id="pre_name" class="reg_error_info"></div>
         <fieldset class="form__group">

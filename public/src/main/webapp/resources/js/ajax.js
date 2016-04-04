@@ -112,7 +112,7 @@ $(document).on('click', '.js_check', function () {
                         showConfirmButton: false,
                         timer: 2000
                     });
-                    setTimeout("document.location.href='http://localhost:8080/catalog/1'", 2000);
+                    setTimeout("document.location.href='http://localhost:8080/'", 2000);
                 } else if (data == 'failed') {
                     $("#pre_email").text("Этот Email уже используется");
                     $("#user_email").val("");
@@ -130,60 +130,30 @@ $(document).on('click', '.js_check', function () {
     }
 });
 
-$(document).on('click', '.js_login', function () {
-    event.preventDefault();
-    var $this = $(this);
+$(document).on('blur', '.js_login_email', function () {
     var user_email = $("#log_email").val();
-    var user_pass = $("#log_pass").val();
-    var hasError = false;
     var email_reg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 
     if (user_email == "") {
-        hasError = true;
         $("#pre_log_email").text("Ячейка пуста");
     } else if (!email_reg.test(user_email)) {
-        hasError = true;
+        $("#log_email").val("");
         $("#pre_log_email").text("Введите корректный Email");
     } else {
         $("#pre_log_email").text("");
     }
+});
+
+$(document).on('blur', '.js_login_pass', function () {
+    var user_pass = $("#log_pass").val();
 
     if (user_pass == "") {
-        hasError = true;
         $("#pre_log_pass").text("Ячейка пуста");
     } else if (!/.{8,15}/.test(user_pass)) {
         $("#log_pass").val("");
-        hasError = true;
         $("#pre_log_pass").text("От 8 до 15 символов");
     } else {
         $("#pre_log_pass").text("");
-    }
-
-
-    if (!hasError) {
-        $.ajax({
-            type: 'POST',
-            url: '/login',
-            data: {userEmail: user_email, userPass: user_pass},
-            success: function (data) {
-                if (data == 'ok') {
-                    document.location.href = 'http://localhost:8080/profile';
-                } else if (data == 'failed') {
-                    $("#pre_log_email").text("Неправильный логин или пароль");
-                    $("#log_email").val("");
-                    $("#log_pass").val("");
-
-                }
-            },
-            error: function () {
-                swal({
-                    title: 'Извините, произошла ошибка на сервере!',
-                    type: 'error',
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-            }
-        });
     }
 });
 
@@ -484,7 +454,7 @@ $(document).on('click', '.js_order', function () {
                     showConfirmButton: false,
                     timer: 2000
                 });
-                setTimeout("document.location.href='http://localhost:8080/catalog/1'", 2000);
+                setTimeout("document.location.href='http://localhost:8080/'", 2000);
             },
             error: function () {
                 swal({
@@ -504,6 +474,7 @@ $(document).on('click', '.js_order', function () {
         })
     }
 });
+
 
 
 

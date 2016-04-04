@@ -56,8 +56,16 @@ public class CartsService {
     }
 
     @Transactional
-    public void deleteCartsByUser(Users user){
+    public void deleteCartsByUser(Users user) {
         cartsRepository.deleteCartsByUser(user);
     }
 
+    @Transactional
+    public void toCartFromCook(Users user, String[] goods) {
+        for (String good : goods) {
+            Long goodId = Long.valueOf(good);
+            if (!checkOfExistingItemInCart(user, goodId))
+                addToCart(user, goodId);
+        }
+    }
 }
