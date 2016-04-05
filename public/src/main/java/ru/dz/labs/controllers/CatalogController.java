@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ru.dz.labs.Filter;
 import ru.dz.labs.services.CategoriesService;
 import ru.dz.labs.services.GoodsService;
+import ru.dz.labs.util.Methods;
 
 import javax.annotation.PostConstruct;
 
@@ -28,8 +29,8 @@ public class CatalogController extends BaseController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public String renderMyCatalogPage(String category, String priceBegin, String priceEnd, String sort) {
-        setFilter(category, priceBegin, priceEnd, sort);
+    public String renderMyCatalogPage(String category, String price_begin, String price_end, String sort) {
+        setFilter(category, price_begin, price_end, sort);
 
         request.setAttribute("filter", filter);
 
@@ -54,7 +55,7 @@ public class CatalogController extends BaseController {
         if (sort != null) {
             filter.setSort(sort);
         }
-        if (null != priceB && !priceB.equals("") && null != priceE && !priceE.equals("")) {
+        if (Methods.checkOfNull(priceB) && Methods.checkOfNull(priceE)) {
             filter.setPrices(priceB, priceE);
         }
     }
