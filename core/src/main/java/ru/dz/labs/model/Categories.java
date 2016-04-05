@@ -8,14 +8,13 @@ public class Categories {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, unique = true)
     private String name;
     @ManyToOne
             (cascade = {CascadeType.REFRESH},
                     fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Categories parent;
-
-
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
             mappedBy = "categories")

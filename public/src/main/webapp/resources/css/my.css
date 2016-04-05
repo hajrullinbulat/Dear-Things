@@ -619,23 +619,9 @@ body.nav-expanded {
     margin-top: 30px;
 }
 
-.pagination {
-    display: -webkit-box;
-    background: #ebebeb;
-    height: 60px;
-    line-height: 60px;
-}
-
 .centerpages {
     width: 830px;
     text-align: center;
-}
-
-.pagination__nav {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    width: 630px;
 }
 
 .pagination__nav li {
@@ -1149,6 +1135,25 @@ fieldset {
     cursor: pointer;
 }
 
+.btn_cancel {
+    margin: 35px 20px 0 0;
+    background: #F88B8B;
+    color: #111;
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    font-size: 1.0625rem;
+    padding: 0 30px;
+    height: 50px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px;
+    -webkit-transition: background 0.35s ease, color 0.35s ease;
+    transition: background 0.35s ease, color 0.35s ease;
+    font-family: "Calibri Light";
+    cursor: pointer;
+}
+
 .authWrapper {
     margin: 53px auto;
     width: 700px;
@@ -1509,16 +1514,40 @@ body {
     padding-bottom: 15px;
 }
 
-.checkbox_label{
+.checkbox_label {
     font-weight: 100;
     font-size: 20px;
     font-family: Calibri Light;
 }
 
-.checkbox_margin{
+.checkbox_margin {
     margin-left: 111px;
 }
 
+.order_details {
+    font-family: Calibri light;
+    font-size: 18px;
+    padding-top: 19px;
+}
+
+.order_detail {
+    padding-top: 15px;
+}
+
+.order_details_right {
+    padding-bottom: 40px;
+}
+
+.order_image {
+    float: left;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.border_details {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
 
 
 

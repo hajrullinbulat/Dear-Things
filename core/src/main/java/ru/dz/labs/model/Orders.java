@@ -10,7 +10,7 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date create_ti  me;
+    private Date create_time;
     private Float total_sum;
     private Integer total_count;
     private String pay_type;

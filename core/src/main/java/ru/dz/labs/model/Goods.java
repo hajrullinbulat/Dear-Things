@@ -8,9 +8,11 @@ public class Goods {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = 69)
     private String name;
     private Float price;
     private String image;
+    @Column(length = 725)
     private String description;
     private String company;
 

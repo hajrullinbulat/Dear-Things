@@ -16,6 +16,7 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping("/order")
 public class OrderController extends BaseController {
     @Autowired
     UsersService usersService;
@@ -30,7 +31,7 @@ public class OrderController extends BaseController {
     @Autowired
     OrderGoodsService orderGoodsService;
 
-    @RequestMapping(value = "/order", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String renderMyOrderPage() {
         Users sessionUser = (Users) request.getSession().getAttribute("user");
         Users user = usersService.getUsersById(sessionUser.getId());
@@ -45,7 +46,7 @@ public class OrderController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/order", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String makeOrder(String telephone, String address, String delivery, String payment) {
         Telephones tel = telephoneService.getTelephoneByString(telephone);
         Addresses add = addressesService.getAddressByString(address);
@@ -57,6 +58,14 @@ public class OrderController extends BaseController {
         ordersService.addOrders(order);
         orderGoodsService.addOrderGoods(order, cart);
         cartService.deleteCartsByUser(user);
+        return "ok";
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deleteFromOrders(Long orderId) {
+        ordersService.deleteOrder(orderId);
         return "ok";
     }
 }

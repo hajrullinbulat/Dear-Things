@@ -1,17 +1,17 @@
 <#assign sec=JspTaglibs["http://www.springframework.org/security/tags"]>
 <nav id="myNavmenu" class="navmenu navmenu-inverse navmenu-fixed-left offcanvas" role="navigation">
-    <a class="navmenu-brand" href="/catalog/1?category=1">Категории</a>
+    <a class="navmenu-brand" href="/catalog?category=1">Категории</a>
     <ul class="nav navmenu-nav">
     <#--<#list categories as category>-->
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=1">Все категории</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=2">Новый год </a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=3">Подарки</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=4">Для детей</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=5">Для дома</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=6">Офис</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=7">Гаджеты</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=8">Лайфстайл</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog/1?category=11">Украшения</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog?category=1">Все категории</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog?category=2">Новый год </a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog?category=3">Подарки</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog?category=4">Для детей</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog?category=5">Для дома</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog?category=6">Офис</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog?category=7">Гаджеты</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog?category=8">Лайфстайл</a></li>
+        <li class="hvr-underline-from-right"><a href="/catalog?category=11">Украшения</a></li>
     <#--</#list>-->
     </ul>
 </nav>
@@ -19,8 +19,8 @@
 
 <div class="navbar navbar-inverse navbar-static-top">
     <div class="container margin-top">
-        <a href="#" class="button hvr-grow-shadow" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"/><i
-            class="fa fa-bars"> Вещи</i></a></li>
+        <a class="button hvr-grow-shadow" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"><i
+            class="fa fa-bars"> Вещи</i></a>
         <div class="search">
             <input type="search" name="" placeholder="поиск" class="input"/>
             <input type="submit" name="" value="" class="submit"/>

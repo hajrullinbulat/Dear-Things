@@ -35,10 +35,11 @@ public class LoginController extends BaseController {
         request.getSession().setAttribute("user", myUser);
 
         String cart = Methods.getCookiesValue(request, "cart");
-        if (cart != null) {
+        if (Methods.checkOfNull(cart)) {
             cartsService.toCartFromCook(myUser, cart.split(","));
-            Methods.deleteCookie("cart", response);
         }
+        Methods.deleteCookie("cart", response);
+        request.getSession().setAttribute("cookiecart", null);
         return "redirect:/profile";
     }
 

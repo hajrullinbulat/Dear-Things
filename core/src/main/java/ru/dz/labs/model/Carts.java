@@ -8,7 +8,6 @@ public class Carts {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     @ManyToOne
             (cascade = {CascadeType.REFRESH},
                     fetch = FetchType.LAZY)

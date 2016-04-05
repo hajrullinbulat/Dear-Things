@@ -5,9 +5,8 @@
 <div class="container things">
     <div class="row">
         <div class="container">
-
-            <#if cart??>
-                <h1 class="cart_title" align="center">А это Ваша корзина</h1>
+            <h1 class="cart_title" align="center">А это Ваша корзина</h1>
+            <#if cart?has_content>
                 <#list cart as cart>
                     <div class="container cart_product cart${cart.id}">
                         <div class="col-lg-3">
@@ -42,13 +41,11 @@
                             </div>
                         </div>
                     </div>
-                <#else>
-                    <h1 class="cart_title" align="center">но сейчас она пуста :(</h1>
                 </#list>
                 <a href="/order" class="order btn_buy hvr-fade">
                     Оформить заказ
                 </a>
-            <#elseif cookiecart??>
+            <#elseif cookiecart?has_content>
                 <#list cookiecart as goods>
                     <form action="/cart/deletefromcook?index=${goods?counter}" method="post">
                         <div class="container cart_product cart${goods.id}">
@@ -74,11 +71,10 @@
                         </div>
                     </form>
                 </#list>
-                <a data-toggle="modal" data-target="#modal-1" class="order btn_buy hvr-fade">
+                <a class="order btn_buy hvr-fade" data-toggle="modal" data-target="#modal-1">
                     Оформить заказ
                 </a>
             <#else>
-                <h1 class="cart_title" align="center">А это Ваша корзина</h1>
                 <h1 class="cart_title" align="center">но сейчас она пуста :(</h1>
             </#if>
 

@@ -4,6 +4,10 @@
 <html class="html">
     <#include "../parts/head.ftl"/>
 
+<head>
+    <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
+</head>
+
 <body class="body">
 <div>
     <#include "../parts/header.ftl"/>

@@ -2,11 +2,9 @@ package ru.dz.labs.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.dz.labs.Filter;
-import ru.dz.labs.Pagination;
 import ru.dz.labs.services.CategoriesService;
 import ru.dz.labs.services.GoodsService;
 
@@ -22,7 +20,6 @@ public class CatalogController extends BaseController {
     CategoriesService categoriesService;
 
     Filter filter;
-    Pagination pagination;
 
     @PostConstruct
     public void init() {
@@ -30,16 +27,8 @@ public class CatalogController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/{page}", method = RequestMethod.GET)
-    public String renderMyCatalogPage(@PathVariable("page") Integer page,
-                                      String category, String priceBegin, String priceEnd, String sort) {
-//        List<Goods> goodsOnPage = new ArrayList<>();
-        //            pagination = new Pagination(goods.size(), page, 3);
-//        pagination.setNowPage(page);
-//        for (Integer i = pagination.getBeginIndex(); i < pagination.getEndIndex() && i < goods.size(); i++) {
-//            goodsOnPage.add(goods.get(i));
-//        }
-//        request.getSession().setAttribute("goods", goodsOnPage);
+    @RequestMapping(method = RequestMethod.GET)
+    public String renderMyCatalogPage(String category, String priceBegin, String priceEnd, String sort) {
         setFilter(category, priceBegin, priceEnd, sort);
 
         request.setAttribute("filter", filter);

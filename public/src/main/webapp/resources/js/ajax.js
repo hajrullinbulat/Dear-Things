@@ -22,6 +22,31 @@ $(document).on('click', '.js_deleteFromCart', function () {
     });
 });
 
+$(document).on('click', '.js_order_cancel', function () {
+    event.preventDefault();
+    var $this = $(this);
+    var id = $this.data('order');
+    $.ajax({
+        type: 'POST',
+        url: '/order/delete',
+        data: {orderId: id},
+        success: function (data) {
+            if (data == 'ok') {
+                $("#order" + id).hide();
+            }
+        },
+        error: function () {
+            swal({
+                title: 'Извините, произошла ошибка на сервере!',
+                type: 'error',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        }
+    });
+});
+
+
 $(document).on('click', '.js_addToCart', function () {
     event.preventDefault();
     var $this = $(this);
@@ -454,7 +479,7 @@ $(document).on('click', '.js_order', function () {
                     showConfirmButton: false,
                     timer: 2000
                 });
-                setTimeout("document.location.href='http://localhost:8080/'", 2000);
+                setTimeout("document.location.href='http://localhost:8080/profile'", 2000);
             },
             error: function () {
                 swal({

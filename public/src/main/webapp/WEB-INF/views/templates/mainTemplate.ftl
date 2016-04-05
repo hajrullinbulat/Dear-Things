@@ -3,7 +3,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <#include "../parts/head.ftl"/>
-
+<head>
+    <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
+</head>
 
 <body>
         <div>

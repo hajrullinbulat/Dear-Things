@@ -13,15 +13,15 @@
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <#--<#list categories as category>-->
-                    <li><a href="/catalog/1?category=1">Все категории</a></li>
-                    <li><a href="/catalog/1?category=2">Новый год </a></li>
-                    <li><a href="/catalog/1?category=3">Подарки</a></li>
-                    <li><a href="/catalog/1?category=4">Для детей</a></li>
-                    <li><a href="/catalog/1?category=5">Для дома</a></li>
-                    <li><a href="/catalog/1?category=6">Офис</a></li>
-                    <li><a href="/catalog/1?category=7">Гаджеты</a></li>
-                    <li><a href="/catalog/1?category=8">Лайфстайл</a></li>
-                    <li><a href="/catalog/1?category=11">Украшения</a></li>
+                    <li><a href="/catalog?category=1">Все категории</a></li>
+                    <li><a href="/catalog?category=2">Новый год </a></li>
+                    <li><a href="/catalog?category=3">Подарки</a></li>
+                    <li><a href="/catalog?category=4">Для детей</a></li>
+                    <li><a href="/catalog?category=5">Для дома</a></li>
+                    <li><a href="/catalog?category=6">Офис</a></li>
+                    <li><a href="/catalog?category=7">Гаджеты</a></li>
+                    <li><a href="/catalog?category=8">Лайфстайл</a></li>
+                    <li><a href="/catalog?category=11">Украшения</a></li>
                 <#--</#list>-->
                 </ul>
             </div>
@@ -45,12 +45,12 @@
 
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li><a href="/catalog/1?price_begin=0&price_end=0">Любая</a></li>
-                    <li><a href="/catalog/1?price_begin=0&price_end=500">0 - 500 ₽</a></li>
-                    <li><a href="/catalog/1?price_begin=500&price_end=1000">500 - 1000 ₽</a></li>
-                    <li><a href="/catalog/1?price_begin=1000&price_end=2000">1000 - 2000 ₽</a></li>
-                    <li><a href="/catalog/1?price_begin=2000&price_end=5000">2000 - 5000 ₽</a></li>
-                    <li><a href="/catalog/1?price_begin=5000&price_end=5001">5000+ ₽</a></li>
+                    <li><a href="/catalog?price_begin=0&price_end=0">Любая</a></li>
+                    <li><a href="/catalog?price_begin=0&price_end=500">0 - 500 ₽</a></li>
+                    <li><a href="/catalog?price_begin=500&price_end=1000">500 - 1000 ₽</a></li>
+                    <li><a href="/catalog?price_begin=1000&price_end=2000">1000 - 2000 ₽</a></li>
+                    <li><a href="/catalog?price_begin=2000&price_end=5000">2000 - 5000 ₽</a></li>
+                    <li><a href="/catalog?price_begin=5000&price_end=5001">5000+ ₽</a></li>
                 </ul>
             </div>
             . Cортировать от
@@ -68,9 +68,9 @@
                     </#if>
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                    <li><a href="/catalog/1?sort=?">?</a></li>
-                    <li><a href="/catalog/1?sort=min">Минимальной цены</a></li>
-                    <li><a href="/catalog/1?sort=max">Максиальной цены</a></li>
+                    <li><a href="/catalog?sort=?">?</a></li>
+                    <li><a href="/catalog?sort=min">Минимальной цены</a></li>
+                    <li><a href="/catalog?sort=max">Максиальной цены</a></li>
                 </ul>
             </div>
             .
@@ -93,22 +93,5 @@
     </#list>
     </div>
 </div>
-
-
-<div class="navbar">
-    <div class="pagination">
-        <div class="l-center pagination__nav">
-            <ul class="nav navbar-nav">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>...</li>
-                <li>9</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
 
 </#macro>
