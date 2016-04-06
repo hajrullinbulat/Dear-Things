@@ -61,6 +61,13 @@ public class UsersRepository {
 
     public Users getUserByEmail(String email) {
         return (Users) sessionFactory.getCurrentSession().createCriteria(Users.class)
-                .add(Restrictions.eq("email",email)).uniqueResult();
+                .add(Restrictions.eq("email", email)).uniqueResult();
+    }
+
+    public void activateAccount(String key) {
+        sessionFactory.getCurrentSession().createQuery("update Users u set u.enabled = :boolean where u.key = :key")
+                .setBoolean("boolean", true)
+                .setString("key", key)
+                .executeUpdate();
     }
 }

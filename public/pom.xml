@@ -18,6 +18,11 @@
             <artifactId>core</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>dz-labs</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <!-- Spring -->
         <dependency>

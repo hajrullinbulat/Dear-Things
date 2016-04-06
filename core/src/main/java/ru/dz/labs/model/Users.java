@@ -41,12 +41,13 @@ public class Users {
     public Users() {
     }
 
-    public Users(String email, String hash_pass, String name, Boolean enabled, String key) {
+    public Users(String email, String hash_pass, String name, Boolean enabled, String key, String role) {
         this.email = email;
         this.hash_pass = hash_pass;
         this.name = name;
         this.enabled = enabled;
         this.key = key;
+        this.role = role;
     }
 
     public Long getId() {

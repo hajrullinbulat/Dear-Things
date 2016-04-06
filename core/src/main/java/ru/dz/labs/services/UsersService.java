@@ -15,14 +15,13 @@ public class UsersService {
     @Autowired
     private UsersRepository usersRepository;
 
-    public Users getUserByEmail(String email){
+    public Users getUserByEmail(String email) {
         return usersRepository.getUserByEmail(email);
     }
 
     @Transactional
     public void addUsers(String name, String email, String pass) {
-        Users users = new Users(email, DigestUtils.md5DigestAsHex(pass.getBytes()), name, false, keyGen());
-        //// TODO: 18.03.2016 ОТПРАВЛЕНИЕ АКТИВИРОВАНИЯ НА ПОЧТУ
+        Users users = new Users(email, DigestUtils.md5DigestAsHex(pass.getBytes()), name, false, keyGen(), "ROLE_USER");
         usersRepository.add(users);
     }
 
@@ -69,5 +68,10 @@ public class UsersService {
     @Transactional
     public void updatePasswordOfUserById(Long id, String newPassword) {
         usersRepository.updatePasswordOfUserById(id, DigestUtils.md5DigestAsHex(newPassword.getBytes()));
+    }
+
+    @Transactional
+    public void activateAccount(String key){
+        usersRepository.activateAccount(key);
     }
 }
