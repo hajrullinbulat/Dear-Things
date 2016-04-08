@@ -9,9 +9,9 @@
                     <div class="company js_addToCart" data-id="${good.id}" name="addToTrash">
                         В корзину
                     </div>
-                    <button type="submit" class="btn btn-default float_right">
+                    <div class="price float_right">
                     ${good.price} ₽
-                    </button>
+                    </div>
                 </div>
             </div>
         </div>

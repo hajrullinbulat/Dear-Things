@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.util.Methods;
 import ru.dz.labs.model.Goods;
 import ru.dz.labs.services.CategoriesService;
@@ -18,6 +19,7 @@ public class ItemController extends BaseController {
     @Autowired
     CategoriesService categoriesService;
 
+    @CatalogInclude
     @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
     public String renderMyItemPage(@PathVariable("id") Long id) {
         Goods goodById = goodsService.getGoodById(id);

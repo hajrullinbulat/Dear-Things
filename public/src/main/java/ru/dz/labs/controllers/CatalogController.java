@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.dz.labs.Filter;
+import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.services.CategoriesService;
 import ru.dz.labs.services.GoodsService;
 import ru.dz.labs.util.Methods;
@@ -28,6 +29,7 @@ public class CatalogController extends BaseController {
     }
 
 
+    @CatalogInclude
     @RequestMapping(method = RequestMethod.GET)
     public String renderMyCatalogPage(String category, String price_begin, String price_end, String sort) {
         setFilter(category, price_begin, price_end, sort);

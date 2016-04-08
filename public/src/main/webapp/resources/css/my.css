@@ -1549,5 +1549,12 @@ body {
     border-bottom: 1px solid black;
 }
 
+.price {
+    margin: -2px -2px 0 0;
+    border: 1px solid #C5BABA;
+    border-radius: 51px;
+    padding: 8px 15px 6px 20px;
+}
+
 
 

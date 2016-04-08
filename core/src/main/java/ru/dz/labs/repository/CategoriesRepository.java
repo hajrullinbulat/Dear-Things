@@ -47,4 +47,8 @@ public class CategoriesRepository {
         Categories categoryById = getCategoryById(1L);
         return sessionFactory.getCurrentSession().createCriteria(Categories.class).add(Restrictions.eq("parent", categoryById)).list();
     }
+
+    public List getAllCategories(){
+        return sessionFactory.getCurrentSession().createCriteria(Categories.class).list();
+    }
 }

@@ -48,7 +48,7 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${jdbc.dialect}</prop><!-- SQL диалект -->
-                <!--<prop key="hibernate.show_sql">${jdbc.show_sql}</prop>&lt;!&ndash; Вывод в консоль SQL-запросов &ndash;&gt;-->
+                <prop key="hibernate.show_sql">${jdbc.show_sql}</prop><!-- Вывод в консоль SQL-запросов -->
                 <prop key="hibernate.hbm2ddl.auto">update</prop><!-- Автообновление структуры БД -->
             </props>
         </property>

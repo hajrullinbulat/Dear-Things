@@ -24,8 +24,13 @@ public class CategoriesService {
     }
 
     @Transactional
-    public List getMainCategories(){
+    public List getMainCategories() {
         return categoriesRepository.getMainCategories();
+    }
+
+    @Transactional
+    public List getAllCategories() {
+        return categoriesRepository.getAllCategories();
     }
 
 }

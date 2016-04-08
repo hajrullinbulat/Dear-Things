@@ -12,17 +12,9 @@
                 ${(filter.category.name)!"Все категории"}
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <#--<#list categories as category>-->
-                    <li><a href="/catalog?category=1">Все категории</a></li>
-                    <li><a href="/catalog?category=2">Новый год </a></li>
-                    <li><a href="/catalog?category=3">Подарки</a></li>
-                    <li><a href="/catalog?category=4">Для детей</a></li>
-                    <li><a href="/catalog?category=5">Для дома</a></li>
-                    <li><a href="/catalog?category=6">Офис</a></li>
-                    <li><a href="/catalog?category=7">Гаджеты</a></li>
-                    <li><a href="/catalog?category=8">Лайфстайл</a></li>
-                    <li><a href="/catalog?category=11">Украшения</a></li>
-                <#--</#list>-->
+                <#list categories as category>
+                    <li><a href="/catalog?category=${category.id}">${category.name}</a></li>
+                </#list>
                 </ul>
             </div>
             стоимостью

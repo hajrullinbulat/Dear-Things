@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.model.Users;
 import ru.dz.labs.services.CartsService;
 import ru.dz.labs.services.GoodsService;
@@ -29,6 +30,7 @@ public class CartController extends BaseController {
     @Autowired
     GoodsService goodsService;
 
+    @CatalogInclude
     @RequestMapping(method = RequestMethod.GET)
     public String renderMyCartPage() {
         Users user = (Users) request.getSession().getAttribute("user");

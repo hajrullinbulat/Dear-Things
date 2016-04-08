@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.services.GoodsService;
 
 
@@ -12,6 +13,7 @@ public class MainController extends BaseController {
     @Autowired
     GoodsService goodsService;
 
+    @CatalogInclude
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String renderMyMainPage() {
         request.setAttribute("goods", goodsService.getGoodsToMain());

@@ -2,17 +2,18 @@
 <nav id="myNavmenu" class="navmenu navmenu-inverse navmenu-fixed-left offcanvas" role="navigation">
     <a class="navmenu-brand" href="/catalog?category=1">Категории</a>
     <ul class="nav navmenu-nav">
-    <#--<#list categories as category>-->
-        <li class="hvr-underline-from-right"><a href="/catalog?category=1">Все категории</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog?category=2">Новый год </a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog?category=3">Подарки</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog?category=4">Для детей</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog?category=5">Для дома</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog?category=6">Офис</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog?category=7">Гаджеты</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog?category=8">Лайфстайл</a></li>
-        <li class="hvr-underline-from-right"><a href="/catalog?category=11">Украшения</a></li>
-    <#--</#list>-->
+    <#list categories as category>
+    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=1">Все категории</a></li>-->
+    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=2">Новый год </a></li>-->
+    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=3">Подарки</a></li>-->
+    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=4">Для детей</a></li>-->
+    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=5">Для дома</a></li>-->
+    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=6">Офис</a></li>-->
+    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=7">Гаджеты</a></li>-->
+    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=8">Лайфстайл</a></li>-->
+    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=11">Украшения</a></li>-->
+        <li class="hvr-underline-from-right"><a href="/catalog?category=${category.id}">${category.name}</a></li>
+    </#list>
     </ul>
 </nav>
 
@@ -20,7 +21,7 @@
 <div class="navbar navbar-inverse navbar-static-top">
     <div class="container margin-top">
         <a class="button hvr-grow-shadow" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body"><i
-            class="fa fa-bars"> Вещи</i></a>
+                class="fa fa-bars"> Вещи</i></a>
         <div class="search">
             <input type="search" name="" placeholder="поиск" class="input"/>
             <input type="submit" name="" value="" class="submit"/>
@@ -60,12 +61,14 @@
                     <div id="pre_log_email" class="reg_error_info log_error_info"></div>
                     <fieldset class="form__group">
                         <label class="form__label">Email</label>
-                        <input class="form__field js_login_email" id="log_email" size="50" type="text" name="j_username">
+                        <input class="form__field js_login_email" id="log_email" size="50" type="text"
+                               name="j_username">
                     </fieldset>
                     <div id="pre_log_pass" class="reg_error_info log_error_info"></div>
                     <fieldset class="form__group">
                         <label class="form__label">Пароль</label>
-                        <input class="form__field js_login_pass" id="log_pass" size="50" type="password" name="j_password">
+                        <input class="form__field js_login_pass" id="log_pass" size="50" type="password"
+                               name="j_password">
                     </fieldset>
                     <div class="checkbox_margin">
                         <input id="remember_me" name="_spring_security_remember_me" type="checkbox"/>
