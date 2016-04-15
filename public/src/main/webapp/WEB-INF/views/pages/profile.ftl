@@ -28,7 +28,7 @@
                                 </div>
                             </#list>
                         </div>
-                        <a class="order btn_cancel js_order_cancel" data-order="${order.id}">
+                        <a class="order btn_cancel" onclick="order_cancel(${order.id})" data-order="${order.id}">
                             Отменить заказ
                         </a>
                     </div>

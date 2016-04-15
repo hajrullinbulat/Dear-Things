@@ -21,13 +21,6 @@ public class LoginController extends BaseController {
     @Autowired
     CartsService cartsService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Boolean error) {
-        request.setAttribute("error", error);
-        return "redirect:/";
-    }
-
-
     @RequestMapping(value = "/success_log", method = RequestMethod.GET)
     public String success(HttpServletResponse response) {
         MyUserDetail user = (MyUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -42,6 +35,4 @@ public class LoginController extends BaseController {
         request.getSession().setAttribute("cookiecart", null);
         return "redirect:/profile";
     }
-
-
 }

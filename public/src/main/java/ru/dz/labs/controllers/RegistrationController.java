@@ -40,7 +40,7 @@ public class RegistrationController extends BaseController {
             Users user = usersService.checkLogging(userEmail, userPass);
             request.getSession().setAttribute("user", user);
             mail.sendMessage("Hello, " + userName + "!",
-                    "Перейдите по ссылке для активации аккаунта: http://localhost:8080/signup/key?key=" + user.getKey(),
+                    "Перейдите по ссылке для активации аккаунта: <a href=\"http://localhost:8080/signup/key?key=" + user.getKey() + "\"> ссылка</a> ",
                     userEmail);
             return "ok";
         } else

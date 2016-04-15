@@ -21,6 +21,13 @@
             для оформления заказов
         </a>
 
+        <div class="count_sum">
+            Кол-во элементов в корзине:
+            <div id="count" class="count"> ${count}</div>
+            , на сумму:
+            <div id="sum" class="sum"> ${sum}</div>
+            ₽
+        </div>
     </div>
 </div>
 

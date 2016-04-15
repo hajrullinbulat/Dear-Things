@@ -12,9 +12,9 @@
                 ${(filter.category.name)!"Все категории"}
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <#list categories as category>
-                    <li><a href="/catalog?category=${category.id}">${category.name}</a></li>
-                </#list>
+                    <#list categories as category>
+                        <li><a href="/catalog?category=${category.id}">${category.name}</a></li>
+                    </#list>
                 </ul>
             </div>
             стоимостью
@@ -80,10 +80,31 @@
 <div class="container things">
     <div class="row">
         <#include "../parts/item.ftl">
-        <#list goods as good>
-        <@item good=good />
-    </#list>
+        <div id="itemsList">
+            <#list goods as good>
+                <@item good=good />
+            </#list>
+        </div>
     </div>
 </div>
+
+    <#if goods_limit < goods_count>
+    <div class="loader">
+        <a class="btn-loader">
+            <div id="more" data-page="${page}" data-limit="${goods_limit}">
+                Показать еще
+                <#if goods_count - goods_limit <  goods_limit>
+                    (<span id="goods_limit">${goods_count-goods_limit}</span>)
+                    из
+                    <span id="goods_count">${goods_count-goods_limit}</span>
+                <#else>
+                    (<span id="goods_limit">${goods_limit}</span>)
+                    из
+                    <span id="goods_count">${goods_count-goods_limit}</span>
+                </#if>
+            </div>
+        </a>
+    </div>
+    </#if>
 
 </#macro>

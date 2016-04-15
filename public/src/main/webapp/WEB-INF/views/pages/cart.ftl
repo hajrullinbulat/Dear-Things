@@ -1,6 +1,11 @@
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"]>
 <#include "../templates/baseTemplate.ftl">
 <@baseTemplate title="Корзина - DearThings"/>
 <#macro m_body>
+
+    <@sec.authorize access="isAuthenticated()">
+        <#include "../parts/userNavbar.ftl">
+    </@sec.authorize>
 
 <div class="container things">
     <div class="row">
@@ -23,17 +28,25 @@
 
                             <p class="count_change"> В количестве:
                                 <i class="hvr-icon-back count_change_arrows  js_changeCountBack"
-                                   data-cart_to_change="${cart.id}"></i>
+                                   data-cart_to_change="${cart.id}"
+                                   data-price="${cart.goods.price}"
+                                   data-count="${cart.count}"></i>
                                 <input type="text" size="3" value="${cart.count}"
                                        class="js_changeCount"
                                        id="count_value${cart.id}"
                                        data-cart_to_change="${cart.id}"
-                                       data-count="${cart.count}">
+                                       data-count="${cart.count}"
+                                       data-price="${cart.goods.price}">
                                 <i class="hvr-icon-forward count_change_arrows js_changeCountForward"
-                                   data-cart_to_change="${cart.id}"></i>
+                                   data-cart_to_change="${cart.id}"
+                                   data-price="${cart.goods.price}"
+                                   data-count="${cart.count}"></i>
                             </p>
 
-                            <p><a class="cart_btn_del hvr-buzz-out js_deleteFromCart" data-cart="${cart.id}">
+                            <p><a class="cart_btn_del hvr-buzz-out js_deleteFromCart"
+                                  data-cart="${cart.id}"
+                                  data-price="${cart.goods.price}"
+                                  data-count="${cart.count}">
                                 Удалить из корзины</a>
                             </p>
                             <div class="cart_product_description">

@@ -2,50 +2,24 @@ $(document).on('click', '.js_deleteFromCart', function () {
     event.preventDefault();
     var $this = $(this);
     var id = $this.data('cart');
+    var price = $this.data('price');
+    var countOfItem = $this.data('count');
     $.ajax({
         type: 'POST',
         url: '/cart/delete',
         data: {cartId: id},
         success: function (data) {
-            if (data == 'ok') {
-                $(".cart" + id).hide();
-            }
+            $(".cart" + id).hide();
+            var sum = $("#sum").text();
+            var count = $("#count").text();
+            $("#sum").text(parseInt(sum) - (price * countOfItem));
+            $("#count").text(parseInt(count) - countOfItem)
         },
         error: function () {
-            swal({
-                title: 'Извините, произошла ошибка на сервере!',
-                type: 'error',
-                showConfirmButton: false,
-                timer: 3000
-            })
+            error();
         }
     });
 });
-
-$(document).on('click', '.js_order_cancel', function () {
-    event.preventDefault();
-    var $this = $(this);
-    var id = $this.data('order');
-    $.ajax({
-        type: 'POST',
-        url: '/order/delete',
-        data: {orderId: id},
-        success: function (data) {
-            if (data == 'ok') {
-                $("#order" + id).hide();
-            }
-        },
-        error: function () {
-            swal({
-                title: 'Извините, произошла ошибка на сервере!',
-                type: 'error',
-                showConfirmButton: false,
-                timer: 3000
-            })
-        }
-    });
-});
-
 
 $(document).on('click', '.js_addToCart', function () {
     event.preventDefault();
@@ -63,15 +37,92 @@ $(document).on('click', '.js_addToCart', function () {
             })
         },
         error: function () {
-            swal({
-                title: 'Извините, произошла ошибка на сервере!',
-                type: 'error',
-                showConfirmButton: false,
-                timer: 3000
-            })
+            error();
         }
     });
 });
+
+
+function order_cancel(order_id) {
+    event.preventDefault();
+    swal({
+        title: 'Вы уверены?',
+        text: "Операция необратима",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#F88B8B',
+        cancelButtonColor: '#7FD57B',
+        confirmButtonText: 'Да, удалить заказ!',
+        cancelButtonText: 'Отменить!',
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }).then(function (isConfirm) {
+        if (isConfirm === true) {
+            $.ajax({
+                type: 'POST',
+                url: '/order/delete',
+                data: {orderId: order_id},
+                success: function (data) {
+                    $("#order" + order_id).hide();
+                    swal({
+                        title: 'Заказ удалён!',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                },
+                error: function () {
+                    error();
+                }
+            });
+        } else if (isConfirm === false) {
+            swal({
+                title: 'Отменено!',
+                type: 'error',
+                showConfirmButton: false,
+                timer: 1000
+            });
+        }
+    });
+}
+
+$(document).on('click', '#more', function () {
+    var $this = $(this);
+    var page = $this.data('page'),
+        limit = $this.data('limit');
+    $.ajax({
+        type: "POST",
+        url: "/catalog/more",
+        data: {
+            limit: limit,
+            page: page
+        }
+    }).done(function (data) {
+        if (data != '') {
+            $("#itemsList").append(data);
+            updateCounter();
+        } else {
+            $this.hide();
+        }
+    }).fail(function () {
+        error();
+    });
+
+    function updateCounter() {
+        $this.data('page', page + 1);
+        var $goodsCount = $('#goods_count');
+        var goodsCount = parseInt($goodsCount.text());
+        if (goodsCount > limit) {
+            $goodsCount.text(goodsCount - limit);
+            $('#goods_limit').text(Math.min(limit, goodsCount - limit))
+        } else {
+            $('.loader').hide();
+        }
+    }
+});
+
 
 $(document).on('click', '.js_check', function () {
     event.preventDefault();
@@ -144,12 +195,7 @@ $(document).on('click', '.js_check', function () {
                 }
             },
             error: function () {
-                swal({
-                    title: 'Извините, произошла ошибка на сервере!',
-                    type: 'error',
-                    showConfirmButton: false,
-                    timer: 3000
-                })
+                error();
             }
         });
     }
@@ -208,14 +254,10 @@ $(document).on('blur', '.js_edit_name', function () {
             success: function (data) {
                 $("#name").text(user_edit_name);
                 $("#pre_name_success").text("Имя и фамилия успешно изменены");
+                $("#user_edit_name").val("");
             },
             error: function () {
-                swal({
-                    title: 'Извините, произошла ошибка на сервере!',
-                    type: 'error',
-                    showConfirmButton: false,
-                    timer: 3000
-                })
+                error();
             }
         });
     }
@@ -233,14 +275,10 @@ $(document).on('blur', '.js_edit_avatar', function () {
             success: function (data) {
                 $("#pre_avatar_success").text("Аватар успешно изменен");
                 $("#photo").text("");
+                $("#user_edit_avatar").val();
             },
             error: function () {
-                swal({
-                    title: 'Извините, произошла ошибка на сервере!',
-                    type: 'error',
-                    showConfirmButton: false,
-                    timer: 3000
-                })
+                error();
             }
         });
     }
@@ -270,14 +308,10 @@ $(document).on('blur', '.js_edit_telephone', function () {
             data: {userEditTelephone: user_edit_telephone},
             success: function (data) {
                 $("#pre_tel_success").text("Телефон успешно добавлен");
+                $("#user_edit_telephone").val("");
             },
             error: function () {
-                swal({
-                    title: 'Извините, произошла ошибка на сервере!',
-                    type: 'error',
-                    showConfirmButton: false,
-                    timer: 3000
-                })
+                error();
             }
         });
     }
@@ -297,14 +331,10 @@ $(document).on('blur', '.js_edit_address', function () {
             data: {userEditAddress: user_edit_address},
             success: function (data) {
                 $("#pre_address_success").text("Адрес успешно добавлен");
+                $("#user_edit_address").val("");
             },
             error: function () {
-                swal({
-                    title: 'Извините, произошла ошибка на сервере!',
-                    type: 'error',
-                    showConfirmButton: false,
-                    timer: 3000
-                })
+                error();
             }
         });
     }
@@ -361,6 +391,8 @@ $(document).on('blur', '.js_edit_password', function () {
             success: function (data) {
                 if (data == 'ok') {
                     $("#pre_pass_success").text("Пароль успешно изменен");
+                    $("#user_edit_newpass").val("");
+                    $("#user_edit_oldpass").val("");
                 } else {
                     $("#pre_edit_oldpass").text("Пароль не совпал");
                     $("#pre_pass_success").text("");
@@ -369,15 +401,18 @@ $(document).on('blur', '.js_edit_password', function () {
                 $("#user_edit_oldpass").val("");
             },
             error: function () {
-                swal({
-                    title: 'Извините, произошла ошибка на сервере!',
-                    type: 'error',
-                    showConfirmButton: false,
-                    timer: 3000
-                })
+                error();
             }
         });
     }
+});
+
+
+var last_focused_element_count;
+
+$('.js_changeCount').focus(function () {
+    var $this = $(this);
+    last_focused_element_count = $this.val();
 });
 
 
@@ -385,8 +420,8 @@ $(document).on('blur', '.js_changeCount', function () {
     event.preventDefault();
     var $this = $(this);
     var cart_to_change = $this.data('cart_to_change');
-    var count = $this.data('count');
     var change_count = $("#count_value" + cart_to_change).val();
+    var price = $this.data('price');
     if (change_count >= 0) {
         $.ajax({
             type: 'POST',
@@ -395,20 +430,26 @@ $(document).on('blur', '.js_changeCount', function () {
             success: function (data) {
                 if (data == 'ok') {
                     $("#count_value" + cart_to_change).val(change_count);
-                } else
+                    var difference_between_counts = change_count - last_focused_element_count;
+                    var sum = $("#sum").text();
+                    var countField = $("#count").text();
+                    $("#sum").text(parseInt(sum) + (price * difference_between_counts));
+                    $("#count").text(parseInt(countField) + difference_between_counts)
+                } else {
                     $(".cart" + cart_to_change).hide();
+                    var sum = $("#sum").text();
+                    var countField = $("#count").text();
+                    $("#sum").text(parseInt(sum) - (price * last_focused_element_count));
+                    $("#count").text(parseInt(countField) - last_focused_element_count)
+                }
+
             },
             error: function () {
-                swal({
-                    title: 'Извините, произошла ошибка на сервере!',
-                    type: 'error',
-                    showConfirmButton: false,
-                    timer: 3000
-                })
+                error();
             }
         });
     } else {
-        $("#count_value" + cart_to_change).val(count)
+        $("#count_value" + cart_to_change).val(last_focused_element_count)
     }
 });
 
@@ -417,20 +458,21 @@ $(document).on('click', '.js_changeCountForward', function () {
     var $this = $(this);
     var cart_to_change = $this.data('cart_to_change');
     var count = $("#count_value" + cart_to_change).val();
+    var price = $this.data('price');
     $.ajax({
         type: 'POST',
         url: '/cart/change',
         data: {cartId: cart_to_change, count: Number(count) + 1},
         success: function (data) {
             $("#count_value" + cart_to_change).val(Number(count) + 1);
+
+            var sum = $("#sum").text();
+            var countField = $("#count").text();
+            $("#sum").text(parseInt(sum) + price);
+            $("#count").text(parseInt(countField) + 1)
         },
         error: function () {
-            swal({
-                title: 'Извините, произошла ошибка на сервере!',
-                type: 'error',
-                showConfirmButton: false,
-                timer: 3000
-            })
+            error();
         }
     });
 });
@@ -440,6 +482,7 @@ $(document).on('click', '.js_changeCountBack', function () {
     var $this = $(this);
     var cart_to_change = $this.data('cart_to_change');
     var count = $("#count_value" + cart_to_change).val();
+    var price = $this.data('price');
     $.ajax({
         type: 'POST',
         url: '/cart/change',
@@ -449,14 +492,13 @@ $(document).on('click', '.js_changeCountBack', function () {
             if (count == 1) {
                 $(".cart" + cart_to_change).hide();
             }
+            var sum = $("#sum").text();
+            var countField = $("#count").text();
+            $("#sum").text(parseInt(sum) - price);
+            $("#count").text(parseInt(countField) - 1)
         },
         error: function () {
-            swal({
-                title: 'Извините, произошла ошибка на сервере!',
-                type: 'error',
-                showConfirmButton: false,
-                timer: 3000
-            })
+            error();
         }
     });
 });
@@ -482,12 +524,7 @@ $(document).on('click', '.js_order', function () {
                 setTimeout("document.location.href='http://localhost:8080/profile'", 2000);
             },
             error: function () {
-                swal({
-                    title: 'Извините, произошла ошибка на сервере!',
-                    type: 'error',
-                    showConfirmButton: false,
-                    timer: 3000
-                })
+                error();
             }
         });
     } else {
@@ -499,6 +536,8 @@ $(document).on('click', '.js_order', function () {
         })
     }
 });
+
+
 
 
 

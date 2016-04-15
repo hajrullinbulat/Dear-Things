@@ -17,6 +17,9 @@ public class Methods {
         return usersService.checkEmail(userEmail);
     }
 
+    /**
+     *For breadcrumbs - возврат дерева категории товара
+     */
     public static List getCategories(Goods good) {
         Stack<Categories> categoriesStack = new Stack<>();
         List<Categories> categoriesList = new ArrayList<>();
@@ -59,5 +62,6 @@ public class Methods {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
     }
+
 
 }

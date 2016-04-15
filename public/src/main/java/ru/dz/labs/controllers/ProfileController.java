@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.dz.labs.aspects.annotation.AttsInclude;
 import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.model.Users;
 import ru.dz.labs.services.CartsService;
@@ -17,6 +18,7 @@ public class ProfileController extends BaseController {
     @Autowired
     CartsService cartsService;
 
+    @AttsInclude
     @CatalogInclude
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String renderEditPage() {

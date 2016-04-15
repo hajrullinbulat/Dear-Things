@@ -29,7 +29,30 @@ function payment(pay) {
         $("#payment").text("Предоплата")
 }
 
+function log_error() {
+    swal({
+        title: 'Введен неверный логин или пароль!',
+        type: 'error',
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
+
+function error() {
+    swal({
+        title: 'Извините, произошла ошибка на сервере!',
+        type: 'error',
+        showConfirmButton: false,
+        timer: 3000
+    })
+}
 
 
 
+//$(window).scroll(function () {
+//    if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+//        alert("near bottom!");
+//
+//    }
+//});
 

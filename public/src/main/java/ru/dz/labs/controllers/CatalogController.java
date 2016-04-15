@@ -4,13 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ru.dz.labs.Filter;
+import org.springframework.web.bind.annotation.RequestParam;
+import ru.dz.labs.pojo.Filter;
 import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.services.CategoriesService;
 import ru.dz.labs.services.GoodsService;
 import ru.dz.labs.util.Methods;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 
 @Controller
@@ -21,30 +23,52 @@ public class CatalogController extends BaseController {
     @Autowired
     CategoriesService categoriesService;
 
+    List goodsAfterFilter;
     Filter filter;
+    Integer goods_limit;
+    int size;
 
     @PostConstruct
     public void init() {
         filter = new Filter();
+        goods_limit = 4;
     }
 
 
     @CatalogInclude
     @RequestMapping(method = RequestMethod.GET)
-    public String renderMyCatalogPage(String category, String price_begin, String price_end, String sort) {
+    public String renderMyCatalogPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                                      String category, String price_begin, String price_end, String sort, Long limit) {
         setFilter(category, price_begin, price_end, sort);
 
         request.setAttribute("filter", filter);
+        goodsAfterFilter = goodsService.getGoodsAfterFilter(
+                filter.getCategory(),
+                filter.getPriceBegin(),
+                filter.getPriceEnd(),
+                filter.getSort());
 
-        request.setAttribute("goods",
-                goodsService.getGoodsAfterFilter(
-                        filter.getCategory(),
-                        filter.getPriceBegin(),
-                        filter.getPriceEnd(),
-                        filter.getSort())
-        );
+        size = goodsAfterFilter.size();
+
+        request.setAttribute("goods", size > goods_limit ? goodsAfterFilter.subList(0, goods_limit) : goodsAfterFilter.subList(0, size));
+
+        request.setAttribute("goods_count", size);
+        request.setAttribute("goods_limit", limit == null ? goods_limit : limit);
+        request.setAttribute("page", page);
 
         return "pages/catalog";
+    }
+
+    @RequestMapping(value = "/more", method = RequestMethod.POST)
+    public String showMoreGoods(Integer limit, Integer page) {
+        if (size > page * limit) {
+            request.setAttribute("goods", page * goods_limit + goods_limit < size
+                    ? goodsAfterFilter.subList(page * goods_limit, page * goods_limit + goods_limit)
+                    : goodsAfterFilter.subList(page * goods_limit, size));
+        } else {
+            request.setAttribute("goods", goodsAfterFilter);
+        }
+        return "parts/ajaxItems";
     }
 
     private void setFilter(String category, String priceB, String priceE, String sort) {

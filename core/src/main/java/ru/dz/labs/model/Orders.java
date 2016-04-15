@@ -121,7 +121,6 @@ public class Orders {
     }
 
     public Orders(Date create_time, Float total_sum, Integer total_count, String pay_type, String delivery_type, Users users, Addresses addresses, Telephones telephones) {
-
         this.create_time = create_time;
         this.total_sum = total_sum;
         this.total_count = total_count;

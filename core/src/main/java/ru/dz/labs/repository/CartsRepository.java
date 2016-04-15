@@ -20,10 +20,6 @@ public class CartsRepository {
         sessionFactory.getCurrentSession().save(carts);
     }
 
-    public Carts getCartsById(Long id) {
-        return (Carts) sessionFactory.getCurrentSession().get(Carts.class, id);
-    }
-
     public List getUserCart(Users user) {
         return sessionFactory.getCurrentSession().createCriteria(Carts.class)
                 .add(Restrictions.eq("users", user)).list();
@@ -47,12 +43,12 @@ public class CartsRepository {
                 .executeUpdate();
     }
 
-    public List getSumOfCartByUser(Users user) {
-        return sessionFactory.getCurrentSession().createQuery(
-                "select sum(c.goods.price * c.count) from Carts c where c.users = :users"
+    public Object[] getSumOfCartByUser(Users user) {
+        return (Object[]) sessionFactory.getCurrentSession().createQuery(
+                "select sum(c.goods.price * c.count), sum(c.count) from Carts c where c.users = :users"
         )
                 .setEntity("users", user)
-                .list();
+                .uniqueResult();
     }
 
     public void deleteCartsByUser(Users user) {

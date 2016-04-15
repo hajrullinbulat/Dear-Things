@@ -1556,5 +1556,15 @@ body {
     padding: 8px 15px 6px 20px;
 }
 
+.count_sum{
+    float: right;
+    display: -webkit-inline-box;
+    margin-top: 20px;
+}
+
+.count, .sum {
+    font-weight: 600;
+    margin-left: 5px;
+}
 
 

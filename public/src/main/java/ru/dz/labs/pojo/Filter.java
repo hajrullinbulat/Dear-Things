@@ -1,4 +1,4 @@
-package ru.dz.labs;
+package ru.dz.labs.pojo;
 
 import ru.dz.labs.model.Categories;
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.dz.labs.model.Carts;
 import ru.dz.labs.model.Users;
+import ru.dz.labs.pojo.SumAndCount;
 import ru.dz.labs.repository.CartsRepository;
 
 import java.util.List;
@@ -16,17 +17,10 @@ public class CartsService {
     private CartsRepository cartsRepository;
     @Autowired
     private GoodsService goodsService;
-    @Autowired
-    private UsersService usersService;
 
     @Transactional
     public void addToCart(Users user, Long goodId) {
         cartsRepository.add(new Carts(goodsService.getGoodById(goodId), user, 1));
-    }
-
-    @Transactional
-    public Carts getCartsById(Long id) {
-        return cartsRepository.getCartsById(id);
     }
 
     @Transactional
@@ -41,8 +35,7 @@ public class CartsService {
 
     @Transactional
     public boolean checkOfExistingItemInCart(Users user, Long goodId) {
-        Carts cart = cartsRepository.getCart(user, goodsService.getGoodById(goodId));
-        return null != cart;
+        return null != cartsRepository.getCart(user, goodsService.getGoodById(goodId));
     }
 
     @Transactional
@@ -51,8 +44,13 @@ public class CartsService {
     }
 
     @Transactional
-    public List getSumOfCartByUserId(Users user) {
-        return cartsRepository.getSumOfCartByUser(user);
+    public SumAndCount getSumAndCountOfCartByUserId(Users user) {
+        Object[] sumOfCartByUser = cartsRepository.getSumOfCartByUser(user);
+        if (sumOfCartByUser[0] != null) {
+            return new SumAndCount(sumOfCartByUser[0].toString(), sumOfCartByUser[1].toString());
+        } else {
+            return new SumAndCount("0", "0");
+        }
     }
 
     @Transactional

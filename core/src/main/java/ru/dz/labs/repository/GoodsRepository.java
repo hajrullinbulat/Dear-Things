@@ -67,13 +67,4 @@ public class GoodsRepository {
     public List getGoodsToMain() {
         return sessionFactory.getCurrentSession().createCriteria(Goods.class).setMaxResults(12).list();
     }
-
-//    public List getGoodsFromCookie(List<Long> cart) {
-//        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Goods.class);
-//        Disjunction disjunction = Restrictions.disjunction();
-//        for (Long goodId : cart) {
-//            disjunction.add(Restrictions.eq("id", goodId));
-//        }
-//        return criteria.add(disjunction).list();
-//    }
 }

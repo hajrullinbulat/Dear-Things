@@ -10,11 +10,11 @@ public class Mail {
     String password = "Qaz266264";
 
     public void sendMessage(String subject, String text, String to) throws MessagingException {
-        Message message = new MimeMessage(getSession());
+        MimeMessage message = new MimeMessage(getSession());
         message.setFrom(new InternetAddress("dearthings@yandex.ru"));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
         message.setSubject(subject);
-        message.setText(text);
+        message.setText(text, "utf-8", "html");
         Transport.send(message);
     }
 

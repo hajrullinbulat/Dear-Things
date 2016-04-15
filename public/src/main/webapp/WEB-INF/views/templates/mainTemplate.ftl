@@ -14,7 +14,6 @@
             <@m_body/>
             <#include "../parts/footer.ftl"/>
         </div>
-
             <#include "../parts/scripts.ftl" />
 
     </body>

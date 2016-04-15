@@ -3,15 +3,6 @@
     <a class="navmenu-brand" href="/catalog?category=1">Категории</a>
     <ul class="nav navmenu-nav">
     <#list categories as category>
-    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=1">Все категории</a></li>-->
-    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=2">Новый год </a></li>-->
-    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=3">Подарки</a></li>-->
-    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=4">Для детей</a></li>-->
-    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=5">Для дома</a></li>-->
-    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=6">Офис</a></li>-->
-    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=7">Гаджеты</a></li>-->
-    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=8">Лайфстайл</a></li>-->
-    <#--<li class="hvr-underline-from-right"><a href="/catalog?category=11">Украшения</a></li>-->
         <li class="hvr-underline-from-right"><a href="/catalog?category=${category.id}">${category.name}</a></li>
     </#list>
     </ul>
@@ -34,7 +25,7 @@
         <div class="tributton">
 
         <@sec.authorize ifAnyGranted="ROLE_ANONYMOUS">
-            <a class="button button-first hvr-grow-shadow" data-toggle="modal" data-target="#modal-1"><i
+            <a class="button button-first hvr-grow-shadow" id="log_but" data-toggle="modal" data-target="#modal-1"><i
                     class="fa fa-user"></i></a>
         </@sec.authorize>
         <@sec.authorize access="isAuthenticated()">
