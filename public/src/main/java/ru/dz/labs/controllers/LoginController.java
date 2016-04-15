@@ -21,6 +21,9 @@ public class LoginController extends BaseController {
     @Autowired
     CartsService cartsService;
 
+    /**
+     * При удачном логировании security
+     */
     @RequestMapping(value = "/success_log", method = RequestMethod.GET)
     public String success(HttpServletResponse response) {
         MyUserDetail user = (MyUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

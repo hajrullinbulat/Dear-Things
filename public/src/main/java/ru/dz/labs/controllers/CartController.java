@@ -14,10 +14,7 @@ import ru.dz.labs.services.UsersService;
 import ru.dz.labs.util.Methods;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -45,7 +42,7 @@ public class CartController extends BaseController {
             if (Methods.checkOfNull(cartGoods)) {
                 cart = goodsService.getGoodsFromCookie(cartGoods);
             }
-            request.getSession().setAttribute("cookiecart", cart);
+            request.setAttribute("cookiecart", cart);
         }
         return "pages/cart";
     }
@@ -63,7 +60,7 @@ public class CartController extends BaseController {
         } else {  //пользователь не авторизован
             String cookieVal = Methods.getCookiesValue(request, "cart");
             if (Methods.checkOfNull(cookieVal)) {
-                if (!checkContains(cookieVal, String.valueOf(goodId)))
+                if (!Methods.checkContains(cookieVal, String.valueOf(goodId)))
                     cookieVal = cookieVal + String.valueOf(goodId) + ",";
             } else {
                 cookieVal = String.valueOf(goodId) + ",";
@@ -97,29 +94,9 @@ public class CartController extends BaseController {
 
     @RequestMapping(value = "/deletefromcook", method = RequestMethod.POST)
     public String deleteFromCart(HttpServletResponse response, String index) {
-        deleteFromCartCookie(request, response, index);
+        Methods.deleteFromCartCookie(request, response, index);
         return "redirect:/cart";
     }
 
 
-    private void deleteFromCartCookie(HttpServletRequest request, HttpServletResponse response, String goodId) {
-        String goods = Methods.getCookiesValue(request, "cart");
-        String[] goodsStringArray = goods.split(",");
-        List<String> goodsList = new ArrayList<>();
-        Collections.addAll(goodsList, goodsStringArray);
-        for (int i = 0; i < goodsStringArray.length; i++)
-            if (i == Integer.valueOf(goodId) - 1)
-                goodsList.remove(i);
-        String ans = "";
-        for (String s : goodsList)
-            ans = ans + s + ",";
-        Cookie cookie = new Cookie("cart", ans);
-        cookie.setPath("/");
-        cookie.setMaxAge(60 * 60 * 24 * 365);
-        response.addCookie(cookie);
-    }
-
-    private boolean checkContains(String goods, String good) {
-        return goods.contains(good);
-    }
 }

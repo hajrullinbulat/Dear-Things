@@ -31,7 +31,7 @@ public class CatalogController extends BaseController {
     @PostConstruct
     public void init() {
         filter = new Filter();
-        goods_limit = 4;
+        goods_limit = 8;
     }
 
 

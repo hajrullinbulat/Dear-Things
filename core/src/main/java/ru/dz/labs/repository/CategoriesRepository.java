@@ -30,6 +30,9 @@ public class CategoriesRepository {
                 .list();
     }
 
+    /**
+     * Возвращается всё поддерево категории
+     */
     public List getCategoryTree(Categories categories) {
         if (categories != null) {
             List<Categories> tree = new ArrayList<>();

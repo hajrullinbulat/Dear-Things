@@ -256,13 +256,11 @@ html, body {
     color: #b7b7b7;
     display: inline-block;
     vertical-align: top;
-    _display: inline;
     zoom: 1;
-    font-size: 30px;
-    font-size: 1.875rem;
-    margin: -4px 22px 0 12px;
+    font-size: 40px;
+    margin: -3px 0px 0px 15px;
     position: relative;
-    top: 18px;
+    top: 8px;
 }
 
 .categoryItem__header {
@@ -277,7 +275,7 @@ html, body {
     zoom: 1;
 }
 
-.review-sm .review__user, .storeProfileDesc__subscribers li > a, .categoryItem__user, .goodsItem__likes__user {
+.review-sm .review__user, .storeProfileDesc__subscribers li > a, .goodsItem__likes__user {
     display: inline-block;
     vertical-align: top;
     _display: inline;
@@ -299,12 +297,12 @@ html, body {
     transition: transform 0.25s ease, -webkit-transform 0.25s ease;
 }
 
-.media__image, .categoryItem__user, .review__user {
+.media__image, .review__user {
     float: left;
     margin-right: 10px;
 }
 
-.review-sm .review__user, .storeProfileDesc__subscribers li > a, .categoryItem__user, .goodsItem__likes__user, .peoplesList__img, .goodsItem__image, .goodsList-mini a, .userProfile__avatar, .productGallery__big, .productGallery__previews li {
+.review-sm .review__user, .storeProfileDesc__subscribers li > a, .goodsItem__likes__user, .peoplesList__img, .goodsItem__image, .goodsList-mini a, .userProfile__avatar, .productGallery__big, .productGallery__previews li {
     font: 0/0 a;
     text-align: center;
 }
@@ -314,14 +312,14 @@ a {
     text-decoration: none;
 }
 
-.review-sm .review__user:before, .storeProfileDesc__subscribers li > a:before, .categoryItem__user:before, .goodsItem__likes__user:before, .peoplesList__img:before, .goodsItem__image:before, .goodsList-mini a:before, .userProfile__avatar:before, .productGallery__big:before, .productGallery__previews li:before {
+.review-sm .review__user:before, .storeProfileDesc__subscribers li > a:before, .goodsItem__likes__user:before, .peoplesList__img:before, .goodsItem__image:before, .goodsList-mini a:before, .userProfile__avatar:before, .productGallery__big:before, .productGallery__previews li:before {
     content: ' ';
     display: inline-block;
     vertical-align: middle;
     height: 100%;
 }
 
-.review-sm .review__user img, .storeProfileDesc__subscribers li > a img, .categoryItem__user img, .goodsItem__likes__user img {
+.review-sm .review__user img, .storeProfileDesc__subscribers li > a img, .goodsItem__likes__user img {
     max-width: 100%;
     max-height: 100%;
 }
@@ -330,21 +328,13 @@ img {
     border: 0;
 }
 
-.review-sm .review__user > img, .storeProfileDesc__subscribers li > a > img, .categoryItem__user > img, .goodsItem__likes__user > img, .peoplesList__img > img, .goodsItem__image > img, .goodsList-mini a > img, .userProfile__avatar > img, .productGallery__big > img, .productGallery__previews li > img {
+.review-sm .review__user > img, .storeProfileDesc__subscribers li > a > img, .goodsItem__likes__user > img, .peoplesList__img > img, .goodsItem__image > img, .goodsList-mini a > img, .userProfile__avatar > img, .productGallery__big > img, .productGallery__previews li > img {
     display: inline-block;
     vertical-align: middle;
     font: 16px/1 Arial sans-serif;
 }
 
-.categoryItem__user {
-    margin: 3px 0 0;
-}
-
-.categoryItem__desc {
-    padding: 0 0 0 18px;
-}
-
-.media__content, .categoryItem__desc, .review__content, .userOrderList .userOrderItem__desc {
+.media__content, .review__content, .userOrderList .userOrderItem__desc {
     overflow: hidden;
     _overflow: visible;
     zoom: 1;
@@ -372,10 +362,10 @@ h2 {
 }
 
 .categoryItem .counter {
-    font-size: 15px;
-    font-size: 0.9375rem;
+    font-size: 17px;
     position: relative;
-    top: 5px;
+    top: 1px;
+    margin-left: 3px;
 }
 
 .categoryItem__title a {
@@ -434,6 +424,8 @@ a {
 
 .goodsList-mini a img {
     max-width: 100%;
+    height: 90px;
+    width: 90px;
 }
 
 ul ul, ol ul, ul ol, ol ol {
@@ -1556,7 +1548,7 @@ body {
     padding: 8px 15px 6px 20px;
 }
 
-.count_sum{
+.count_sum {
     float: right;
     display: -webkit-inline-box;
     margin-top: 20px;

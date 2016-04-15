@@ -17,6 +17,7 @@ public class CollectionsController extends BaseController {
     @CatalogInclude
     @RequestMapping(value = "/collections", method = RequestMethod.GET)
     public String renderMyCartPage() {
+        request.getSession().setAttribute("collections", categoriesService.getAllCategories());
         return "pages/collections";
     }
 

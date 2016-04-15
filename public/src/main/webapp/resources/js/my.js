@@ -32,9 +32,10 @@ function payment(pay) {
 function log_error() {
     swal({
         title: 'Введен неверный логин или пароль!',
+        text: 'Или аккаунт еще не активирован',
         type: 'error',
         showConfirmButton: false,
-        timer: 2000
+        timer: 3000
     })
 }
 

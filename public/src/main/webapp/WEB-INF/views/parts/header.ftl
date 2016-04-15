@@ -70,9 +70,9 @@
                     <fieldset>
                         <input class="btn_log hvr-fade" name="commit" type="submit" value="Войти" id="commit">
                         <ul class="form-auth__additionalLinks">
-                            <li><a href="#">Забыли пароль?</a></li>
+                            <li><a href="/forgot">Забыли пароль?</a></li>
                             <li><a href="/signup">Еще не зарегистрированы?</a></li>
-                            <li><a href="#">Не пришло подтверждение?</a></li>
+                            <li><a href="/activation">Не пришло подтверждение?</a></li>
                         </ul>
                     </fieldset>
                 </div>

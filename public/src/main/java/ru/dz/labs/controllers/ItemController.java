@@ -24,11 +24,11 @@ public class ItemController extends BaseController {
     public String renderMyItemPage(@PathVariable("id") Long id) {
         Goods goodById = goodsService.getGoodById(id);
         //дерево категорий
-        request.getSession().setAttribute("category", Methods.getCategories(goodById));
+        request.setAttribute("category", Methods.getCategories(goodById));
         //сам предмет
-        request.getSession().setAttribute("item", goodById);
+        request.setAttribute("item", goodById);
         //предеметы в той же категории либо выше
-        request.getSession().setAttribute("like", goodsService.getLikeGoods(goodById));
+        request.setAttribute("like", goodsService.getLikeGoods(goodById));
 
         return "pages/item";
     }

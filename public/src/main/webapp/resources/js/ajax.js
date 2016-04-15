@@ -184,11 +184,12 @@ $(document).on('click', '.js_check', function () {
                 if (data == 'ok') {
                     swal({
                         title: 'Вы успешно зарегестрированы!',
+                        text: 'Письмо, для подтверждения аккаунта, было выслано Вам на почту!',
                         type: 'success',
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 3000
                     });
-                    setTimeout("document.location.href='http://localhost:8080/'", 2000);
+                    setTimeout("document.location.href='http://localhost:8080/'", 3000);
                 } else if (data == 'failed') {
                     $("#pre_email").text("Этот Email уже используется");
                     $("#user_email").val("");
@@ -399,6 +400,115 @@ $(document).on('blur', '.js_edit_password', function () {
                 }
                 $("#user_edit_newpass").val("");
                 $("#user_edit_oldpass").val("");
+            },
+            error: function () {
+                error();
+            }
+        });
+    }
+});
+
+
+$(document).on('click', '.js_forgot', function () {
+    event.preventDefault();
+    var hasError = false;
+
+    var user_email = $("#user_email_forgot").val();
+    var email_reg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+
+    if (user_email == "") {
+        $("#pre_email_forgot").text("Ячейка пуста");
+        hasError = true;
+    } else if (!email_reg.test(user_email)) {
+        $("#user_email_forgot").val("");
+        $("#pre_email_forgot").text("Введите корректный Email");
+        hasError = true;
+    } else {
+        $("#pre_email_forgot").text("");
+    }
+
+    if (!hasError) {
+        $.ajax({
+            type: 'POST',
+            url: '/forgot',
+            data: {email: user_email},
+            success: function (data) {
+                if (data == 'ok') {
+                    swal({
+                        title: 'Пароль был выслан на почту!',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    setTimeout("document.location.href='http://localhost:8080/'", 2000);
+                } else if (data == 'failed') {
+                    swal({
+                        title: 'Неверный email!',
+                        type: 'error',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            },
+            error: function () {
+                error();
+            }
+        });
+    }
+});
+
+$(document).on('click', '.js_activation', function () {
+    event.preventDefault();
+    var hasError = false;
+
+    var user_email = $("#user_email_activ").val();
+    var user_pass = $("#user_pass_activ").val();
+    var email_reg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+
+    if (user_email == "") {
+        $("#pre_email_forgot").text("Ячейка пуста");
+        hasError = true;
+    } else if (!email_reg.test(user_email)) {
+        $("#user_email_forgot").val("");
+        $("#pre_email_forgot").text("Введите корректный Email");
+        hasError = true;
+    } else {
+        $("#pre_email_forgot").text("");
+    }
+
+    if (user_pass == "") {
+        $("#pre_pass_activ").text("Ячейка пуста");
+        hasError = true;
+    } else if (!/.{8,15}/.test(user_pass)) {
+        $("#user_pass_activ").val("");
+        $("#pre_pass_activ").text("От 8 до 15 символов");
+        hasError = true;
+    } else {
+        $("#pre_pass_activ").text("");
+    }
+
+    if (!hasError) {
+        $.ajax({
+            type: 'POST',
+            url: '/activation',
+            data: {email: user_email, pass: user_pass},
+            success: function (data) {
+                if (data == 'ok') {
+                    swal({
+                        title: 'Проверьте почту!',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    setTimeout("document.location.href='http://localhost:8080/'", 2000);
+                } else if (data == 'failed') {
+                    swal({
+                        title: 'Неверный email или пароль!',
+                        type: 'error',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
             },
             error: function () {
                 error();

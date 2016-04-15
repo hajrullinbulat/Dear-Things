@@ -16,6 +16,7 @@ public class MainController extends BaseController {
     @CatalogInclude
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String renderMyMainPage(Boolean error) {
+        //ошибка регистрации
         request.setAttribute("error", error);
         request.setAttribute("goods", goodsService.getGoodsToMain());
         return "pages/main";

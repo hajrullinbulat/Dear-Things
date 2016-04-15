@@ -4,7 +4,11 @@
 <div class="container">
     <ul class="breadcrumbs">
         <#list category as c>
-            <li><a href="/catalog?category=${c.id}">${c.name}</a></li>
+            <#if c.id != 1>
+                <li><a href="/catalog?category=${c.id}">${c.name}</a></li>
+            <#else>
+                <li><a href="/collections">${c.name}</a></li>
+            </#if>
         </#list>
     </ul>
     <div class="container product">

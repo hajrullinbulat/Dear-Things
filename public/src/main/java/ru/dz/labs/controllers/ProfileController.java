@@ -23,7 +23,7 @@ public class ProfileController extends BaseController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String renderEditPage() {
         Users user = (Users) request.getSession().getAttribute("user");
-        request.getSession().setAttribute("orders", usersService.getUsersById(user.getId()).getOrders());
+        request.setAttribute("orders", usersService.getUsersById(user.getId()).getOrders());
         return "pages/profile";
     }
 }
