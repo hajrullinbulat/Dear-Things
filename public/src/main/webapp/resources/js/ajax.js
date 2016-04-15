@@ -12,8 +12,14 @@ $(document).on('click', '.js_deleteFromCart', function () {
             $(".cart" + id).hide();
             var sum = $("#sum").text();
             var count = $("#count").text();
+            var new_count = parseInt(count) - countOfItem;
             $("#sum").text(parseInt(sum) - (price * countOfItem));
-            $("#count").text(parseInt(count) - countOfItem)
+            $("#count").text(new_count);
+            if (new_count == 0) {
+                $("#cart_order").hide();
+                $("#cart_none").text("но сейчас она пуста :(");
+
+            }
         },
         error: function () {
             error();
@@ -517,7 +523,6 @@ $(document).on('click', '.js_activation', function () {
     }
 });
 
-
 var last_focused_element_count;
 
 $('.js_changeCount').focus(function () {
@@ -550,7 +555,13 @@ $(document).on('blur', '.js_changeCount', function () {
                     var sum = $("#sum").text();
                     var countField = $("#count").text();
                     $("#sum").text(parseInt(sum) - (price * last_focused_element_count));
-                    $("#count").text(parseInt(countField) - last_focused_element_count)
+                    var new_count = parseInt(countField) - last_focused_element_count;
+                    $("#count").text(new_count);
+                    //$this.data("count", 1);
+                }
+                if (new_count == 0) {
+                    $("#cart_order").hide();
+                    $("#cart_none").text("но сейчас она пуста :(");
                 }
 
             },
@@ -605,7 +616,12 @@ $(document).on('click', '.js_changeCountBack', function () {
             var sum = $("#sum").text();
             var countField = $("#count").text();
             $("#sum").text(parseInt(sum) - price);
-            $("#count").text(parseInt(countField) - 1)
+            var new_count = parseInt(countField) - 1;
+            $("#count").text(new_count);
+            if (new_count == 0) {
+                $("#cart_order").hide();
+                $("#cart_none").text("но сейчас она пуста :(");
+            }
         },
         error: function () {
             error();

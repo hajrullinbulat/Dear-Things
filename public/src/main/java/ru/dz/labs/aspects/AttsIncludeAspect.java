@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.dz.labs.Constants;
 import ru.dz.labs.model.Users;
 import ru.dz.labs.pojo.SumAndCount;
 import ru.dz.labs.services.CartsService;
@@ -32,7 +33,7 @@ public class AttsIncludeAspect {
     @Before("attsIncludeMethod()")
     public void attsInclude() {
         if (request.isUserInRole("ROLE_USER")) {
-            SumAndCount sumAndCountOfCartByUserId = cartsService.getSumAndCountOfCartByUserId((Users) request.getSession().getAttribute("user"));
+            SumAndCount sumAndCountOfCartByUserId = cartsService.getSumAndCountOfCartByUserId((Users) request.getSession().getAttribute(Constants.SESSION_USER));
             request.getSession().setAttribute("sum", sumAndCountOfCartByUserId.getSum());
             request.getSession().setAttribute("count", sumAndCountOfCartByUserId.getCount());
         }

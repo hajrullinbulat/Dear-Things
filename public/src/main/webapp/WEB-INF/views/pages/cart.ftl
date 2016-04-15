@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </#list>
-                <a href="/order" class="order btn_buy hvr-fade">
+                <a href="/order" class="order btn_buy hvr-fade" id="cart_order">
                     Оформить заказ
                 </a>
             <#elseif cookiecart?has_content>
@@ -90,7 +90,7 @@
             <#else>
                 <h1 class="cart_title" align="center">но сейчас она пуста :(</h1>
             </#if>
-
+            <h1 class="cart_title" align="center" id="cart_none"></h1>
         </div>
     </div>
 </div>

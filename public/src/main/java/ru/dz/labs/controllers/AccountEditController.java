@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.dz.labs.Constants;
 import ru.dz.labs.model.Addresses;
 import ru.dz.labs.model.Telephones;
 import ru.dz.labs.model.Users;
@@ -36,47 +37,47 @@ public class AccountEditController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/edit_name", method = RequestMethod.POST)
     public String updateUsersName(String userEditName) {
-        Users user = (Users) request.getSession().getAttribute("user");
+        Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         usersService.updateNameOfUserById(user.getId(), userEditName);
-        request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
+        request.getSession().setAttribute(Constants.SESSION_USER, usersService.getUsersById(user.getId()));
         return "ok";
     }
 
     @ResponseBody
     @RequestMapping(value = "/edit_avatar", method = RequestMethod.POST)
     public String updateUsersAvatar(String userEditAvatar) {
-        Users user = (Users) request.getSession().getAttribute("user");
+        Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         usersService.updateAvatarOfUserById(user.getId(), userEditAvatar);
-        request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
+        request.getSession().setAttribute(Constants.SESSION_USER, usersService.getUsersById(user.getId()));
         return "ok";
     }
 
     @ResponseBody
     @RequestMapping(value = "/edit_telephone", method = RequestMethod.POST)
     public String addUsersTelephone(String userEditTelephone) {
-        Users user = (Users) request.getSession().getAttribute("user");
+        Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         telephoneService.addTelephone(new Telephones(userEditTelephone, user));
-        request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
+        request.getSession().setAttribute(Constants.SESSION_USER, usersService.getUsersById(user.getId()));
         return "ok";
     }
 
     @ResponseBody
     @RequestMapping(value = "/edit_address", method = RequestMethod.POST)
     public String addUsersAddress(String userEditAddress) {
-        Users user = (Users) request.getSession().getAttribute("user");
+        Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         addressesService.addAddresses(new Addresses(userEditAddress, user));
-        request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
+        request.getSession().setAttribute(Constants.SESSION_USER, usersService.getUsersById(user.getId()));
         return "ok";
     }
 
     @ResponseBody
     @RequestMapping(value = "/edit_pass", method = RequestMethod.POST)
     public String updateUsersPass(String userEditOldPass, String userEditNewPass) {
-        Users user = (Users) request.getSession().getAttribute("user");
+        Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         if (checkNotNullPasswords(userEditOldPass, userEditNewPass)) {
             if (Methods.passToHash(userEditOldPass).equals(user.getHash_pass())) {
                 usersService.updatePasswordOfUserById(user.getId(), userEditNewPass);
-                request.getSession().setAttribute("user", usersService.getUsersById(user.getId()));
+                request.getSession().setAttribute(Constants.SESSION_USER, usersService.getUsersById(user.getId()));
                 return "ok";
             }
         }
