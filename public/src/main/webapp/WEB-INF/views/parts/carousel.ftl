@@ -10,13 +10,13 @@
         <!--Слайды -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="/resources/images/slide1.jpg" alt=""/>
+                <img src="/resources/images/slide2.jpg" alt=""/>
             </div>
             <div class="item">
-                <img src="/resources/images/slide1.jpg" alt=""/>
+                <img src="/resources/images/slide2.jpg" alt=""/>
             </div>
             <div class="item">
-                <img src="/resources/images/slide1.jpg" alt=""/>
+                <img src="/resources/images/slide2.jpg" alt=""/>
             </div>
         </div>
     </div>

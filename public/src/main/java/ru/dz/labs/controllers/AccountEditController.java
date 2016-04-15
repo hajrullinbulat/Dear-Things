@@ -89,8 +89,4 @@ public class AccountEditController extends BaseController {
         return Methods.checkOfNull(userEditOldPass) && Methods.checkOfNull(userEditNewPass);
     }
 
-    private void addToString(StringBuilder stringBuilder, String s) {
-        stringBuilder.append(s);
-    }
-
 }

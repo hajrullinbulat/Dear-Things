@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.dz.labs.Constants;
 import ru.dz.labs.pojo.Filter;
 import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.services.CategoriesService;
@@ -31,7 +32,7 @@ public class CatalogController extends BaseController {
     @PostConstruct
     public void init() {
         filter = new Filter();
-        goods_limit = 8;
+        goods_limit = Constants.GOODS_PER_SHOW;
     }
 
 
@@ -41,7 +42,7 @@ public class CatalogController extends BaseController {
                                       String category, String price_begin, String price_end, String sort, Long limit) {
         setFilter(category, price_begin, price_end, sort);
 
-        request.setAttribute("filter", filter);
+        request.setAttribute(Constants.FILTER, filter);
         goodsAfterFilter = goodsService.getGoodsAfterFilter(
                 filter.getCategory(),
                 filter.getPriceBegin(),
@@ -50,11 +51,11 @@ public class CatalogController extends BaseController {
 
         size = goodsAfterFilter.size();
 
-        request.setAttribute("goods", size > goods_limit ? goodsAfterFilter.subList(0, goods_limit) : goodsAfterFilter.subList(0, size));
+        request.setAttribute(Constants.GOODS, size > goods_limit ? goodsAfterFilter.subList(0, goods_limit) : goodsAfterFilter.subList(0, size));
 
-        request.setAttribute("goods_count", size);
-        request.setAttribute("goods_limit", limit == null ? goods_limit : limit);
-        request.setAttribute("page", page);
+        request.setAttribute(Constants.GOODS_COUNT, size);
+        request.setAttribute(Constants.GOODS_LIMIT, limit == null ? goods_limit : limit);
+        request.setAttribute(Constants.PAGE, page);
 
         return "pages/catalog";
     }
@@ -62,11 +63,11 @@ public class CatalogController extends BaseController {
     @RequestMapping(value = "/more", method = RequestMethod.POST)
     public String showMoreGoods(Integer limit, Integer page) {
         if (size > page * limit) {
-            request.setAttribute("goods", page * goods_limit + goods_limit < size
+            request.setAttribute(Constants.GOODS, page * goods_limit + goods_limit < size
                     ? goodsAfterFilter.subList(page * goods_limit, page * goods_limit + goods_limit)
                     : goodsAfterFilter.subList(page * goods_limit, size));
         } else {
-            request.setAttribute("goods", goodsAfterFilter);
+            request.setAttribute(Constants.GOODS, goodsAfterFilter);
         }
         return "parts/ajaxItems";
     }

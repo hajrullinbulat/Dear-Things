@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.dz.labs.Constants;
 import ru.dz.labs.Mail;
 import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.model.Users;
@@ -37,7 +38,7 @@ public class RegistrationController extends BaseController {
         if (usersService.checkEmail(userEmail)) {
             usersService.addUsers(userName, userEmail, userPass);
             Users user = usersService.checkLogging(userEmail, userPass);
-            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute(Constants.SESSION_USER, user);
             mail.sendMessage("Здравствуйте, " + userName + "!",
                     "Перейдите по <a href=http://localhost:8080/signup/key?key=" + user.getKey() + "> ссылке</a>  для активации аккаунта: ",
                     userEmail);

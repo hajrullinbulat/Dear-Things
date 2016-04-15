@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.dz.labs.Constants;
 import ru.dz.labs.aspects.annotation.AttsInclude;
 import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.model.Addresses;
@@ -39,10 +40,10 @@ public class OrderController extends BaseController {
     @CatalogInclude
     @RequestMapping(method = RequestMethod.GET)
     public String renderMyOrderPage() {
-        Users sessionUser = (Users) request.getSession().getAttribute("user");
+        Users sessionUser = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         Users user = usersService.getUsersById(sessionUser.getId());
-        request.setAttribute("addresses", user.getAddresses());
-        request.setAttribute("telephones", user.getTelephones());
+        request.setAttribute(Constants.ADDRESSES, user.getAddresses());
+        request.setAttribute(Constants.TELEPHONES, user.getTelephones());
         return "pages/order";
     }
 
@@ -51,7 +52,7 @@ public class OrderController extends BaseController {
     public String makeOrder(String telephone, String address, String delivery, String payment) {
         Telephones tel = telephoneService.getTelephoneByString(telephone);
         Addresses add = addressesService.getAddressByString(address);
-        Users user = usersService.getUsersById(((Users) request.getSession().getAttribute("user")).getId());
+        Users user = usersService.getUsersById(((Users) request.getSession().getAttribute(Constants.SESSION_USER)).getId());
         SumAndCount sumOfCartByUserId = cartService.getSumAndCountOfCartByUserId(user);
         Float totalSum = sumOfCartByUserId.getSum();
         Integer totalCount = sumOfCartByUserId.getCount();

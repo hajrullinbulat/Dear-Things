@@ -1,6 +1,6 @@
 <#assign sec=JspTaglibs["http://www.springframework.org/security/tags"]>
 <nav id="myNavmenu" class="navmenu navmenu-inverse navmenu-fixed-left offcanvas" role="navigation">
-    <a class="navmenu-brand" href="/catalog?category=1">Категории</a>
+    <a class="navmenu-brand">Категории</a>
     <ul class="nav navmenu-nav">
     <#list categories as category>
         <li class="hvr-underline-from-right"><a href="/catalog?category=${category.id}">${category.name}</a></li>

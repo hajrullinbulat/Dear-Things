@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.dz.labs.Constants;
 import ru.dz.labs.aspects.annotation.AttsInclude;
 import ru.dz.labs.aspects.annotation.CatalogInclude;
 import ru.dz.labs.model.Users;
@@ -32,17 +33,17 @@ public class CartController extends BaseController {
     @CatalogInclude
     @RequestMapping(method = RequestMethod.GET)
     public String renderMyCartPage() {
-        Users user = (Users) request.getSession().getAttribute("user");
+        Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         List cart = null;
         if (null != user) {
             cart = cartsService.getUsersCart(user);
-            request.getSession().setAttribute("cart", cart);
+            request.getSession().setAttribute(Constants.CART, cart);
         } else {
-            String cartGoods = Methods.getCookiesValue(request, "cart");
+            String cartGoods = Methods.getCookiesValue(request, Constants.CART);
             if (Methods.checkOfNull(cartGoods)) {
                 cart = goodsService.getGoodsFromCookie(cartGoods);
             }
-            request.setAttribute("cookiecart", cart);
+            request.setAttribute(Constants.CART_FROM_COOKIE, cart);
         }
         return "pages/cart";
     }
@@ -50,7 +51,7 @@ public class CartController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addInCart(Long goodId, HttpServletResponse response) {
-        Users user = (Users) request.getSession().getAttribute("user");
+        Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         if (null != user) {     //пользователь авторизован
             if (!cartsService.checkOfExistingItemInCart(user, goodId)) {
                 cartsService.addToCart(user, goodId);
@@ -58,14 +59,14 @@ public class CartController extends BaseController {
                 return "exist";
             }
         } else {  //пользователь не авторизован
-            String cookieVal = Methods.getCookiesValue(request, "cart");
+            String cookieVal = Methods.getCookiesValue(request, Constants.CART);
             if (Methods.checkOfNull(cookieVal)) {
                 if (!Methods.checkContains(cookieVal, String.valueOf(goodId)))
                     cookieVal = cookieVal + String.valueOf(goodId) + ",";
             } else {
                 cookieVal = String.valueOf(goodId) + ",";
             }
-            Cookie cookie = new Cookie("cart", cookieVal);
+            Cookie cookie = new Cookie(Constants.CART, cookieVal);
             cookie.setPath("/");
             response.addCookie(cookie);
         }

@@ -3,7 +3,7 @@ $(document).on('click', '.js_deleteFromCart', function () {
     var $this = $(this);
     var id = $this.data('cart');
     var price = $this.data('price');
-    var countOfItem = $this.data('count');
+    var countOfItem = $('#count_value' + id).val();
     $.ajax({
         type: 'POST',
         url: '/cart/delete',

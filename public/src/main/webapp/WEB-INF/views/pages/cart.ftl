@@ -25,28 +25,23 @@
                                 <div class="cart_product_cost">${cart.goods.price} ₽</div>
                                 <div class="cart_product_company">${cart.goods.company}</div>
                             </div>
-
                             <p class="count_change"> В количестве:
-                                <i class="hvr-icon-back count_change_arrows  js_changeCountBack"
+                                <i class="hvr-icon-back count_change_arrows js_changeCountBack"
                                    data-cart_to_change="${cart.id}"
-                                   data-price="${cart.goods.price}"
-                                   data-count="${cart.count}"></i>
+                                   data-price="${cart.goods.price}"></i>
                                 <input type="text" size="3" value="${cart.count}"
                                        class="js_changeCount"
                                        id="count_value${cart.id}"
                                        data-cart_to_change="${cart.id}"
-                                       data-count="${cart.count}"
                                        data-price="${cart.goods.price}">
                                 <i class="hvr-icon-forward count_change_arrows js_changeCountForward"
                                    data-cart_to_change="${cart.id}"
-                                   data-price="${cart.goods.price}"
-                                   data-count="${cart.count}"></i>
+                                   data-price="${cart.goods.price}"></i>
                             </p>
 
                             <p><a class="cart_btn_del hvr-buzz-out js_deleteFromCart"
                                   data-cart="${cart.id}"
-                                  data-price="${cart.goods.price}"
-                                  data-count="${cart.count}">
+                                  data-price="${cart.goods.price}">
                                 Удалить из корзины</a>
                             </p>
                             <div class="cart_product_description">
@@ -94,6 +89,5 @@
         </div>
     </div>
 </div>
-
 
 </#macro>

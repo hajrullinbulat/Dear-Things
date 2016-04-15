@@ -34,8 +34,8 @@ public class AttsIncludeAspect {
     public void attsInclude() {
         if (request.isUserInRole("ROLE_USER")) {
             SumAndCount sumAndCountOfCartByUserId = cartsService.getSumAndCountOfCartByUserId((Users) request.getSession().getAttribute(Constants.SESSION_USER));
-            request.getSession().setAttribute("sum", sumAndCountOfCartByUserId.getSum());
-            request.getSession().setAttribute("count", sumAndCountOfCartByUserId.getCount());
+            request.getSession().setAttribute(Constants.SUM_CART, sumAndCountOfCartByUserId.getSum());
+            request.getSession().setAttribute(Constants.COUNT_CART, sumAndCountOfCartByUserId.getCount());
         }
     }
 

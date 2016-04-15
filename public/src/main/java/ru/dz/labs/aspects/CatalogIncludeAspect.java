@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.dz.labs.Constants;
 import ru.dz.labs.services.CategoriesService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class CatalogIncludeAspect {
 
     @Before("catalogIncludeMethod()")
     public void catalogInclude() {
-        request.getSession().setAttribute("categories", categoriesService.getMainCategories());
+        request.getSession().setAttribute(Constants.CATEGORIES, categoriesService.getMainCategories());
     }
 
 }
