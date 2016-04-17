@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.dz.labs.model.Categories;
 import ru.dz.labs.model.Goods;
+import ru.dz.labs.pojo.Filter;
 import ru.dz.labs.repository.CategoriesRepository;
 import ru.dz.labs.repository.GoodsRepository;
 
@@ -33,10 +34,8 @@ public class GoodsService {
      * берем предметы из той же категории, что и предмет, если меньше 4,
      * то поднимаемся выше по дереву(пока не наберем 4 предмета или не достигнем верха)
      */
-
     @Transactional
-    public List getLikeGoods(Goods good) {    //берем предметы из той же категории, что и предмет, если меньше 4,
-        // то поднимается выше по дереву и так пока не будет 4
+    public List getLikeGoods(Goods good) {
         Categories category = good.getCategories();
         Long id = good.getId();
         List likeGoods = goodsRepository.getLikeGoods(category, 4, id);
@@ -65,39 +64,17 @@ public class GoodsService {
 
 
     @Transactional
-    public List getGoodsAfterFilter(Categories cat, Float priceB, Float priceE, String sort) {
-        return goodsRepository.getGoodsAfterFilter(priceB, priceE, cat, categoriesRepository.getCategoryTree(cat), sort);
+    public List getGoodsAfterFilter(Filter filter) {
+        Categories category = filter.getCategory();
+        return goodsRepository.getGoodsAfterFilter(filter.getPriceBegin(),
+                filter.getPriceEnd(),
+                category,
+                categoriesRepository.getCategoryTree(category),
+                filter.getSort());
     }
 
     @Transactional
-    public List getGoodsToMain(){
+    public List getGoodsToMain() {
         return goodsRepository.getGoodsToMain();
     }
-
-//
-//        for (Goods good : allGoods) {
-//            try {
-//                BufferedImage image = ImageIO.read(new File("D:\\" + good.getImage()));
-//
-//                int height = image.getHeight();
-//                int width = image.getWidth();
-//
-//                if (height != width) {
-//                    int temp;
-//                    if (width > height) {
-//                        temp = (width - height) / 2;
-//                        image = image.getSubimage(temp, 0, height, height);
-//                    } else {
-//                        temp = (height - width) / 2;
-//                        image = image.getSubimage(0, temp, width, width);
-//                    }
-//                    ImageIO.write(image, "JPEG", new File("D:\\resources\\images\\new\\" + good.getId() + ".jpg"));
-//                }
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
-
 }

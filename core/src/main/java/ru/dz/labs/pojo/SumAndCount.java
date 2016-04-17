@@ -1,5 +1,8 @@
 package ru.dz.labs.pojo;
 
+/**
+ * для отображения суммы и кол-ва элементов в корзине
+ */
 public class SumAndCount {
     Float sum;
     Integer count;

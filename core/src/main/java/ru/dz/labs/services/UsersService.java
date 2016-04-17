@@ -6,8 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 import ru.dz.labs.model.Users;
 import ru.dz.labs.repository.UsersRepository;
-
-import java.util.List;
+import ru.dz.labs.util.Methods;
 
 @Service
 public class UsersService {
@@ -21,18 +20,13 @@ public class UsersService {
 
     @Transactional
     public void addUsers(String name, String email, String pass) {
-        Users users = new Users(email, DigestUtils.md5DigestAsHex(pass.getBytes()), name, false, keyGen(), "ROLE_USER");
+        Users users = new Users(email, DigestUtils.md5DigestAsHex(pass.getBytes()), name, false, Methods.keyGen(), "ROLE_USER");
         usersRepository.add(users);
     }
 
     @Transactional
     public Users getUsersById(Long id) {
         return usersRepository.getUsersById(id);
-    }
-
-    @Transactional
-    public List<Users> getAllUsers() {
-        return usersRepository.getAllUsers();
     }
 
     @Transactional
@@ -43,16 +37,6 @@ public class UsersService {
     @Transactional
     public Users checkLogging(String email, String pass) {
         return usersRepository.checkLogging(email, DigestUtils.md5DigestAsHex(pass.getBytes()));
-    }
-
-    private String keyGen() {
-        String letters = "abcdefghijklmnopqrstuvwxyz0123456789";
-        char[] keyGen = new char[letters.length()];
-        for (int i = 0; i < letters.length(); i++) {
-            keyGen[i] = letters.charAt((int) (Math.random() * letters.length()));
-        }
-
-        return String.valueOf(keyGen);
     }
 
     @Transactional

@@ -8,7 +8,7 @@ import ru.dz.labs.repository.OrderGoodsRepository;
 import ru.dz.labs.repository.OrdersRepository;
 
 @Service
-public class OrdersService {
+public class OrdersService{
     @Autowired
     private OrdersRepository ordersRepository;
     @Autowired

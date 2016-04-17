@@ -4,21 +4,22 @@ $(document).on('click', '.js_deleteFromCart', function () {
     var id = $this.data('cart');
     var price = $this.data('price');
     var countOfItem = $('#count_value' + id).val();
+    var sum_object = $("#sum");
+    var count_object = $("#count");
     $.ajax({
         type: 'POST',
         url: '/cart/delete',
         data: {cartId: id},
         success: function (data) {
             $(".cart" + id).hide();
-            var sum = $("#sum").text();
-            var count = $("#count").text();
+            var sum = sum_object.text();
+            var count = count_object.text();
             var new_count = parseInt(count) - countOfItem;
-            $("#sum").text(parseInt(sum) - (price * countOfItem));
-            $("#count").text(new_count);
+            sum_object.text(parseInt(sum) - (price * countOfItem));
+            count_object.text(new_count);
             if (new_count == 0) {
                 $("#cart_order").hide();
                 $("#cart_none").text("но сейчас она пуста :(");
-
             }
         },
         error: function () {
@@ -48,7 +49,7 @@ $(document).on('click', '.js_addToCart', function () {
     });
 });
 
-
+//подтверждение на отмену заказа
 function order_cancel(order_id) {
     event.preventDefault();
     swal({
@@ -94,6 +95,7 @@ function order_cancel(order_id) {
     });
 }
 
+//больше товаров
 $(document).on('click', '#more', function () {
     var $this = $(this);
     var page = $this.data('page'),
@@ -115,7 +117,7 @@ $(document).on('click', '#more', function () {
     }).fail(function () {
         error();
     });
-
+    //отображение числа оставшихся либо скрывание элемента "more"
     function updateCounter() {
         $this.data('page', page + 1);
         var $goodsCount = $('#goods_count');
@@ -129,16 +131,20 @@ $(document).on('click', '#more', function () {
     }
 });
 
-
+//проверка валидности при регистрации
 $(document).on('click', '.js_check', function () {
     event.preventDefault();
     var $this = $(this);
     var hasError = false;
 
-    var user_name = $("#user_name").val();
+    var user_name_object = $("#user_name");
+    var user_pass_object = $("#user_pass");
+    var user_pass_again_object = $("#user_pass_again");
+
+    var user_name = user_name_object.val();
     var user_email = $("#user_email").val();
-    var user_pass = $("#user_pass").val();
-    var user_pass_again = $("#user_pass_again").val();
+    var user_pass = user_pass_object.val();
+    var user_pass_again = user_pass_again_object.val();
 
     var email_reg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
     var name_reg = /^([A-Z][a-z]{1,15}\s[A-Z][a-z]{1,15})|([А-Я][а-я]{1,15}\s[А-Я][а-я]{1,15})$/;
@@ -149,7 +155,7 @@ $(document).on('click', '.js_check', function () {
     } else if (!name_reg.test(user_name)) {
         hasError = true;
         $("#pre_name").text("Формат: Костя Косточкин");
-        $("#user_name").val("");
+        user_name_object.val("");
     } else {
         $("#pre_name").text("");
     }
@@ -163,18 +169,18 @@ $(document).on('click', '.js_check', function () {
     } else {
         $("#pre_email").text("");
     }
+
     if (user_pass == "" || user_pass_again == "") {
         hasError = true;
         $("#pre_pass").text("Ячейка пуста");
     } else if (user_pass != user_pass_again) {
         hasError = true;
         $("#pre_pass").text("Пароли не совпадают");
-
-        $("#user_pass").val("");
-        $("#user_pass_again").val("");
+        user_pass_object.val("");
+        user_pass_again_object.val("");
     } else if (!/.{8,15}/.test(user_pass)) {
-        $("#user_pass").val("");
-        $("#user_pass_again").val("");
+        user_pass_object.val("");
+        user_pass_again_object.val("");
         hasError = true;
         $("#pre_pass").text("От 8 до 15 символов");
     } else {
@@ -208,38 +214,11 @@ $(document).on('click', '.js_check', function () {
     }
 });
 
-$(document).on('blur', '.js_login_email', function () {
-    var user_email = $("#log_email").val();
-    var email_reg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
-
-    if (user_email == "") {
-        $("#pre_log_email").text("Ячейка пуста");
-    } else if (!email_reg.test(user_email)) {
-        $("#log_email").val("");
-        $("#pre_log_email").text("Введите корректный Email");
-    } else {
-        $("#pre_log_email").text("");
-    }
-});
-
-$(document).on('blur', '.js_login_pass', function () {
-    var user_pass = $("#log_pass").val();
-
-    if (user_pass == "") {
-        $("#pre_log_pass").text("Ячейка пуста");
-    } else if (!/.{8,15}/.test(user_pass)) {
-        $("#log_pass").val("");
-        $("#pre_log_pass").text("От 8 до 15 символов");
-    } else {
-        $("#pre_log_pass").text("");
-    }
-});
-
-
 $(document).on('blur', '.js_edit_name', function () {
     event.preventDefault();
     var hasError = false;
-    var user_edit_name = $("#user_edit_name").val();
+    var user_edit_name_object = $("#user_edit_name");
+    var user_edit_name = user_edit_name_object.val();
     var name_reg = /^([A-Z][a-z]{1,15}\s[A-Z][a-z]{1,15})|([А-Я][а-я]{1,15}\s[А-Я][а-я]{1,15})$/;
 
     if (user_edit_name == "") {
@@ -248,7 +227,7 @@ $(document).on('blur', '.js_edit_name', function () {
         hasError = true;
         $("#pre_edit_name").text("Формат: Костя Косточкин");
         $("#pre_name_success").text("");
-        $("#user_edit_name").val("");
+        user_edit_name_object.val("");
     } else {
         $("#pre_edit_name").text("");
     }
@@ -295,7 +274,8 @@ $(document).on('blur', '.js_edit_avatar', function () {
 $(document).on('blur', '.js_edit_telephone', function () {
     event.preventDefault();
     var hasError = false;
-    var user_edit_telephone = $("#user_edit_telephone").val();
+    var user_edit_tel_object = $("#user_edit_telephone");
+    var user_edit_telephone = user_edit_tel_object.val();
     var telephone_reg = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
 
     if (user_edit_telephone == "") {
@@ -304,7 +284,7 @@ $(document).on('blur', '.js_edit_telephone', function () {
         hasError = true;
         $("#pre_edit_telephone").text("Введите корректный телефон");
         $("#pre_tel_success").text("");
-        $("#user_edit_telephone").val("");
+        user_edit_tel_object.val("");
     } else {
         $("#pre_edit_telephone").text("");
     }
@@ -351,8 +331,11 @@ $(document).on('blur', '.js_edit_password', function () {
     event.preventDefault();
     var hasError = false;
 
-    var user_edit_oldpass = $("#user_edit_oldpass").val();
-    var user_edit_newpass = $("#user_edit_newpass").val();
+    var oldpass_object = $("#user_edit_oldpass");
+    var newpass_object = $("#user_edit_newpass");
+
+    var user_edit_oldpass = oldpass_object.val();
+    var user_edit_newpass = newpass_object.val();
 
     if (user_edit_oldpass == "" && user_edit_newpass == "") {
         hasError = true;
@@ -360,18 +343,18 @@ $(document).on('blur', '.js_edit_password', function () {
         if (user_edit_oldpass == "" && user_edit_newpass != "") {
             $("#pre_edit_oldpass").text("Ячейка пуста");
             $("#pre_pass_success").text("");
-            $("#user_edit_newpass").val("");
+            newpass_object.val("");
         }
         if (user_edit_oldpass != "" && user_edit_newpass == "") {
             $("#pre_edit_newpass").text("Ячейка пуста");
             $("#pre_pass_success").text("");
-            $("#user_edit_oldpass").val("");
+            oldpass_object.val("");
 
         }
         if (user_edit_oldpass != "" && user_edit_newpass != "") {
             if (!/.{8,15}/.test(user_edit_oldpass)) {
-                $("#user_edit_oldpass").val("");
-                $("#user_edit_newpass").val("");
+                oldpass_object.val("");
+                newpass_object.val("");
                 $("#pre_pass_success").text("");
                 hasError = true;
                 $("#pre_edit_oldpass").text("От 8 до 15 символов");
@@ -379,8 +362,8 @@ $(document).on('blur', '.js_edit_password', function () {
                 $("#pre_edit_oldpass").text("");
             }
             if (!/.{8,15}/.test(user_edit_newpass)) {
-                $("#user_edit_newpass").val("");
-                $("#user_edit_oldpass").val("");
+                newpass_object.val("");
+                oldpass_object.val("");
                 hasError = true;
                 $("#pre_edit_newpass").text("От 8 до 15 символов");
                 $("#pre_pass_success").text("");
@@ -396,16 +379,18 @@ $(document).on('blur', '.js_edit_password', function () {
             url: '/edit_pass',
             data: {userEditOldPass: user_edit_oldpass, userEditNewPass: user_edit_newpass},
             success: function (data) {
+                var new_pass_object = $("#user_edit_newpass");
+                var old_pass_object = $("#user_edit_oldpass");
                 if (data == 'ok') {
                     $("#pre_pass_success").text("Пароль успешно изменен");
-                    $("#user_edit_newpass").val("");
-                    $("#user_edit_oldpass").val("");
+                    new_pass_object.val("");
+                    old_pass_object.val("");
                 } else {
                     $("#pre_edit_oldpass").text("Пароль не совпал");
                     $("#pre_pass_success").text("");
                 }
-                $("#user_edit_newpass").val("");
-                $("#user_edit_oldpass").val("");
+                new_pass_object.val("");
+                old_pass_object.val("");
             },
             error: function () {
                 error();
@@ -414,19 +399,21 @@ $(document).on('blur', '.js_edit_password', function () {
     }
 });
 
-
+//"забыли пароль"
 $(document).on('click', '.js_forgot', function () {
     event.preventDefault();
     var hasError = false;
 
-    var user_email = $("#user_email_forgot").val();
+    var user_email_forgot_object = $("#user_email_forgot");
+
+    var user_email = user_email_forgot_object.val();
     var email_reg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 
     if (user_email == "") {
         $("#pre_email_forgot").text("Ячейка пуста");
         hasError = true;
     } else if (!email_reg.test(user_email)) {
-        $("#user_email_forgot").val("");
+        user_email_forgot_object.val("");
         $("#pre_email_forgot").text("Введите корректный Email");
         hasError = true;
     } else {
@@ -463,12 +450,15 @@ $(document).on('click', '.js_forgot', function () {
     }
 });
 
+//повторная отправка письма на почту, если оно не пришло
 $(document).on('click', '.js_activation', function () {
     event.preventDefault();
     var hasError = false;
 
+    var user_pass_activ_object = $("#user_pass_activ");
+
     var user_email = $("#user_email_activ").val();
-    var user_pass = $("#user_pass_activ").val();
+    var user_pass = user_pass_activ_object.val();
     var email_reg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 
     if (user_email == "") {
@@ -486,7 +476,7 @@ $(document).on('click', '.js_activation', function () {
         $("#pre_pass_activ").text("Ячейка пуста");
         hasError = true;
     } else if (!/.{8,15}/.test(user_pass)) {
-        $("#user_pass_activ").val("");
+        user_pass_activ_object.val("");
         $("#pre_pass_activ").text("От 8 до 15 символов");
         hasError = true;
     } else {
@@ -530,12 +520,13 @@ $('.js_changeCount').focus(function () {
     last_focused_element_count = $this.val();
 });
 
-
+//изменение кол-ва товара в корзине через инпут поле
 $(document).on('blur', '.js_changeCount', function () {
     event.preventDefault();
     var $this = $(this);
     var cart_to_change = $this.data('cart_to_change');
-    var change_count = $("#count_value" + cart_to_change).val();
+    var cart_object = $("#count_value" + cart_to_change);
+    var change_count = cart_object.val();
     var price = $this.data('price');
     if (change_count >= 0) {
         $.ajax({
@@ -543,20 +534,20 @@ $(document).on('blur', '.js_changeCount', function () {
             url: '/cart/change',
             data: {cartId: cart_to_change, count: change_count},
             success: function (data) {
+                var sum_object = $("#sum");
+                var count_object = $("#count");
+                var sum = sum_object.text();
+                var countField = count_object.text();
                 if (data == 'ok') {
-                    $("#count_value" + cart_to_change).val(change_count);
+                    cart_object.val(change_count);
                     var difference_between_counts = change_count - last_focused_element_count;
-                    var sum = $("#sum").text();
-                    var countField = $("#count").text();
-                    $("#sum").text(parseInt(sum) + (price * difference_between_counts));
-                    $("#count").text(parseInt(countField) + difference_between_counts)
+                    sum_object.text(parseInt(sum) + (price * difference_between_counts));
+                    count_object.text(parseInt(countField) + difference_between_counts)
                 } else {
-                    $(".cart" + cart_to_change).hide();
-                    var sum = $("#sum").text();
-                    var countField = $("#count").text();
-                    $("#sum").text(parseInt(sum) - (price * last_focused_element_count));
+                    cart_object.hide();
+                    sum_object.text(parseInt(sum) - (price * last_focused_element_count));
                     var new_count = parseInt(countField) - last_focused_element_count;
-                    $("#count").text(new_count);
+                    count_object.text(new_count);
                     //$this.data("count", 1);
                 }
                 if (new_count == 0) {
@@ -570,10 +561,11 @@ $(document).on('blur', '.js_changeCount', function () {
             }
         });
     } else {
-        $("#count_value" + cart_to_change).val(last_focused_element_count)
+        cart_object.val(last_focused_element_count)
     }
 });
 
+//через стрелку вперед
 $(document).on('click', '.js_changeCountForward', function () {
     event.preventDefault();
     var $this = $(this);
@@ -586,11 +578,12 @@ $(document).on('click', '.js_changeCountForward', function () {
         data: {cartId: cart_to_change, count: Number(count) + 1},
         success: function (data) {
             $("#count_value" + cart_to_change).val(Number(count) + 1);
-
-            var sum = $("#sum").text();
-            var countField = $("#count").text();
-            $("#sum").text(parseInt(sum) + price);
-            $("#count").text(parseInt(countField) + 1)
+            var sum_object = $("#sum");
+            var count_object = $("#count");
+            var sum = sum_object.text();
+            var countField = count_object.text();
+            sum_object.text(parseInt(sum) + price);
+            count_object.text(parseInt(countField) + 1)
         },
         error: function () {
             error();
@@ -598,6 +591,7 @@ $(document).on('click', '.js_changeCountForward', function () {
     });
 });
 
+//через стрелку назад
 $(document).on('click', '.js_changeCountBack', function () {
     event.preventDefault();
     var $this = $(this);
@@ -613,11 +607,14 @@ $(document).on('click', '.js_changeCountBack', function () {
             if (count == 1) {
                 $(".cart" + cart_to_change).hide();
             }
-            var sum = $("#sum").text();
-            var countField = $("#count").text();
-            $("#sum").text(parseInt(sum) - price);
+            var sum_object = $("#sum");
+            var count_object = $("#count");
+
+            var sum = sum_object.text();
+            var countField = count_object.text();
+            sum_object.text(parseInt(sum) - price);
             var new_count = parseInt(countField) - 1;
-            $("#count").text(new_count);
+            count_object.text(new_count);
             if (new_count == 0) {
                 $("#cart_order").hide();
                 $("#cart_none").text("но сейчас она пуста :(");
@@ -629,6 +626,7 @@ $(document).on('click', '.js_changeCountBack', function () {
     });
 });
 
+//заказ
 $(document).on('click', '.js_order', function () {
     event.preventDefault();
     var telephone = $("#telephone").text();

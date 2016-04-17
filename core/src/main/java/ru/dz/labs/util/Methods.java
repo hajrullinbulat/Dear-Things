@@ -3,6 +3,8 @@ package ru.dz.labs.util;
 import org.springframework.util.DigestUtils;
 import ru.dz.labs.model.Categories;
 import ru.dz.labs.model.Goods;
+import ru.dz.labs.pojo.Filter;
+import ru.dz.labs.services.CategoriesService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -56,11 +58,8 @@ public class Methods {
     }
 
     public static void deleteFromCartCookie(HttpServletRequest request, HttpServletResponse response, String goodId) {
-        String goods = Methods.getCookiesValue(request, "cart");     //1,5,3,
-        System.out.println(goods);
-        System.out.println(goodId);
-        String answer = goods.replace(goodId + ",", "");
-
+        String goods = Methods.getCookiesValue(request, "cart");
+        String answer = goods != null ? goods.replace(goodId + ",", "") : null;
         Cookie cookie = new Cookie("cart", answer);
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 365);
@@ -79,5 +78,20 @@ public class Methods {
 
     public static boolean checkNotNullPasswords(String userEditOldPass, String userEditNewPass) {
         return checkOfNull(userEditOldPass) && checkOfNull(userEditNewPass);
+    }
+
+    public static void setFilter(Filter filter, CategoriesService categoriesService, String category, String priceB, String priceE, String sort) {
+        if (category != null) {
+            try {
+                filter.setCategory(categoriesService.getCategoryById(Long.valueOf(category)));
+            } catch (NumberFormatException ignored) {
+            }
+        }
+        if (sort != null) {
+            filter.setSort(sort);
+        }
+        if (Methods.checkOfNull(priceB) && Methods.checkOfNull(priceE)) {
+            filter.setPrices(priceB, priceE);
+        }
     }
 }

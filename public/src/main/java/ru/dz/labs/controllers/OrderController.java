@@ -52,7 +52,8 @@ public class OrderController extends BaseController {
     public String makeOrder(String telephone, String address, String delivery, String payment) {
         Telephones tel = telephoneService.getTelephoneByString(telephone);
         Addresses add = addressesService.getAddressByString(address);
-        Users user = usersService.getUsersById(((Users) request.getSession().getAttribute(Constants.SESSION_USER)).getId());
+//        Users user = usersService.getUsersById(((Users) request.getSession().getAttribute(Constants.SESSION_USER)).getId());
+        Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         SumAndCount sumOfCartByUserId = cartService.getSumAndCountOfCartByUserId(user);
         Float totalSum = sumOfCartByUserId.getSum();
         Integer totalCount = sumOfCartByUserId.getCount();

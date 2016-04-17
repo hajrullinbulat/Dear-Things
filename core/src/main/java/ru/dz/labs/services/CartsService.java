@@ -11,7 +11,7 @@ import ru.dz.labs.repository.CartsRepository;
 import java.util.List;
 
 @Service
-public class CartsService {
+public class CartsService{
 
     @Autowired
     private CartsRepository cartsRepository;

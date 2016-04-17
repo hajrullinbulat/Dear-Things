@@ -10,6 +10,10 @@ import ru.dz.labs.services.CategoriesService;
 
 import javax.servlet.http.HttpServletRequest;
 
+
+/**
+ *  АОП для наличия категорий товаров на необхадимых страницах
+ */
 @Aspect
 @Component
 public class CatalogIncludeAspect {

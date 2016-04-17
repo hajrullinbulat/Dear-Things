@@ -2,6 +2,9 @@ package ru.dz.labs.pojo;
 
 import ru.dz.labs.model.Categories;
 
+/**
+ * фильтр сортировки отображаемых товаров
+ */
 public class Filter {
     Categories category;
     Float priceBegin;

@@ -93,8 +93,8 @@ public class CartController extends BaseController {
     }
 
     @RequestMapping(value = "/deletefromcook", method = RequestMethod.POST)
-    public String deleteFromCart(HttpServletResponse response, String index) {
-        Methods.deleteFromCartCookie(request, response, index);
+    public String deleteFromCart(HttpServletResponse response, String id) {
+        Methods.deleteFromCartCookie(request, response, id);
         return "redirect:/cart";
     }
 }

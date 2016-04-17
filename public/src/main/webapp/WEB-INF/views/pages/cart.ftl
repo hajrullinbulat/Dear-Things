@@ -55,7 +55,7 @@
                 </a>
             <#elseif cookiecart?has_content>
                 <#list cookiecart as goods>
-                    <form action="/cart/deletefromcook?index=${goods?counter}" method="post">
+                    <form action="/cart/deletefromcook?id=${goods.id}" method="post">
                         <div class="container cart_product cart${goods.id}">
                             <div class="col-lg-3">
                                 <div class="cart_product_image">

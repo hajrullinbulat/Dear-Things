@@ -13,6 +13,10 @@ import ru.dz.labs.services.CategoriesService;
 
 import javax.servlet.http.HttpServletRequest;
 
+
+/**
+ * АОП для наличия суммы и кол-ва элементов корзины в профиле
+ */
 @Aspect
 @Component
 public class AttsIncludeAspect {

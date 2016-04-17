@@ -31,6 +31,7 @@ public class LoginController extends BaseController {
         Users myUser = user.getUserInfo();
         request.getSession().setAttribute(Constants.SESSION_USER, myUser);
 
+        //перенос корзины из кук в бд
         String cart = Methods.getCookiesValue(request, Constants.CART);
         if (Methods.checkOfNull(cart)) {
             cartsService.toCartFromCook(myUser, cart.split(","));
