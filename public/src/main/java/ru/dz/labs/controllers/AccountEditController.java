@@ -31,12 +31,12 @@ public class AccountEditController extends BaseController {
 
 
     /**
-     * Приходят параметры, проверям, пусты или не пусты
+     * Приходят параметры, проверяем, пусты или не пусты
      * Не пустые соответствующе обрабатываем
      */
     @ResponseBody
     @RequestMapping(value = "/edit_name", method = RequestMethod.POST)
-    public String updateUsersName(String userEditName) {
+    public String updateUsersName( String userEditName) {
         Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
         usersService.updateNameOfUserById(user.getId(), userEditName);
         request.getSession().setAttribute(Constants.SESSION_USER, usersService.getUsersById(user.getId()));
@@ -74,7 +74,7 @@ public class AccountEditController extends BaseController {
     @RequestMapping(value = "/edit_pass", method = RequestMethod.POST)
     public String updateUsersPass(String userEditOldPass, String userEditNewPass) {
         Users user = (Users) request.getSession().getAttribute(Constants.SESSION_USER);
-        if (checkNotNullPasswords(userEditOldPass, userEditNewPass)) {
+        if (Methods.checkNotNullPasswords(userEditOldPass, userEditNewPass)) {
             if (Methods.passToHash(userEditOldPass).equals(user.getHash_pass())) {
                 usersService.updatePasswordOfUserById(user.getId(), userEditNewPass);
                 request.getSession().setAttribute(Constants.SESSION_USER, usersService.getUsersById(user.getId()));
@@ -85,8 +85,5 @@ public class AccountEditController extends BaseController {
     }
 
 
-    private boolean checkNotNullPasswords(String userEditOldPass, String userEditNewPass) {
-        return Methods.checkOfNull(userEditOldPass) && Methods.checkOfNull(userEditNewPass);
-    }
 
 }
