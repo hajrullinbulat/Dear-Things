@@ -7,6 +7,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ru.dz.labs.Constants;
 import ru.dz.labs.model.Categories;
 import ru.dz.labs.model.Goods;
 
@@ -34,13 +35,16 @@ public class GoodsRepository {
         return criteria.list();
     }
 
+    /**
+     * Метод для возвращения товаров после обработки фильтром
+     * */
     public List getGoodsAfterFilter(Float priceBegin, Float priceEnd, Categories category, List<Categories> tree, String sort) {
         Criteria criteriaGoods = sessionFactory.getCurrentSession().createCriteria(Goods.class);
         if (priceBegin == null && priceEnd == null && category == null && sort == null)
             return criteriaGoods.list();
         else {
             if (priceBegin != null && priceEnd != null && priceEnd > priceBegin) {
-                if (priceBegin < 5000) {
+                if (priceBegin < Constants.MAX_OF_VIEW_PRICE) {
                     criteriaGoods.add(Restrictions.between("price", priceBegin, priceEnd));
                 } else {
                     criteriaGoods.add(Restrictions.ge("price", priceBegin));
@@ -65,6 +69,6 @@ public class GoodsRepository {
     }
 
     public List getGoodsToMain() {
-        return sessionFactory.getCurrentSession().createCriteria(Goods.class).setMaxResults(12).list();
+        return sessionFactory.getCurrentSession().createCriteria(Goods.class).setMaxResults(Constants.MAX_RESULT).list();
     }
 }

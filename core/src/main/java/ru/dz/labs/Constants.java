@@ -21,4 +21,6 @@ public interface Constants {
     String TELEPHONES = "telephones";
     String ORDERS = "orders";
     Integer GOODS_PER_SHOW = 8;
+    Integer MAX_RESULT = 12;
+    Integer MAX_OF_VIEW_PRICE = 5000;
 }

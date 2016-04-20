@@ -64,4 +64,3 @@ public class Carts {
     public Carts() {
     }
 }
-//составной pk

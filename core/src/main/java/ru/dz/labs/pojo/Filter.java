@@ -39,6 +39,9 @@ public class Filter {
 
     }
 
+    /**
+     * Set метод для диопозона цен взависимости от пришедших данных
+     */
     public void setPrices(String priceBegin, String priceEnd) {
         if (priceBegin != null && priceEnd != null) {
             try {

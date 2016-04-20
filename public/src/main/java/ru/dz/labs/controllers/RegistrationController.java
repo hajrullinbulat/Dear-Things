@@ -19,12 +19,14 @@ import javax.mail.MessagingException;
 public class RegistrationController extends BaseController {
     @Autowired
     UsersService usersService;
+
     Mail mail;
 
     @PostConstruct
     public void init() {
         mail = new Mail();
     }
+
 
     @CatalogInclude
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -39,9 +41,7 @@ public class RegistrationController extends BaseController {
             usersService.addUsers(userName, userEmail, userPass);
             Users user = usersService.checkLogging(userEmail, userPass);
             request.getSession().setAttribute(Constants.SESSION_USER, user);
-            mail.sendMessage("Здравствуйте, " + userName + "!",
-                    "Перейдите по <a href=http://localhost:8080/signup/key?key=" + user.getKey() + "> ссылке</a>  для активации аккаунта: ",
-                    userEmail);
+            mail.sendHelloMessage(userName, user.getKey(), userEmail);
             return "ok";
         } else
             return "failed";
@@ -65,7 +65,7 @@ public class RegistrationController extends BaseController {
             Users userByEmail = usersService.getUserByEmail(email);
             String newPass = Methods.keyGen();
             usersService.updatePasswordOfUserById(userByEmail.getId(), newPass);
-            mail.sendMessage("Восстановление пароля", "Здравствуйте, " + userByEmail.getName() + "! <br> А вот и Ваш новенький пароль : " + newPass + "<br> Поменять его можете в личном кабинете.", email);
+            mail.sendForgotMessage(userByEmail.getName(), newPass, email);
             return "ok";
         } else {
             return "failed";
@@ -82,9 +82,7 @@ public class RegistrationController extends BaseController {
     public String activationAgain(String email, String pass) throws MessagingException {
         Users user = usersService.checkLogging(email, pass);
         if (user != null) {
-            mail.sendMessage("Здравствуйте, " + user.getName() + "!",
-                    "Перейдите по <a href=http://localhost:8080/signup/key?key=" + user.getKey() + "> ссылке</a>  для активации аккаунта: ",
-                    email);
+            mail.sendActivation(user.getName(), user.getKey(), email);
             return "ok";
         } else {
             return "failed";

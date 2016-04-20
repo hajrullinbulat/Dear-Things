@@ -3,12 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--<context:property-placeholder-->
-    <!--location="file:${config.folder}/tutor-*.properties, classpath*:tutor-*.properties"-->
-    <!--ignore-resource-not-found="true"-->
-    <!--ignore-unresolvable="true"/>-->
 
-    <import resource="classpath*:tutor-core.xml"/>
+    <import resource="classpath*:shop-core.xml"/>
 
     <!-- Подключаем файл конфигураций для Spring Security -->
     <import resource="spring-security.xml" />
